@@ -10,6 +10,7 @@ Version: 1.0
 
 @import url('https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import url('https://fonts.googleapis.com/css?family=Arvo:400,700');
 @import url('fonts/stylesheet.css');
 
 /*GERAL*/
@@ -164,6 +165,73 @@ body {
 
 .social li a:hover {
   color: #4b76bd
+}
+
+
+/*FAQ*/
+
+.faq {
+  background: #343434;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.faq h2 {
+  margin-bottom: 40px;
+  font-size: 5em;
+  color: #ffffff;
+  font-family: 'Arvo', serif;
+  font-weight: 700
+}
+
+.faq .panel-group {
+  border-right: solid #828282;
+  border-left: solid #828282;
+  border-top: solid #828282;
+  max-width: 976px;
+  margin: auto;
+}
+
+.faq .panel-heading {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.faq .panel-title {
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 2.6em;
+  color: white;
+}
+
+.faq .panel-title a[aria-expanded="false"] i.fa:before {
+  content: "\f067"
+}
+
+.faq .panel-title a[aria-expanded="true"] i.fa:before {
+  content: "\f068"
+}
+
+.faq .panel-title a i {
+  margin-right: 7px;
+}
+
+.faq .panel-collapse {
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 1.6em;
+}
+
+.faq .panel-body {
+  border-top: none !important
+}
+
+.faq .panel-faq {
+  background: transparent;
+  border-bottom: solid #828282;
+  border-radius: 0;
 }
 
 

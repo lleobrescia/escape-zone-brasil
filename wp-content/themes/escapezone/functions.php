@@ -99,4 +99,51 @@ if(function_exists('acf_add_options_page')){
   );
   acf_add_options_page($args );
 }
+
+/**
+  * Register a post type, with REST API support
+  *
+  * Based on example at: http://codex.wordpress.org/Function_Reference/register_post_type
+  */
+add_action( 'init', 'faq' );
+function faq() {
+  $labels = array(
+      'name'               => _x( 'FAQ', 'post type general name' ),
+      'singular_name'      => _x( 'FAQ', 'post type singular name' ),
+      'menu_name'          => _x( 'FAQ', 'admin menu' ),
+      'name_admin_bar'     => _x( 'FAQ', 'add new on admin bar' ),
+      'add_new'            => _x( 'Adicionar Novo', 'item' ),
+      'add_new_item'       => __( 'Adicionar Novo FAQ' ),
+      'new_item'           => __( 'Novo FAQ' ),
+      'update_item'        => __( 'Salvar' ),
+      'edit_item'          => __( 'Editar FAQ' ),
+      'view_item'          => __( 'Ver FAQ' ),
+      'all_items'          => __( 'Todos FAQ' ),
+      'search_items'       => __( 'Procurar FAQ' ),
+      'parent_item_colon'  => __( 'Parent Itens:' ),
+      'not_found'          => __( 'FAQ não encontrado.' ),
+      'not_found_in_trash' => __( 'FAQ não encontrado.' )
+  );
+
+  $args = array(
+      'labels'                => $labels,
+      'public'                => true,
+      'publicly_queryable'    => true,
+      'show_ui'               => true,
+      'show_in_rest'          => true,
+      'show_in_menu'          => true,
+      'query_var'             => true,
+      'rewrite'               => array( 'slug' => 'faq' ),
+      'capability_type'       => 'post',
+      'has_archive'           => true,
+      'menu_icon'             => 'dashicons-clipboard',
+      'hierarchical'          => false,
+      'menu_position'         => 5,
+      'rest_base'             => 'faq',
+      'rest_controller_class' => 'WP_REST_Posts_Controller',
+      'supports'              => array( 'title')
+  );
+
+  register_post_type( 'faq', $args );
+}
 ?>
