@@ -152,12 +152,12 @@ body {
 .social li a {
   display: block;
   color: #fdfdfd;
-  font-size: 2.5em;
+  font-size: 2em;
   border: solid;
   border-radius: 30px;
   width: 47px;
-  line-height: 47px;
   height: 47px;
+  line-height: 45px;
   margin: 13px;
   text-align: center;
 }
