@@ -85,4 +85,18 @@ function my_scripts()
   );
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
+
+//Adiciona um novo menu, em conjunto com o plugin advanced-custom-fields
+if(function_exists('acf_add_options_page')){
+  $args = array(
+      'page_title'     => 'Contato',
+      'menu_title'     => 'Contato',
+      'menu_slug'      => 'contato',
+      'capability'     => 'edit_posts',
+      'parent_slug'    => '',
+      'position'       => false,
+      'icon_url'       => 'dashicons-media-text'
+  );
+  acf_add_options_page($args );
+}
 ?>
