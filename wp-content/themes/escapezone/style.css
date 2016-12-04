@@ -4,3 +4,157 @@ Author: 8D Propaganda
 Author URI: http://8dpropaganda.com.br/
 Version: 1.0
 */
+
+
+/*FONTS*/
+
+@import url('https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import url('fonts/stylesheet.css');
+
+/*GERAL*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /*config para usar em no lugar de px*/
+  /* 13px > 1.3em */
+  font-size: 100.01%;
+}
+
+body {
+  /*config para usar em no lugar de px*/
+  /* 13px > 1.3em */
+  font-size: 62.5%;
+}
+
+
+/*HEADER*/
+
+.header {
+  min-height: 116px;
+  background: black;
+  padding-top: 42px;
+}
+
+.header h1 {
+  margin: 0;
+  font-family: 'Futura LT';
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 4.3em;
+  text-transform: uppercase;
+}
+
+.logo img {
+  max-width: 100%
+}
+
+.logo a {
+  display: inline-block
+}
+
+.logo .btn-primary {
+  background-color: #cc2128;
+  border-color: #6d0c10;
+  float: right;
+  font-size: 1.6em;
+}
+
+.logo .btn-primary.open {
+  background-color: transparent;
+  border-color: #cc2128;
+}
+
+.header .menu {
+  padding: 0;
+  margin-top: 32px;
+}
+
+.header .menu li {
+  margin: 10px 0;
+}
+
+.header .menu li a {
+  font-family: 'Futura LT';
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 2.3em;
+  text-transform: uppercase;
+  padding: 10px 7px;
+}
+
+.header .menu li:last-child a {
+  border: none;
+}
+
+.header .menu li a:hover {
+  text-decoration: none;
+  color: #ff7575;
+}
+
+.header .menu li.menu-item-has-children {
+  position: relative;
+}
+
+.header .menu li.menu-item-has-children:hover > .sub-menu {
+  display: block;
+}
+
+.header .menu li .sub-menu {
+  margin-left: 15px;
+}
+
+.header .menu li .sub-menu li a {
+  border: none;
+  font-size: 2em;
+  margin: 0;
+}
+
+
+/*MEDIA*/
+
+@media (min-width: 768px) {
+  .logo .btn-primary {
+    display: none !important;
+  }
+  .nav.ng-hide {
+    display: block !important
+  }
+  .header .menu {
+    margin: 0;
+    text-align: right;
+  }
+  .header .menu li {
+    display: inline-block;
+    margin: 0;
+  }
+  .header .menu li a {
+    border-right: solid 5px #ff0000;
+    font-size: 1.6em;
+    padding: 0 7px;
+  }
+  .header .menu li .sub-menu {
+    display: none;
+    text-align: left;
+    position: absolute;
+    z-index: 9;
+    padding: 10px;
+    background: black;
+    left: -50%;
+    min-width: 300px;
+    margin: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .logo img {
+    max-width: initial;
+  }
+  .header .menu li a {
+    font-size: 2.3em;
+  }
+}
