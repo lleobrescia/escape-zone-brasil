@@ -9,7 +9,7 @@ Version: 1.0
 /*FONTS*/
 
 @import url('https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Arvo:400,700');
 @import url('fonts/stylesheet.css');
 
@@ -24,6 +24,7 @@ html {
   /*config para usar em no lugar de px*/
   /* 13px > 1.3em */
   font-size: 100.01%;
+  font-family: 'Roboto';
 }
 
 body {
