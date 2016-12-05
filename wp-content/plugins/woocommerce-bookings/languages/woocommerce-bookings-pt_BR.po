@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
 "Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
 "POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
-"PO-Revision-Date: 2016-02-04 16:00+0000\n"
+"PO-Revision-Date: 2016-12-05 18:04-0200\n"
 "Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-bookings/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-"
+"bookings/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: includes/addons/accommodation-booking.php:17
 msgid "Accommodation booking"
@@ -79,14 +80,14 @@ msgstr "A quantidade desse item disponível em todo tempo."
 #: includes/admin/views/html-booking-pricing.php:32
 #: includes/admin/views/html-global-availability-settings.php:65
 msgid "Range type"
-msgstr ""
+msgstr "Tipo de Intervalo"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:52
 #: includes/admin/views/html-booking-availability.php:91
 #: includes/admin/views/html-booking-pricing.php:33
 #: includes/admin/views/html-global-availability-settings.php:66
 msgid "Range"
-msgstr ""
+msgstr "Intervalo"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:55
 #: includes/admin/views/html-booking-availability.php:94
@@ -97,8 +98,7 @@ msgstr ""
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:55
 #: includes/admin/views/html-booking-availability.php:94
 #: includes/admin/views/html-global-availability-settings.php:69
-msgid ""
-"If not bookable, users won't be able to choose this block for their booking."
+msgid "If not bookable, users won't be able to choose this block for their booking."
 msgstr ""
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:56
@@ -111,10 +111,9 @@ msgstr "Prioridade"
 #: includes/admin/views/html-booking-availability.php:95
 #: includes/admin/views/html-global-availability-settings.php:70
 msgid ""
-"The lower the priority number, the earlier this rule gets applied. By "
-"default, global rules take priority over product rules which take priority "
-"over resource rules. By using priority numbers you can execute rules in "
-"different orders."
+"The lower the priority number, the earlier this rule gets applied. By default, "
+"global rules take priority over product rules which take priority over resource "
+"rules. By using priority numbers you can execute rules in different orders."
 msgstr ""
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:68
@@ -128,14 +127,13 @@ msgstr ""
 #: includes/admin/views/html-booking-availability.php:108
 #: includes/admin/views/html-global-availability-settings.php:83
 msgid ""
-"Rules with lower numbers will execute first. Rules further down this table "
-"with the same priority will also execute first."
+"Rules with lower numbers will execute first. Rules further down this table with "
+"the same priority will also execute first."
 msgstr ""
 
-#: includes/admin/class-wc-bookings-addons.php:23
-#: woocommmerce-bookings.php:304
+#: includes/admin/class-wc-bookings-addons.php:23 woocommmerce-bookings.php:304
 msgid "Bookings"
-msgstr ""
+msgstr "Reservas"
 
 #: includes/admin/class-wc-bookings-admin.php:89
 #: includes/admin/class-wc-bookings-admin.php:92
@@ -173,7 +171,7 @@ msgstr ""
 
 #: includes/admin/class-wc-bookings-admin.php:330
 msgid "Bookable product"
-msgstr ""
+msgstr "Jogo"
 
 #: includes/admin/class-wc-bookings-admin.php:388
 msgid "Are you sure you want to remove this person type?"
@@ -205,8 +203,8 @@ msgstr "Tem pessoas"
 
 #: includes/admin/class-wc-bookings-admin.php:708
 msgid ""
-"Enable this if this bookable product can be booked by a customer defined "
-"number of persons."
+"Enable this if this bookable product can be booked by a customer defined number of "
+"persons."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-admin.php:714
@@ -215,8 +213,8 @@ msgstr "Tem items"
 
 #: includes/admin/class-wc-bookings-admin.php:715
 msgid ""
-"Enable this if this bookable product has multiple bookable resources, for "
-"example room types or instructors."
+"Enable this if this bookable product has multiple bookable resources, for example "
+"room types or instructors."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-ajax.php:28
@@ -308,11 +306,11 @@ msgstr ""
 #: templates/emails/customer-booking-notification.php:14
 #: templates/emails/customer-booking-reminder.php:18
 msgid "Booked Product"
-msgstr "Produto Reservado"
+msgstr "Jogo Reservado"
 
 #: includes/admin/class-wc-bookings-cpt.php:204
 msgid "# of Persons"
-msgstr ""
+msgstr "nº de pessoas"
 
 #: includes/admin/class-wc-bookings-cpt.php:205
 msgid "Booked By"
@@ -338,7 +336,7 @@ msgstr "Data de Fim"
 
 #: includes/admin/class-wc-bookings-cpt.php:252
 msgid "Booking #%d"
-msgstr ""
+msgstr "Reserva #%d"
 
 #: includes/admin/class-wc-bookings-cpt.php:312
 msgid "View"
@@ -354,7 +352,7 @@ msgstr "Todos Produtos Reserváveis"
 
 #: includes/admin/class-wc-bookings-create.php:19
 msgid "Error - please try again"
-msgstr ""
+msgstr "Erro, tente novamente."
 
 #: includes/admin/class-wc-bookings-create.php:29
 msgid "Please choose a bookable product"
@@ -391,7 +389,7 @@ msgstr "Email do Usuário:"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:48
 msgid "View User"
-msgstr ""
+msgstr "Ver Usuário"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:57
 msgid "Address:"
@@ -420,14 +418,14 @@ msgstr "Detalhes da Reserva"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:44
 msgid ""
-"This booking is scheduled over 2 years into the future. Please ensure this "
-"is correct."
+"This booking is scheduled over 2 years into the future. Please ensure this is "
+"correct."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:49
 msgid ""
-"This booking is scheduled over the products allowed max booking date (%s). "
-"Please ensure this is correct."
+"This booking is scheduled over the products allowed max booking date (%s). Please "
+"ensure this is correct."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:53
@@ -436,9 +434,9 @@ msgstr "Esta resrva tem uma data final menor que a data inicial."
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:58
 msgid ""
-"This booking is missing a required add-on (product type: %s). Some "
-"information is shown below but might be incomplete. Please install the "
-"missing add-on through the plugins screen."
+"This booking is missing a required add-on (product type: %s). Some information is "
+"shown below but might be incomplete. Please install the missing add-on through the "
+"plugins screen."
 msgstr ""
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:70
@@ -451,7 +449,7 @@ msgstr "Número do Pedido: %s."
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:78
 msgid "Booking type: %s"
-msgstr ""
+msgstr "Tipo de reserva %s"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:85
 msgid "General Details"
@@ -529,11 +527,11 @@ msgstr "Selecione está caixa se a reserva for para o dia todo."
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:217
 msgid "Start Time"
-msgstr ""
+msgstr "Início"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:219
 msgid "End Time"
-msgstr ""
+msgstr "Fim"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:382
 msgid "Booking #%d status changed manually from \"%s\" to \"%s"
@@ -591,32 +589,32 @@ msgstr "Pessoas"
 #: includes/admin/class-wc-bookings-details-meta-box.php:529
 msgid "%y year"
 msgid_plural "%y years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%y ano"
+msgstr[1] "%y anos"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:530
 msgid "%m month"
 msgid_plural "%m months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%m mes"
+msgstr[1] "%m meses"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:531
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia"
+msgstr[1] "%d dias"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:532
 msgid "%h hour"
 msgid_plural "%h hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%h hora"
+msgstr[1] "%h horas"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:533
 msgid "%i minute"
 msgid_plural "%i minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i minuto"
+msgstr[1] "%i minutos"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:541
 #: includes/admin/class-wc-bookings-details-meta-box.php:542
@@ -645,7 +643,7 @@ msgstr "Enviar Notificação"
 
 #: includes/admin/class-wc-bookings-menus.php:73
 msgid "Global Availability"
-msgstr ""
+msgstr "Disponibilidade Geral"
 
 #: includes/admin/class-wc-bookings-menus.php:125
 msgid "Please choose a product"
@@ -828,8 +826,7 @@ msgstr "Máximo de reservas por bloco"
 
 #: includes/admin/views/html-booking-availability.php:3
 msgid ""
-"The maximum bookings allowed for each block. Can be overridden at resource "
-"level."
+"The maximum bookings allowed for each block. Can be overridden at resource level."
 msgstr ""
 
 #: includes/admin/views/html-booking-availability.php:12
@@ -958,8 +955,8 @@ msgstr ""
 
 #: includes/admin/views/html-booking-data.php:58
 msgid ""
-"Lets the user select a start and end date on the calendar - duration will be"
-" calculated automatically."
+"Lets the user select a start and end date on the calendar - duration will be "
+"calculated automatically."
 msgstr ""
 
 #: includes/admin/views/html-booking-data.php:68
@@ -984,8 +981,8 @@ msgstr "Requer confirmação?"
 
 #: includes/admin/views/html-booking-data.php:81
 msgid ""
-"Check this box if the booking requires admin approval/confirmation. Payment "
-"will not be taken during checkout."
+"Check this box if the booking requires admin approval/confirmation. Payment will "
+"not be taken during checkout."
 msgstr ""
 
 #: includes/admin/views/html-booking-data.php:86
@@ -994,8 +991,8 @@ msgstr "Pode ser cancelado?"
 
 #: includes/admin/views/html-booking-data.php:87
 msgid ""
-"Check this box if the booking can be cancelled by the customer after it has "
-"been purchased. A refund will not be sent automatically."
+"Check this box if the booking can be cancelled by the customer after it has been "
+"purchased. A refund will not be sent automatically."
 msgstr ""
 
 #: includes/admin/views/html-booking-data.php:94
@@ -1069,8 +1066,8 @@ msgstr "Multiplice todos custos pela quantidade de pessoas"
 
 #: includes/admin/views/html-booking-persons.php:15
 msgid ""
-"Enable this to multiply the entire cost of the booking (block and base "
-"costs) by the person count."
+"Enable this to multiply the entire cost of the booking (block and base costs) by "
+"the person count."
 msgstr ""
 
 #: includes/admin/views/html-booking-persons.php:17
@@ -1079,8 +1076,8 @@ msgstr ""
 
 #: includes/admin/views/html-booking-persons.php:17
 msgid ""
-"Enable this to count each person as a booking until the max bookings per "
-"block (above) is reached."
+"Enable this to count each person as a booking until the max bookings per block "
+"(above) is reached."
 msgstr ""
 
 #: includes/admin/views/html-booking-persons.php:19
@@ -1090,8 +1087,8 @@ msgstr ""
 #: includes/admin/views/html-booking-persons.php:19
 #: includes/admin/views/html-booking-persons.php:47
 msgid ""
-"Person types allow you to offer different booking costs for different types "
-"of individuals, for example, adults and children."
+"Person types allow you to offer different booking costs for different types of "
+"individuals, for example, adults and children."
 msgstr ""
 
 #: includes/admin/views/html-booking-persons.php:26
@@ -1140,8 +1137,8 @@ msgstr ""
 
 #: includes/admin/views/html-booking-pricing.php:11
 msgid ""
-"This is the cost per block booked. All other costs (for resources and "
-"persons) are added to this."
+"This is the cost per block booked. All other costs (for resources and persons) are "
+"added to this."
 msgstr ""
 
 #: includes/admin/views/html-booking-pricing.php:18
@@ -1151,8 +1148,8 @@ msgstr ""
 #: includes/admin/views/html-booking-pricing.php:18
 msgid ""
 "The cost is displayed to the user on the frontend. Leave blank to have it "
-"calculated for you. If a booking has varying costs, this will be prefixed "
-"with the word \"from:\"."
+"calculated for you. If a booking has varying costs, this will be prefixed with the "
+"word \"from:\"."
 msgstr ""
 
 #: includes/admin/views/html-booking-pricing.php:36
@@ -1198,8 +1195,7 @@ msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:10
 msgid ""
-"Customer selected resources allow customers to choose one from the booking "
-"form."
+"Customer selected resources allow customers to choose one from the booking form."
 msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:17
@@ -1211,8 +1207,8 @@ msgstr ""
 #: includes/admin/views/html-booking-resources.php:24
 msgid ""
 "Resources are used if you have multiple bookable items, e.g. room types, "
-"instructors or ticket types. Availability for resources is global across all"
-" bookable products."
+"instructors or ticket types. Availability for resources is global across all "
+"bookable products."
 msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:59
@@ -1230,7 +1226,7 @@ msgstr ""
 #: includes/admin/views/html-booking-tab.php:2
 #: includes/admin/views/html-settings-page.php:3
 msgid "Availability"
-msgstr ""
+msgstr "Disponibilidade"
 
 #: includes/admin/views/html-booking-tab.php:3
 msgid "Costs"
@@ -1273,9 +1269,9 @@ msgstr ""
 
 #: includes/admin/views/html-create-booking-page.php:6
 msgid ""
-"You can create a new booking for a customer here. This form will create a "
-"booking for the user, and optionally an associated order. Created orders "
-"will be marked as pending payment."
+"You can create a new booking for a customer here. This form will create a booking "
+"for the user, and optionally an associated order. Created orders will be marked as "
+"pending payment."
 msgstr ""
 
 #: includes/admin/views/html-create-booking-page.php:15
@@ -1284,11 +1280,11 @@ msgstr ""
 
 #: includes/admin/views/html-create-booking-page.php:29
 msgid "Bookable Product"
-msgstr ""
+msgstr "Jogo"
 
 #: includes/admin/views/html-create-booking-page.php:33
 msgid "Select a bookable product..."
-msgstr ""
+msgstr "Selecione um jogo"
 
 #: includes/admin/views/html-create-booking-page.php:42
 msgid "Create Order"
@@ -1296,8 +1292,8 @@ msgstr ""
 
 #: includes/admin/views/html-create-booking-page.php:48
 msgid ""
-"Create a new corresponding order for this new booking. Please note - the "
-"booking will not be active until the order is processed/completed."
+"Create a new corresponding order for this new booking. Please note - the booking "
+"will not be active until the order is processed/completed."
 msgstr ""
 
 #: includes/admin/views/html-create-booking-page.php:54
@@ -1319,12 +1315,12 @@ msgstr "Configurações salvas"
 
 #: includes/admin/views/html-global-availability-settings.php:57
 msgid "Global availability"
-msgstr ""
+msgstr "Disponibilidade Geral"
 
 #: includes/admin/views/html-global-availability-settings.php:59
 msgid ""
-"The availability rules you define here will affect all bookable products in "
-"your store."
+"The availability rules you define here will affect all bookable products in your "
+"store."
 msgstr ""
 
 #: includes/admin/views/html-global-availability-settings.php:103
@@ -1333,10 +1329,9 @@ msgstr ""
 
 #: includes/admin/views/html-notifications-page.php:5
 msgid ""
-"You may send an email notification to all customers who have a "
-"<strong>future</strong> booking for a particular product. This will use the "
-"default template specified under <code>WooCommerce > Settings > "
-"Emails</code>."
+"You may send an email notification to all customers who have a <strong>future</"
+"strong> booking for a particular product. This will use the default template "
+"specified under <code>WooCommerce > Settings > Emails</code>."
 msgstr ""
 
 #: includes/admin/views/html-notifications-page.php:12
@@ -1370,8 +1365,8 @@ msgstr "A mensagem que desaja enviar"
 
 #: includes/admin/views/html-notifications-page.php:37
 msgid ""
-"The following tags can be inserted in your message/subject and will be "
-"replaced dynamically"
+"The following tags can be inserted in your message/subject and will be replaced "
+"dynamically"
 msgstr ""
 
 #: includes/admin/views/html-notifications-page.php:42
@@ -1597,9 +1592,9 @@ msgstr ""
 
 #: includes/class-wc-booking-cart-manager.php:354
 msgid ""
-"A booking that requires confirmation has been removed from your cart. It is "
-"not possible to complete the purchased along with a booking that doesn't "
-"require confirmation."
+"A booking that requires confirmation has been removed from your cart. It is not "
+"possible to complete the purchased along with a booking that doesn't require "
+"confirmation."
 msgstr ""
 
 #: includes/class-wc-booking-coupon.php:43
@@ -1612,8 +1607,7 @@ msgstr ""
 
 #: includes/class-wc-booking-form-handler.php:42
 msgid ""
-"Your booking can no longer be cancelled. Please contact us if you need "
-"assistance."
+"Your booking can no longer be cancelled. Please contact us if you need assistance."
 msgstr ""
 
 #: includes/class-wc-booking-form-handler.php:44
@@ -1622,8 +1616,8 @@ msgstr ""
 
 #: includes/class-wc-booking-order-manager.php:361
 msgid ""
-"The product %s has been removed from the order because the booking #%d "
-"cannot be confirmed."
+"The product %s has been removed from the order because the booking #%d cannot be "
+"confirmed."
 msgstr ""
 
 #: includes/class-wc-booking.php:150
@@ -1662,7 +1656,7 @@ msgstr "Grátis"
 
 #: includes/class-wc-product-booking.php:445
 msgid "Check Availability"
-msgstr ""
+msgstr "Cheque Disponibilidade"
 
 #: includes/class-wc-product-booking.php:445
 msgid "Book now"
@@ -1698,8 +1692,7 @@ msgstr ""
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:21
 #: includes/emails/class-wc-email-booking-cancelled.php:21
 msgid ""
-"Booking cancelled emails are sent when the status of a booking goes to "
-"cancelled."
+"Booking cancelled emails are sent when the status of a booking goes to cancelled."
 msgstr ""
 
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:23
@@ -1738,8 +1731,7 @@ msgstr ""
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:134
 #: includes/emails/class-wc-email-new-booking.php:180
 msgid ""
-"Enter recipients (comma separated) for this email. Defaults to "
-"<code>%s</code>."
+"Enter recipients (comma separated) for this email. Defaults to <code>%s</code>."
 msgstr ""
 
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:141
@@ -1748,8 +1740,8 @@ msgstr ""
 #: includes/emails/class-wc-email-booking-reminder.php:126
 #: includes/emails/class-wc-email-new-booking.php:187
 msgid ""
-"This controls the email subject line. Leave blank to use the default "
-"subject: <code>%s</code>."
+"This controls the email subject line. Leave blank to use the default subject: "
+"<code>%s</code>."
 msgstr ""
 
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:146
@@ -1766,8 +1758,8 @@ msgstr ""
 #: includes/emails/class-wc-email-booking-reminder.php:133
 #: includes/emails/class-wc-email-new-booking.php:201
 msgid ""
-"This controls the main heading contained within the email notification. "
-"Leave blank to use the default heading: <code>%s</code>."
+"This controls the main heading contained within the email notification. Leave "
+"blank to use the default heading: <code>%s</code>."
 msgstr ""
 
 #: includes/emails/class-wc-email-admin-booking-cancelled.php:153
@@ -1826,8 +1818,7 @@ msgstr ""
 
 #: includes/emails/class-wc-email-booking-confirmed.php:22
 msgid ""
-"Booking confirmed emails are sent when the status of a booking goes to "
-"confirmed."
+"Booking confirmed emails are sent when the status of a booking goes to confirmed."
 msgstr ""
 
 #: includes/emails/class-wc-email-booking-confirmed.php:25
@@ -1842,8 +1833,8 @@ msgstr ""
 
 #: includes/emails/class-wc-email-booking-notification.php:22
 msgid ""
-"Booking notification emails are sent manually from WooCommerce > Bookings > "
-"Send Notification."
+"Booking notification emails are sent manually from WooCommerce > Bookings > Send "
+"Notification."
 msgstr ""
 
 #: includes/emails/class-wc-email-booking-reminder.php:20
@@ -1853,24 +1844,21 @@ msgstr ""
 
 #: includes/emails/class-wc-email-booking-reminder.php:21
 msgid ""
-"Booking reminders are sent to the customer to remind them of an upcoming "
-"booking."
+"Booking reminders are sent to the customer to remind them of an upcoming booking."
 msgstr ""
 
 #: includes/emails/class-wc-email-booking-reminder.php:24
 msgid "[{blogname}] A reminder about your booking of \"{product_title}\""
 msgstr ""
 
-#: includes/emails/class-wc-email-new-booking.php:27
-#: woocommmerce-bookings.php:310
+#: includes/emails/class-wc-email-new-booking.php:27 woocommmerce-bookings.php:310
 msgid "New Booking"
 msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:28
 msgid ""
-"New booking emails are sent to the admin when a new booking is created and "
-"paid. This email is also received when a Pending confirmation booking is "
-"created."
+"New booking emails are sent to the admin when a new booking is created and paid. "
+"This email is also received when a Pending confirmation booking is created."
 msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:30
@@ -1883,14 +1871,13 @@ msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:32
 msgid ""
-"[{blogname}] New booking for {product_title} (Order {order_number}) - "
-"{order_date}"
+"[{blogname}] New booking for {product_title} (Order {order_number}) - {order_date}"
 msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:33
 msgid ""
-"[{blogname}] A new booking for {product_title} (Order {order_number}) is "
-"awaiting your approval - {order_date}"
+"[{blogname}] A new booking for {product_title} (Order {order_number}) is awaiting "
+"your approval - {order_date}"
 msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:192
@@ -1899,8 +1886,8 @@ msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:194
 msgid ""
-"This controls the email subject line for Pending confirmation bookings. "
-"Leave blank to use the default subject: <code>%s</code>."
+"This controls the email subject line for Pending confirmation bookings. Leave "
+"blank to use the default subject: <code>%s</code>."
 msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:206
@@ -1909,9 +1896,8 @@ msgstr ""
 
 #: includes/emails/class-wc-email-new-booking.php:208
 msgid ""
-"This controls the main heading contained within the email notification for "
-"Pending confirmation bookings. Leave blank to use the default heading: "
-"<code>%s</code>."
+"This controls the main heading contained within the email notification for Pending "
+"confirmation bookings. Leave blank to use the default heading: <code>%s</code>."
 msgstr ""
 
 #: includes/gateways/class-wc-bookings-gateway.php:18
@@ -1928,8 +1914,7 @@ msgstr "Configurações"
 
 #: includes/gateways/class-wc-bookings-gateway.php:33
 msgid ""
-"This is fictitious payment method used for bookings that requires "
-"confirmation."
+"This is fictitious payment method used for bookings that requires confirmation."
 msgstr ""
 
 #: includes/gateways/class-wc-bookings-gateway.php:34
@@ -1946,8 +1931,8 @@ msgstr ""
 
 #: includes/gateways/class-wc-bookings-gateway.php:75
 msgid ""
-"Your booking is awaiting confirmation. You will be notified by email as soon"
-" as we've confirmed availability."
+"Your booking is awaiting confirmation. You will be notified by email as soon as "
+"we've confirmed availability."
 msgstr ""
 
 #: includes/integrations/class-wc-bookings-addons.php:47
@@ -2028,18 +2013,17 @@ msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:161
 msgid ""
-"Unable to authenticate, you must enter with your <strong>Client ID</strong>,"
-" <strong>Client Secret</strong> and <strong>Calendar ID</strong>."
+"Unable to authenticate, you must enter with your <strong>Client ID</strong>, "
+"<strong>Client Secret</strong> and <strong>Calendar ID</strong>."
 msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:178
 msgid ""
-"To use this integration you need create a project in %s. Once your project "
-"has been created, you must enable the <strong>Google Calendar API</strong> "
-"in <strong>APIs & auth > APIs</strong>, finally in <strong>APIs & auth > "
-"Credentials</strong> you must create an OAuth client for a <strong>Web "
-"application</strong> and set the <strong>Authorized redirect URI</strong> as"
-" <code>%s</code>."
+"To use this integration you need create a project in %s. Once your project has "
+"been created, you must enable the <strong>Google Calendar API</strong> in "
+"<strong>APIs & auth > APIs</strong>, finally in <strong>APIs & auth > Credentials</"
+"strong> you must create an OAuth client for a <strong>Web application</strong> and "
+"set the <strong>Authorized redirect URI</strong> as <code>%s</code>."
 msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:178
@@ -2060,8 +2044,8 @@ msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:413
 msgid ""
-"Failed to connect to your account, please try again, if the problem "
-"persists, turn on Debug Log option and see what is happening."
+"Failed to connect to your account, please try again, if the problem persists, turn "
+"on Debug Log option and see what is happening."
 msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:419
@@ -2070,8 +2054,8 @@ msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:421
 msgid ""
-"Failed to disconnect to your account, please try again, if the problem "
-"persists, turn on Debug Log option and see what is happening."
+"Failed to disconnect to your account, please try again, if the problem persists, "
+"turn on Debug Log option and see what is happening."
 msgstr ""
 
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:502
@@ -2146,8 +2130,8 @@ msgstr ""
 #: templates/emails/admin-booking-cancelled.php:12
 #: templates/emails/plain/admin-booking-cancelled.php:9
 msgid ""
-"The following booking has been cancelled by the customer. The details of the"
-" cancelled booking can be found below."
+"The following booking has been cancelled by the customer. The details of the "
+"cancelled booking can be found below."
 msgstr ""
 
 #: templates/emails/admin-booking-cancelled.php:33
@@ -2177,22 +2161,21 @@ msgstr ""
 #: templates/emails/admin-new-booking.php:10
 #: templates/emails/plain/admin-new-booking.php:12
 msgid ""
-"A booking has been made by %s and is awaiting your approval. The details of "
-"this booking are as follows:"
+"A booking has been made by %s and is awaiting your approval. The details of this "
+"booking are as follows:"
 msgstr ""
 
 #: templates/emails/admin-new-booking.php:12
 #: templates/emails/plain/admin-new-booking.php:14
 msgid ""
-"A new booking has been made by %s. The details of this booking are as "
-"follows:"
+"A new booking has been made by %s. The details of this booking are as follows:"
 msgstr ""
 
 #: templates/emails/admin-new-booking.php:65
 #: templates/emails/plain/admin-new-booking.php:47
 msgid ""
-"This booking is awaiting your approval. Please check it and inform the "
-"customer if the date is available or not."
+"This booking is awaiting your approval. Please check it and inform the customer if "
+"the date is available or not."
 msgstr ""
 
 #: templates/emails/customer-booking-cancelled.php:13
@@ -2217,9 +2200,7 @@ msgid "Please contact us if you have any questions or concerns."
 msgstr ""
 
 #: templates/emails/customer-booking-confirmed.php:16
-msgid ""
-"Your booking has been confirmed. The details of your booking are shown "
-"below."
+msgid "Your booking has been confirmed. The details of your booking are shown below."
 msgstr ""
 
 #: templates/emails/customer-booking-confirmed.php:63
@@ -2294,8 +2275,7 @@ msgstr ""
 
 #: templates/emails/plain/customer-booking-confirmed.php:13
 msgid ""
-"Your booking for has been confirmed. The details of your booking are shown "
-"below."
+"Your booking for has been confirmed. The details of your booking are shown below."
 msgstr "Sua reserva foi confirmada. Os detalhes de sua reserva são mostrados abaixo."
 
 #: templates/emails/plain/customer-booking-confirmed.php:47
@@ -2312,8 +2292,8 @@ msgstr ""
 
 #: templates/emails/plain/customer-booking-reminder.php:13
 msgid ""
-"This is a reminder that your booking will take place tomorrow. The details "
-"of your booking are shown below."
+"This is a reminder that your booking will take place tomorrow. The details of your "
+"booking are shown below."
 msgstr ""
 
 #: templates/myaccount/my-bookings.php:10
@@ -2390,31 +2370,31 @@ msgstr ""
 
 #: woocommmerce-bookings.php:306
 msgid "Add Booking"
-msgstr ""
+msgstr "Adicionar Reserva"
 
 #: woocommmerce-bookings.php:307
 msgid "Add New Booking"
-msgstr ""
+msgstr "Adiconar Nova Reserva"
 
 #: woocommmerce-bookings.php:309
 msgid "Edit Booking"
-msgstr ""
+msgstr "Editar Reserva"
 
 #: woocommmerce-bookings.php:311 woocommmerce-bookings.php:312
 msgid "View Booking"
-msgstr ""
+msgstr "Ver reserva"
 
 #: woocommmerce-bookings.php:313
 msgid "Search Bookings"
-msgstr ""
+msgstr "Procurar por Reserva"
 
 #: woocommmerce-bookings.php:314
 msgid "No Bookings found"
-msgstr ""
+msgstr "Nenhuma reserva encontrada"
 
 #: woocommmerce-bookings.php:315
 msgid "No Bookings found in trash"
-msgstr ""
+msgstr "Nenhuma reserva encontrada na lixeira"
 
 #: woocommmerce-bookings.php:316
 msgid "Parent Bookings"
@@ -2422,7 +2402,7 @@ msgstr ""
 
 #: woocommmerce-bookings.php:318
 msgid "All Bookings"
-msgstr ""
+msgstr "Todas as Reservas"
 
 #: woocommmerce-bookings.php:320
 msgid "This is where bookings are stored."
@@ -2545,7 +2525,7 @@ msgstr "Completo"
 #: woocommmerce-bookings.php:350
 msgctxt "woocommerce-bookings"
 msgid "Paid &amp; Confirmed"
-msgstr ""
+msgstr "Pagamento &amp; Confirmado"
 
 #: woocommmerce-bookings.php:358
 msgctxt "woocommerce-bookings"
