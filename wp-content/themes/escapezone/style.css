@@ -25,12 +25,32 @@ html {
   /* 13px > 1.3em */
   font-size: 100.01%;
   font-family: 'Roboto';
+  color: white;
 }
 
 body {
   /*config para usar em no lugar de px*/
   /* 13px > 1.3em */
   font-size: 62.5%;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #ffffff;
+  font-family: 'Arvo', serif;
+  font-weight: 700
+}
+
+h1 {
+  font-size: 5em;
+}
+
+h4 {
+  font-size: 2.3em
+}
+
+p {
+  font-size: 1.8em;
+  color: white;
 }
 
 
@@ -139,6 +159,10 @@ body {
   font-size: 1.4em;
 }
 
+.footer p {
+  font-size: 1.4em;
+}
+
 .footer h4 {
   font-size: 1.5em;
   color: #909090;
@@ -236,6 +260,59 @@ body {
 }
 
 
+/*FORMULARIO*/
+
+label {
+  font-size: 26px;
+  font-weight: 700;
+  width: 100%
+}
+
+input, textarea {
+  border: solid #999999;
+  box-shadow: none;
+  background: transparent;
+}
+
+.wpcf7-form .form-group {
+  margin-right: -15px;
+  margin-left: -15px;
+  clear: both;
+  color: white;
+  height: 33px;
+}
+
+.wpcf7-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: white;
+  background: transparent;
+  background-image: none;
+  border: 1px solid #999999;
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+textarea.wpcf7-form-control {
+  height: 153px;
+}
+
+input[type="submit"] {
+  float: right;
+  width: 139px;
+}
+
+.wpcf7-response-output {
+  color: white;
+  font-size: 1.6em;
+}
+
+
 /*MEDIA*/
 
 @media (min-width: 768px) {
@@ -269,6 +346,10 @@ body {
     left: -50%;
     min-width: 300px;
     margin: 0;
+  }
+  .wpcf7-form .control-label {
+    margin-bottom: 0;
+    text-align: right;
   }
 }
 
