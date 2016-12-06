@@ -7,6 +7,19 @@
 	 */
 	add_theme_support( 'title-tag' );
 
+
+// SUPORT AO WOOCOMMERCE
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+
+add_filter( 'woocommerce_product_tabs', 'wcs_woo_remove_reviews_tab', 98 );
+    function wcs_woo_remove_reviews_tab($tabs) {
+    unset($tabs['reviews']);
+    return $tabs;
+}
+
   @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
@@ -31,7 +44,7 @@ add_theme_support( 'custom-logo', array(
 // ADD scripts ao tema
 function my_scripts()
 {
-  wp_deregister_script('jquery');
+  // wp_deregister_script('jquery');
 
   // Styles
    wp_enqueue_style(
@@ -49,24 +62,22 @@ function my_scripts()
     array( 'normalize','bootstrap')
    );
   // JS
-  wp_enqueue_script(
-    'jquery',
-    'https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js'
-  );
+  // wp_enqueue_script(
+  //   'jquery',
+  //   'https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js'
+  // );
   wp_enqueue_script(
     'bootstrapjs',
-    'https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js',
-    'jquery'
+    'https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js'
   );
   wp_enqueue_script(
     'modernizr',
-    'https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js',
-    'jquery'
+    'https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js'
   );
-  wp_register_script(
-    'angularjs',
-    'https://cdn.jsdelivr.net/angularjs/1.5.8/angular.min.js'
-  );
+  // wp_register_script(
+  //   'angularjs',
+  //   'https://cdn.jsdelivr.net/angularjs/1.5.8/angular.min.js'
+  // );
   // wp_register_script(
   //   'angularjs-route',
   //   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js'
@@ -75,18 +86,18 @@ function my_scripts()
   //   'angularjs-animate',
   //   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js'
   // );
-  wp_enqueue_script(
-    'global_script',
-    get_stylesheet_directory_uri() . '/js/escape.js',
-    array( 'angularjs')
-  );
-  wp_localize_script(
-    'global_script',
-    'myLocalized',
-    array(
-      'tema' =>trailingslashit( get_template_directory_uri() )
-    )
-  );
+  // wp_enqueue_script(
+  //   'global_script',
+  //   get_stylesheet_directory_uri() . '/js/escape.js',
+  //   array( 'angularjs')
+  // );
+  // wp_localize_script(
+  //   'global_script',
+  //   'myLocalized',
+  //   array(
+  //     'tema' =>trailingslashit( get_template_directory_uri() )
+  //   )
+  // );
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 

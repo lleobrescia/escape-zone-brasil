@@ -8,6 +8,11 @@ Version: 1.0
 
 /*FONTS*/
 
+
+/*@import url('css/style.css');*/
+
+@import url('css/woocommerce.css');
+@import url('css/bookings.css');
 @import url('https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Arvo:400,700');
@@ -309,6 +314,57 @@ input[type="submit"] {
 
 .wpcf7-response-output {
   color: white;
+  font-size: 1.6em;
+}
+
+
+/*PRODUCT*/
+
+.pt-pb-button {
+  height: 47px;
+  padding: 6px 12px;
+  line-height: 23px;
+  border: solid 3px white;
+  font-size: 2.4em;
+  padding: 10px 33px;
+  font-family: 'Arvo', serif;
+}
+
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+  width: 46%;
+}
+
+.woocommerce-breadcrumb, #sidebar {
+  display: none;
+}
+
+.product {
+  padding-top: 60px;
+}
+
+.woocommerce div.product .product_title {
+  color: black;
+}
+
+.summary p, .woocommerce div.product .woocommerce-tabs .panel h2 {
+  color: black
+}
+
+.wc-bookings-booking-form fieldset .label {
+  font-size: 26px;
+  font-weight: 700;
+  color: black
+}
+
+.woocommerce div.product .woocommerce-tabs .panel {
+  font-size: 1.8em
+}
+
+.wc-bookings-date-picker {
+  color: black
+}
+
+.woocommerce-error, .woocommerce-message {
   font-size: 1.6em;
 }
 
