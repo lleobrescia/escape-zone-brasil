@@ -1,0 +1,23 @@
+#wp-admin-bar-comments
+,#wp-admin-bar-new-content
+,#dashboard_right_now
+,#dashboard_quick_press
+,#dashboard_primary
+,#product_catdiv
+,#tagsdiv-product_tag
+,#woocommerce-product-data .hndle.ui-sortable-handle
+,.form-field._wc_booking_requires_confirmation_field 
+,.form-field._wc_booking_user_can_cancel_field
+,.form-field._wc_booking_calendar_display_mode_field
+,.attribute_options.attribute_tab
+,.advanced_options.advanced_tab
+,.form-field._wc_booking_check_availability_against_field 
+,.form-field._wc_booking_base_cost_field 
+,.form-field._wc_display_cost_field 
+,#bookings_pricing .options_group table th:nth-child(7) 
+,.form-field._wc_booking_person_cost_multiplier_field
+,.form-field._wc_booking_person_qty_multiplier_field 
+,.form-field._wc_booking_has_person_types_field 
+,#menu-posts-wc_booking .wp-submenu.wp-submenu-wrap li:nth-child(5) {
+  display: none !important;
+}

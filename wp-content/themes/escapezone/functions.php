@@ -20,7 +20,7 @@ add_filter( 'woocommerce_product_tabs', 'wcs_woo_remove_reviews_tab', 98 );
     return $tabs;
 }
 
-  @ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
@@ -61,11 +61,7 @@ function my_scripts()
     get_stylesheet_uri(),
     array( 'normalize','bootstrap')
    );
-  // JS
-  // wp_enqueue_script(
-  //   'jquery',
-  //   'https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js'
-  // );
+
   wp_enqueue_script(
     'bootstrapjs',
     'https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js'
@@ -74,18 +70,6 @@ function my_scripts()
     'modernizr',
     'https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js'
   );
-  // wp_register_script(
-  //   'angularjs',
-  //   'https://cdn.jsdelivr.net/angularjs/1.5.8/angular.min.js'
-  // );
-  // wp_register_script(
-  //   'angularjs-route',
-  //   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js'
-  // );
-  // wp_register_script(
-  //   'angularjs-animate',
-  //   'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js'
-  // );
   // wp_enqueue_script(
   //   'global_script',
   //   get_stylesheet_directory_uri() . '/js/escape.js',
@@ -162,6 +146,24 @@ function faq() {
   register_post_type( 'faq', $args );
 }
 
+//Set booing for default product type
+function mw_custom_product_type_change( $product_types ) {
+  $new_array = array( 'booking' => $product_types['booking'] );
+  $product_types = $new_array;
+  return $product_types;
+}
+add_filter( 'product_type_selector', 'mw_custom_product_type_change', 20 );
+
+//Marca Virtual como Default
+function cs_wc_product_type_options( $product_type_options ) {
+  $product_type_options['virtual']['default'] = 'yes';
+  $product_type_options['wc_booking_has_persons']['default'] = 'yes';
+
+  return $product_type_options;
+}
+add_filter( 'product_type_options', 'cs_wc_product_type_options' );
+
+
 // Changing the Menu Order
 function custom_menu_order($menu_ord) {
     if (!$menu_ord) return true;
@@ -208,28 +210,38 @@ function edit_admin_menus() {
     $submenu['edit.php?post_type=product'][5][0] = 'Jogos';
     $submenu['edit.php?post_type=product'][10][0] = 'Adicionar Jogo';
 
-
     remove_submenu_page('edit.php?post_type=wc_booking','edit.php?post_type=bookable_resource');//remove resource from booking
     remove_submenu_page('edit.php?post_type=product','edit-tags.php?taxonomy=product_cat&amp;post_type=product');//remove categoria
     remove_submenu_page('edit.php?post_type=product','edit-tags.php?taxonomy=product_tag&amp;post_type=product');//remove tag
     remove_submenu_page('edit.php?post_type=product','product_attributes');//remove atributo
-
-    // var_dump($submenu['edit.php?post_type=product']);exit;
+  
 }
 add_action( 'admin_menu', 'edit_admin_menus' );
 
-//Set booing for default product type
-function mw_custom_product_type_change( $product_types ) {
-  $new_array = array( 'booking' => $product_types['booking'] );
-  $product_types = $new_array;
-  return $product_types;
+//Add scripts to admin
+function load_admin_styles() {
+  wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/css/admin.css', false, '1.0.0' );
 }
-add_filter( 'product_type_selector', 'mw_custom_product_type_change', 20 );
 
-//Marca Virtual como Default
-function cs_wc_product_type_options( $product_type_options ) {
-    $product_type_options['virtual']['default'] = 'yes';
-    return $product_type_options;
+function custom_menu_for_manager(){
+
+  if(current_user_can('shop_manager')){
+    /**
+    * Se for o usuario gerente de loja vai remover os serguintes menus:
+    */
+    remove_menu_page( 'edit-comments.php' );// Comments
+    remove_menu_page( 'edit.php' );// Tools
+    remove_menu_page( 'index.php' );// Dashboard
+    remove_menu_page( 'tools.php' );// Posts
+    remove_menu_page( 'wpcf7' );// contact
+    remove_menu_page( 'edit.php?post_type=page' );// Pages
+    remove_menu_page( 'upload.php' ); // Media 
+
+    add_filter('show_admin_bar', '__return_false');
+
+    add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
+  }
 }
-add_filter( 'product_type_options', 'cs_wc_product_type_options' );
+add_action( 'admin_menu', 'custom_menu_for_manager' );
+
 ?>
