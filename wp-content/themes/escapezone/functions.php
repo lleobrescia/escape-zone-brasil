@@ -70,18 +70,10 @@ function my_scripts()
     'modernizr',
     'https://cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js'
   );
-  // wp_enqueue_script(
-  //   'global_script',
-  //   get_stylesheet_directory_uri() . '/js/escape.js',
-  //   array( 'angularjs')
-  // );
-  // wp_localize_script(
-  //   'global_script',
-  //   'myLocalized',
-  //   array(
-  //     'tema' =>trailingslashit( get_template_directory_uri() )
-  //   )
-  // );
+  wp_enqueue_script(
+    'global_script',
+    get_stylesheet_directory_uri() . '/js/escape.js'
+  );
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
