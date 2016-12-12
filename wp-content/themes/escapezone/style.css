@@ -2,17 +2,12 @@
 Theme Name: Escape Zone
 Author: 8D Propaganda
 Author URI: http://8dpropaganda.com.br/
-Version: 1.0
+Version: 1.1
 */
 
 
 /*FONTS*/
 
-
-/*@import url('css/style.css');*/
-
-@import url('css/woocommerce.css');
-@import url('css/bookings.css');
 @import url('https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Arvo:400,700');
@@ -61,10 +56,28 @@ p {
 
 /*HEADER*/
 
+.top-bar {
+  height: 42px;
+  line-height: 42px;
+  text-align: right;
+}
+
+.top-bar a {
+  font-size: 1.6em;
+  color: white;
+}
+
+.divisor {
+  color: white;
+  display: inline-block;
+  line-height: normal;
+  font-size: 1.8em;
+  margin: 0 10px;
+}
+
 .header {
   min-height: 116px;
   background: black;
-  padding-top: 42px;
 }
 
 .header h1 {
@@ -299,7 +312,7 @@ input, textarea {
   background-image: none;
   border: 1px solid #999999;
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
@@ -318,7 +331,54 @@ input[type="submit"] {
 }
 
 
+/*LOJA*/
+
+.page-title {
+  color: black !important;
+}
+
+.woocommerce-ordering {
+  display: none;
+}
+
+.woocommerce ul.products li.product h3 {
+  color: black;
+  font-size: 2em
+}
+
+.woocommerce ul.products li.product .price {
+  display: none;
+}
+
+.woocommerce a.button {
+  background: transparent;
+  border: solid;
+  font-size: 1.6em;
+}
+
+
 /*PRODUCT*/
+
+.tabs.wc-tabs {
+  display: none;
+}
+
+.single_add_to_cart_button {
+  font-size: 1.4em !important;
+  background: transparent !important;
+  color: black !important;
+  border: solid 2px black !important;
+}
+
+.price {
+  color: #ff7575 !important;
+  font-size: 1.6em !important;
+}
+
+.wc-bookings-booking-cost {
+  font-size: 1.6em;
+  margin: 0 -0.5em;
+}
 
 .pt-pb-button {
   height: 47px;
@@ -328,6 +388,14 @@ input[type="submit"] {
   font-size: 2.4em;
   padding: 10px 33px;
   font-family: 'Arvo', serif;
+}
+
+.wc-bookings-date-picker-date-fields, .wc-bookings-date-picker-choose-date {
+  display: none !important;
+}
+
+.picker.hasDatepicker {
+  display: block!important;
 }
 
 .woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
@@ -369,10 +437,241 @@ input[type="submit"] {
 }
 
 
+/*CARRINHO*/
+
+.total-cart {
+  font-size: 1.4em;
+  margin-bottom: 50px;
+}
+
+.woocommerce-cart .cart-empty {
+  color: black;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2em;
+}
+
+.woocommerce-cart .woocommerce {
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.woocommerce-cart .return-to-shop .button.wc-backward {
+  font-size: 1em;
+}
+
+.woocommerce-cart .woocommerce-message {
+  display: none !important;
+}
+
+.total-cart .cart_totals {
+  width: 100%;
+  float: none;
+  border: solid 2px #d9d9d9;
+  padding: 10px 15px;
+}
+
+.woocommerce table.shop_table tbody th, .woocommerce table.shop_table tfoot td, .woocommerce table.shop_table tfoot th, .woocommerce table.shop_table td {
+  border-top: 2px solid rgba(0, 0, 0, .1);
+}
+
+.total-cart h2 {
+  color: black;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 0;
+  font-family: 'Roboto';
+}
+
+.total-cart .shop_table.shop_table_responsive {
+  border: none;
+}
+
+.total-cart a.button.alt {
+  color: black !important;
+  background: transparent !important;
+}
+
+.total-cart a.button.alt:hover {
+  background: grey !important;
+  color: white !important;
+}
+
+.shop_table {
+  font-size: 1.6em;
+  border: none;
+}
+
+.shop_table p {
+  color: black;
+  font-size: 16px;
+}
+
+.shop_table .product-name a {
+  color: black;
+}
+
+.shop_table .product-name a:hover {
+  text-decoration: none;
+  color: #ff7575
+}
+
+.woocommerce-cart table.cart img {
+  width: 100px;
+}
+
+.shop_table .coupon {
+  float: none;
+}
+
+.shop_table .input-text {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.shop_table .button {
+  color: black !important;
+  background: transparent !important;
+  border: solid 2px black;
+}
+
+
+/*CHECKOUT*/
+
+.woocommerce-info {
+  font-size: 1.4em
+}
+
+.woocommerce-billing-fields p, .woocommerce-billing-fields h3 {
+  color: black
+}
+
+.woocommerce-billing-fields label {
+  font-size: 1.4em;
+  font-weight: 400;
+}
+
+.woocommerce-billing-fields input, .woocommerce-billing-fields select {
+  padding: 7px 5px;
+  border-width: 1px;
+  border-color: #999999 !important
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table {
+  border: none
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order {
+  border-color: #d9d9d9;
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px 15px;
+  margin-bottom: 50px;
+}
+
+.woocommerce-checkout .woocommerce-checkout-payment, .woocommerce-checkout .wc_payment_methods.payment_methods.methods {
+  border: none;
+  background: transparent !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-payment p {
+  color: black
+}
+
+.payment_box.payment_method_pagarme-credit-card {
+  background: transparent !important
+}
+
+.payment_method_wc-booking-gateway, .woocommerce-checkout #payment div.payment_box::before {
+  display: none !important;
+}
+
+.woocommerce form .form-row label {
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+#pagarme-credit-cart-form .input-text, #pagarme-credit-cart-form select {
+  font-size: inherit !important;
+  border-width: 1px;
+  border-color: #999999 !important
+}
+
+.woocommerce-checkout-review-order input.button.alt {
+  color: black !important;
+  background: transparent !important;
+  font-size: 1.4em;
+  border: solid;
+  width: 100%;
+}
+
+
+/*LOGIN*/
+
+.login p {
+  color: black
+}
+
+.input-text {
+  border-width: 1px;
+}
+
+
+/*CONTA*/
+
+.woocommerce-MyAccount-content p, .woocommerce-MyAccount-content h2, .woocommerce-MyAccount-content h3 {
+  color: black
+}
+
+.woocommerce-MyAccount-content h2 {
+  color: black
+}
+
+.woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  border-right: solid thin #e2e2e2;
+  padding-top: 30px;
+}
+
+.woocommerce-MyAccount-navigation ul li {
+  height: 44px;
+  line-height: 44px;
+  font-size: 2em;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+  color: black;
+}
+
+.woocommerce-MyAccount-navigation ul li a:hover {
+  text-decoration: none;
+}
+
+.woocommerce table.my_account_orders {
+  font-size: 1.4em;
+  margin-top: 40px;
+}
+
+.woocommerce table.my_account_orders .order-actions a {
+  font-size: inherit;
+}
+
+
 /*MEDIA*/
+
+@media(max-width: 767px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
 
 @media (min-width: 768px) {
   /*HEADER*/
+  .header.fix {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+  }
   .logo .btn-primary {
     display: none !important;
   }
@@ -388,7 +687,6 @@ input[type="submit"] {
     margin: 0;
   }
   .header .menu li a {
-    border-right: solid 5px #ff0000;
     font-size: 1.6em;
     padding: 0 7px;
   }
