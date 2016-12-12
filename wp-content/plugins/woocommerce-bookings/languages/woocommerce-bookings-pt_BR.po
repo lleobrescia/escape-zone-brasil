@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
 "Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
 "POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
-"PO-Revision-Date: 2016-12-05 18:04-0200\n"
+"PO-Revision-Date: 2016-12-12 04:19-0200\n"
 "Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-"
 "bookings/language/pt_BR/)\n"
@@ -93,7 +93,7 @@ msgstr "Intervalo"
 #: includes/admin/views/html-booking-availability.php:94
 #: includes/admin/views/html-global-availability-settings.php:69
 msgid "Bookable"
-msgstr ""
+msgstr "Reservável"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:55
 #: includes/admin/views/html-booking-availability.php:94
@@ -231,7 +231,7 @@ msgstr ""
 
 #: includes/admin/class-wc-bookings-ajax.php:89
 msgid "Booking cost"
-msgstr "Custo de reserva"
+msgstr "Custo individual"
 
 #: includes/admin/class-wc-bookings-ajax.php:121
 msgid "Please enter a valid date."
@@ -556,7 +556,7 @@ msgstr ""
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:473
 #: includes/wc-bookings-functions.php:47
 msgid "Booking Date"
-msgstr ""
+msgstr "Data da Reserva"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:471
 #: includes/admin/class-wc-bookings-details-meta-box.php:472
@@ -564,7 +564,7 @@ msgstr ""
 #: includes/integrations/class-wc-bookings-google-calendar-integration.php:473
 #: includes/wc-bookings-functions.php:48
 msgid "Booking Time"
-msgstr ""
+msgstr "Horário da Reserva"
 
 #: includes/admin/class-wc-bookings-details-meta-box.php:480
 #: includes/admin/class-wc-bookings-details-meta-box.php:481
@@ -798,12 +798,12 @@ msgstr "Intervalo de Tempo"
 #: includes/admin/views/html-booking-availability-fields.php:51
 #: includes/admin/views/html-booking-pricing-fields.php:59
 msgid "Time Range (all week)"
-msgstr ""
+msgstr "Intervalo de tempo ( toda a semana)"
 
 #: includes/admin/views/html-booking-availability-fields.php:52
 #: includes/admin/views/html-booking-pricing-fields.php:60
 msgid "Date Range with time"
-msgstr ""
+msgstr "Intervalo de dias com hora"
 
 #: includes/admin/views/html-booking-availability-fields.php:100
 #: includes/admin/views/html-booking-availability-fields.php:101
@@ -875,7 +875,7 @@ msgstr ""
 
 #: includes/admin/views/html-booking-availability.php:44
 msgid "Require a buffer period of"
-msgstr ""
+msgstr "Tempo entre os jogos"
 
 #: includes/admin/views/html-booking-availability.php:47
 msgid "between bookings"
@@ -915,7 +915,7 @@ msgstr "Essa opção afeta como você usa as regras a seguir."
 
 #: includes/admin/views/html-booking-availability.php:80
 msgid "First block starts at..."
-msgstr ""
+msgstr "Primeira reserva começar às..."
 
 #: includes/admin/views/html-booking-data.php:9
 msgid "Booking duration"
@@ -1046,19 +1046,19 @@ msgstr "Máximo"
 
 #: includes/admin/views/html-booking-persons.php:5
 msgid "Min persons"
-msgstr ""
+msgstr "Min pessoas"
 
 #: includes/admin/views/html-booking-persons.php:5
 msgid "The minimum number of persons per booking."
-msgstr ""
+msgstr "Mínimo de pessoas por reserva"
 
 #: includes/admin/views/html-booking-persons.php:10
 msgid "Max persons"
-msgstr ""
+msgstr "Max pessoas"
 
 #: includes/admin/views/html-booking-persons.php:10
 msgid "The maximum number of persons per booking."
-msgstr ""
+msgstr "Máximo de pessoas por reserva"
 
 #: includes/admin/views/html-booking-persons.php:15
 msgid "Multiply all costs by person count"
@@ -1111,11 +1111,11 @@ msgstr "Adicionar Tipo de Pessoa"
 
 #: includes/admin/views/html-booking-pricing-fields.php:55
 msgid "Time Range"
-msgstr ""
+msgstr "Intervalo de tempo"
 
 #: includes/admin/views/html-booking-pricing-fields.php:56
 msgid "Person count"
-msgstr ""
+msgstr "Número de Pessoas"
 
 #: includes/admin/views/html-booking-pricing-fields.php:57
 msgid "Block count"
@@ -1191,7 +1191,7 @@ msgstr ""
 
 #: includes/admin/views/html-booking-resources.php:9
 msgid "Automatically assigned"
-msgstr ""
+msgstr "Atribuído Automaticamente"
 
 #: includes/admin/views/html-booking-resources.php:10
 msgid ""
@@ -1294,15 +1294,15 @@ msgstr ""
 msgid ""
 "Create a new corresponding order for this new booking. Please note - the booking "
 "will not be active until the order is processed/completed."
-msgstr ""
+msgstr "Reserva com ordem de pedido"
 
 #: includes/admin/views/html-create-booking-page.php:54
 msgid "Assign this booking to an existing order with this ID:"
-msgstr ""
+msgstr "Atribuir essa reserva a um pedido existente (ID):"
 
 #: includes/admin/views/html-create-booking-page.php:61
 msgid "Don't create an order for this booking."
-msgstr ""
+msgstr "Não criar ordem de pedido para essa reserva"
 
 #: includes/admin/views/html-create-booking-page.php:70
 #: includes/booking-form/class-wc-booking-form.php:39
@@ -1660,7 +1660,7 @@ msgstr "Cheque Disponibilidade"
 
 #: includes/class-wc-product-booking.php:445
 msgid "Book now"
-msgstr ""
+msgstr "Reservar"
 
 #: includes/class-wc-product-booking.php:530
 msgid "This block cannot be booked."
@@ -1902,7 +1902,7 @@ msgstr ""
 
 #: includes/gateways/class-wc-bookings-gateway.php:18
 msgid "Check booking availability"
-msgstr ""
+msgstr "Verificar disponibilidade"
 
 #: includes/gateways/class-wc-bookings-gateway.php:20
 msgid "Request Confirmation"
@@ -2070,11 +2070,11 @@ msgstr ""
 #: templates/booking-form/date-picker.php:9
 #: templates/booking-form/datetime-picker.php:10
 msgid "Choose..."
-msgstr ""
+msgstr "Escolher..."
 
 #: templates/booking-form/date-picker.php:16
 msgid "Start"
-msgstr ""
+msgstr "Início"
 
 #: templates/booking-form/date-picker.php:21
 #: templates/booking-form/date-picker.php:32
@@ -2101,31 +2101,31 @@ msgstr ""
 #: templates/booking-form/datetime-picker.php:20
 #: templates/booking-form/datetime-picker.php:25
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: templates/booking-form/date-picker.php:36
 #: templates/booking-form/date-picker.php:61
 #: templates/booking-form/datetime-picker.php:32
 msgid "YYYY"
-msgstr ""
+msgstr "AAAA"
 
 #: templates/booking-form/date-picker.php:37
 #: templates/booking-form/date-picker.php:62
 #: templates/booking-form/datetime-picker.php:33
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #: templates/booking-form/date-picker.php:43
 msgid "End"
-msgstr ""
+msgstr "Fim"
 
 #: templates/booking-form/datetime-picker.php:38
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 #: templates/booking-form/datetime-picker.php:40
 msgid "Choose a date above to see available times."
-msgstr ""
+msgstr "Escolha uma data para ver os horários"
 
 #: templates/emails/admin-booking-cancelled.php:12
 #: templates/emails/plain/admin-booking-cancelled.php:9
@@ -2298,11 +2298,11 @@ msgstr ""
 
 #: templates/myaccount/my-bookings.php:10
 msgid "My bookings"
-msgstr ""
+msgstr "Meus jogos"
 
 #: templates/myaccount/my-bookings.php:16
 msgid "Booked"
-msgstr ""
+msgstr "Jogo"
 
 #: templates/myaccount/my-bookings.php:47
 msgid "Cancel"
