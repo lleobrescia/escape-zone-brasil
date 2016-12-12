@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--[if IE 7]>
-<html class="ie ie7 no-js"  lang="pt-BR"  ng-app="escape">
+<html class="ie ie7 no-js"  lang="pt-BR">
 <![endif]-->
 <!--[if IE 8]>
-<html class="ie ie8 no-js" lang="pt-BR"  ng-app="escape">
+<html class="ie ie8 no-js" lang="pt-BR">
 <![endif]-->
 <!--[if !(IE 7) & !(IE 8)]><!-->
-<html class="no-js" lang="pt-BR" ng-app="escape">
+<html class="no-js" lang="pt-BR">
 <!--<![endif]-->
 
 <head>
@@ -22,7 +22,7 @@
     <![endif]-->
 </head>
 
-<body <?php body_class(); ?> ng-controller="MainController as main">
+<body <?php body_class(); ?>>
 
 
   <?php
@@ -34,38 +34,64 @@
     $blog_title = get_bloginfo( 'name' );
   ?>
 
-    <section class="header container-fluid">
-     <div class="container">
+    <section id="header" class="header container-fluid">
+      <div class="container">
         <div class="row">
-        <div class="col-sm-4 logo">
+          <div class="col-xs-12 top-bar">
+             <?php if ( is_user_logged_in() ) : ?>
+              <a class="minha-conta" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="Minha Conta">Minha Conta</a>
+           <?php else: ?>
+              <a class="minha-conta"href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="Login">Login</a>
+           <?php endif ?>
+            <span class="divisor">|</span>
+            <?php if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) : ?>
 
-          <?php
+            <?php  $count = WC()->cart->cart_contents_count; ?>
+            <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
+              <?php if ( $count > 0 ) : ?>
+              <span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+              <?php else: ?>
+              <span class="cart-contents-count">0</span>
+              <?php endif ?>
+            </a>
+
+            <?php endif ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 logo">
+
+            <?php
           /**
           * Se existir logo adiciona ela. 
           * Se nao, escreve o nome do site
           */
           ?>
 
-          <?php if ($image[0]): ?>
-          <a href="<?php $url_info = parse_url( home_url() ); echo trailingslashit( $url_info['path'] ); ?>" title="<?php echo $blog_title; ?>">
+              <?php if ($image[0]): ?>
+              <a href="<?php $url_info = parse_url( home_url() ); echo trailingslashit( $url_info['path'] ); ?>" title="<?php echo $blog_title; ?>">
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $blog_title; ?>">
           </a>
-          <?php else: ?>
-          <h1><?php echo $blog_title; ?></h1>
-          <?php endif ?>
+              <?php else: ?>
+              <h1>
+                <?php echo $blog_title; ?>
+              </h1>
+              <?php endif ?>
 
-          <button type="button" class="btn btn-primary" ng-class="{open:main.enableMenu}" ng-click="main.enableMenu = !main.enableMenu">
-            <i class="fa fa-bars" aria-hidden="true" ></i>
-          </button>
+              <button id="menu" type="button" class="btn btn-primary">
+                <i class="fa fa-bars" aria-hidden="true" ></i>
+              </button>
+          </div>
+          <!--col-sm-3-->
+          <nav id="nav" class="col-sm-8 nav mobile-hidden">
+            <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+          </nav>
+          <!--col-sm-9-->
         </div>
-        <!--col-sm-3-->
-        <nav class="col-sm-8 nav" ng-show="main.enableMenu">
-          <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
-        </nav>
-        <!--col-sm-9-->
+        <!--row-->
       </div>
-      <!--row-->
-     </div>
-     <!--container-->
+      <!--container-->
     </section>
     <!--header-->
