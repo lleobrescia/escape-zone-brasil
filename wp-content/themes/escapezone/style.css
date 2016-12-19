@@ -189,27 +189,6 @@ p {
   margin-bottom: 25px;
 }
 
-.social li {
-  display: inline-block;
-}
-
-.social li a {
-  display: block;
-  color: #fdfdfd;
-  font-size: 2em;
-  border: solid;
-  border-radius: 30px;
-  width: 47px;
-  height: 47px;
-  line-height: 45px;
-  margin: 13px;
-  text-align: center;
-}
-
-.social li a:hover {
-  color: #4b76bd
-}
-
 
 /*FAQ*/
 
@@ -371,8 +350,7 @@ input[type="submit"] {
 }
 
 .price {
-  color: #ff7575 !important;
-  font-size: 1.6em !important;
+  display: none !important;
 }
 
 .wc-bookings-booking-cost {
@@ -438,6 +416,13 @@ input[type="submit"] {
 
 
 /*CARRINHO*/
+
+.imprimir {
+  padding: 10px;
+  color: black;
+  border: solid;
+  font-size: 1.6em;
+}
 
 .total-cart {
   font-size: 1.4em;

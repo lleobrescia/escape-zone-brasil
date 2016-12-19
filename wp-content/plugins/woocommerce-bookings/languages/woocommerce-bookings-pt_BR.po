@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
 "Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
 "POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
-"PO-Revision-Date: 2016-12-12 04:19-0200\n"
+"PO-Revision-Date: 2016-12-18 22:57-0200\n"
 "Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-"
 "bookings/language/pt_BR/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: includes/addons/accommodation-booking.php:17
 msgid "Accommodation booking"
-msgstr ""
+msgstr "Especificação da Reserva"
 
 #: includes/admin/class-wc-bookable-resource-cpt.php:40
 msgid "Bookable resource name"
@@ -121,7 +121,7 @@ msgstr ""
 #: includes/admin/views/html-booking-pricing.php:49
 #: includes/admin/views/html-global-availability-settings.php:82
 msgid "Add Range"
-msgstr ""
+msgstr "Adicionar Intervalo"
 
 #: includes/admin/class-wc-bookable-resource-details-meta-box.php:69
 #: includes/admin/views/html-booking-availability.php:108
@@ -183,11 +183,11 @@ msgstr "Tem certeza de que quer remover esse item?"
 
 #: includes/admin/class-wc-bookings-admin.php:396
 msgid "minutes"
-msgstr ""
+msgstr "minutos"
 
 #: includes/admin/class-wc-bookings-admin.php:397
 msgid "days"
-msgstr ""
+msgstr "dias"
 
 #: includes/admin/class-wc-bookings-admin.php:399
 msgid "Enter a name for the new resource"
@@ -227,7 +227,7 @@ msgstr "Você demorou demais. Por favor volte e tente novamente."
 
 #: includes/admin/class-wc-bookings-ajax.php:64
 msgid "This booking is unavailable."
-msgstr ""
+msgstr "Essa reserva não está disponível"
 
 #: includes/admin/class-wc-bookings-ajax.php:89
 msgid "Booking cost"
@@ -235,7 +235,7 @@ msgstr "Custo individual"
 
 #: includes/admin/class-wc-bookings-ajax.php:121
 msgid "Please enter a valid date."
-msgstr ""
+msgstr "Por favor digite uma data válida"
 
 #: includes/admin/class-wc-bookings-ajax.php:155
 msgid "No blocks available."
@@ -249,7 +249,7 @@ msgstr "Reservado por"
 #: includes/admin/class-wc-bookings-calendar.php:107
 #: includes/admin/class-wc-bookings-details-meta-box.php:215
 msgid "All Day"
-msgstr ""
+msgstr "o dia todo"
 
 #: includes/admin/class-wc-bookings-calendar.php:112
 #: includes/admin/class-wc-bookings-calendar.php:213
@@ -295,7 +295,7 @@ msgstr "Status"
 #: includes/admin/class-wc-bookings-cpt.php:202
 #: templates/myaccount/my-bookings.php:15
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: includes/admin/class-wc-bookings-cpt.php:203
 #: includes/admin/class-wc-bookings-details-meta-box.php:177
@@ -356,7 +356,7 @@ msgstr "Erro, tente novamente."
 
 #: includes/admin/class-wc-bookings-create.php:29
 msgid "Please choose a bookable product"
-msgstr ""
+msgstr "Por favor escolha um jogo"
 
 #: includes/admin/class-wc-bookings-create.php:37
 #: includes/admin/class-wc-bookings-create.php:90
@@ -373,7 +373,7 @@ msgstr ""
 
 #: includes/admin/class-wc-bookings-create.php:175
 msgid "Order &ndash; %s"
-msgstr ""
+msgstr "Número da compra: %s"
 
 #: includes/admin/class-wc-bookings-customer-meta-box.php:15
 msgid "Customer details"
@@ -678,7 +678,7 @@ msgstr "Janeiro"
 #: includes/admin/views/html-booking-availability-fields.php:6
 #: includes/admin/views/html-booking-pricing-fields.php:6
 msgid "February"
-msgstr ""
+msgstr "Fevereiro"
 
 #: includes/admin/views/html-booking-availability-fields.php:7
 #: includes/admin/views/html-booking-pricing-fields.php:7
@@ -773,7 +773,7 @@ msgstr "Semana %s"
 #: includes/admin/views/html-booking-availability-fields.php:46
 #: includes/admin/views/html-booking-pricing-fields.php:51
 msgid "Date range"
-msgstr ""
+msgstr "Intervalo de data"
 
 #: includes/admin/views/html-booking-availability-fields.php:47
 #: includes/admin/views/html-booking-pricing-fields.php:52
@@ -1438,7 +1438,7 @@ msgstr "Datas"
 
 #: includes/booking-form/class-wc-booking-form.php:82
 msgid "Please select the options for your booking above first"
-msgstr ""
+msgstr "Insira uma quantidade válida de pessoas, respeitando nossa capacidade."
 
 #: includes/booking-form/class-wc-booking-form.php:122
 msgid "&times; %s Months"
@@ -2121,7 +2121,7 @@ msgstr "Fim"
 
 #: templates/booking-form/datetime-picker.php:38
 msgid "Time"
-msgstr "Tempo"
+msgstr "Horário"
 
 #: templates/booking-form/datetime-picker.php:40
 msgid "Choose a date above to see available times."
@@ -2411,44 +2411,44 @@ msgstr ""
 #: woocommmerce-bookings.php:347
 msgid "Complete <span class=\"count\">(%s)</span>"
 msgid_plural "Complete <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Finalizado <span class=\"count\">(%s)</span>"
+msgstr[1] "Finalizados <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:355
 msgid "Paid &amp; Confirmed <span class=\"count\">(%s)</span>"
 msgid_plural "Paid &amp; Confirmed <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pagamento &amp; Confirmado <span class=\"count\">(%s)</span>"
+msgstr[1] "Pagamentos &amp; Confirmados <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:363
 msgid "Confirmed <span class=\"count\">(%s)</span>"
 msgid_plural "Confirmed <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Confirmado <span class=\"count\">(%s)</span>"
+msgstr[1] "Confirmados <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:371
 msgid "Un-paid <span class=\"count\">(%s)</span>"
 msgid_plural "Un-paid <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Não pago <span class=\"count\">(%s)</span>"
+msgstr[1] "Não pagos <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:379
 msgid "Pending Confirmation <span class=\"count\">(%s)</span>"
 msgid_plural "Pending Confirmation <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Confirmação pendente <span class=\"count\">(%s)</span>"
+msgstr[1] "Confirmações pendentes <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:387
 msgid "Cancelled <span class=\"count\">(%s)</span>"
 msgid_plural "Cancelled <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Cancelado <span class=\"count\">(%s)</span>"
+msgstr[1] "Cancelados <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:395
 msgid "In Cart <span class=\"count\">(%s)</span>"
 msgid_plural "In Cart <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "No carrinho <span class=\"count\">(%s)</span>"
+msgstr[1] "No carrinho <span class=\"count\">(%s)</span>"
 
 #: woocommmerce-bookings.php:450
 msgid "View Documentation"
@@ -2495,7 +2495,7 @@ msgstr "#"
 #: includes/admin/class-wc-bookings-create.php:175
 msgctxt "Order date parsed by strftime"
 msgid "%b %d, %Y @ %I:%M %p"
-msgstr " %d \\d\\e %b \\d\\e %Y \\à\\s %R:%M"
+msgstr "%d-%m-%Y \\à\\s %R:%M"
 
 #: includes/admin/views/html-calendar-month.php:63
 msgctxt "date format"
@@ -2505,7 +2505,7 @@ msgstr ""
 #: includes/class-wc-booking.php:150
 msgctxt "Booking date parsed by strftime"
 msgid "%b %d, %Y @ %I:%M %p"
-msgstr " %d \\d\\e %b \\d\\e %Y \\à\\s %R:%M"
+msgstr "%d-%m-%Y \\à\\s %R:%M"
 
 #: woocommmerce-bookings.php:277
 msgctxt "Admin menu name"

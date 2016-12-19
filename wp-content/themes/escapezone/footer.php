@@ -53,45 +53,10 @@ $count = 0; //Usado para mudar o ID dos panels
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
-        <h4>SIGA!</h4>
-
-        <ul class="social">
-          <?php if ($face): ?>
-          <li>
-            <a href="<?php echo $face; ?>" target="_blank">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-          </li>
-          <?php endif ?>
-          <?php if ($twitter): ?>
-          <li>
-            <a href="<?php echo $twitter; ?>" target="_blank">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-          </li>
-          <?php endif ?>
-          <?php if ($instagram): ?>
-          <li>
-            <a href="<?php echo $instagram; ?>" target="_blank">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-          </li>
-          <?php endif ?>
-          <?php if ($google): ?>
-          <li>
-            <a href="<?php echo $google; ?>" target="_blank">
-              <i class="fa fa-google-plus" aria-hidden="true"></i>
-            </a>
-          </li>
-          <?php endif ?>
-          <?php if ($linkedin): ?>
-          <li>
-            <a href="<?php echo $linkedin; ?>" target="_blank">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-          </li>
-          <?php endif ?>
-        </ul>
+       <?php echo do_shortcode('[instagram-feed]'); ?>
+         <div style="margin-top:30px">
+             <div class="fb-like" data-href="https://www.facebook.com/escapezonebrasil/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+          </div>
       </div>
       <!--col-sm-4-->
       <div class="col-sm-4">

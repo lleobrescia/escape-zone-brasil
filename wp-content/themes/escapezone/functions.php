@@ -74,6 +74,10 @@ function my_scripts()
     'global_script',
     get_stylesheet_directory_uri() . '/js/escape.js'
   );
+  wp_enqueue_script(
+    'jquery locale',
+    get_stylesheet_directory_uri() . '/js/datepicker-pt-BR.js'
+  );
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
@@ -213,6 +217,11 @@ add_action( 'admin_menu', 'edit_admin_menus' );
 //Add scripts to admin
 function load_admin_styles() {
   wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/css/admin.css', false, '1.0.0' );
+}
+
+//Add scripts to admin
+function load_admin_js() {
+  wp_enqueue_script( 'admin_js', get_template_directory_uri() . '/js/datepicker-pt-BR.js', false, '1.0.0' );
 }
 
 function custom_menu_for_manager(){
