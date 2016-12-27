@@ -5,10 +5,6 @@
 * o menu contato eh configurado pelo plugin advanced custom fields
 */
 
-$face = get_field('facebook', 'option');
-$twitter = get_field('twitter', 'option');
-$instagram = get_field('instagram', 'option');
-$google = get_field('google', 'option');
 $linkedin = get_field('linkedin', 'option');
 $contato = get_field('contato_info', 'option');
 $horario = get_field('horario_info', 'option');
@@ -53,25 +49,25 @@ $count = 0; //Usado para mudar o ID dos panels
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
-       <?php echo do_shortcode('[instagram-feed]'); ?>
-         <div style="margin-top:30px">
-             <div class="fb-like" data-href="https://www.facebook.com/escapezonebrasil/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
-          </div>
+        <div class="fb-page" data-href="https://www.facebook.com/escapezonebrasil/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/escapezonebrasil/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/escapezonebrasil/">Escape Zone Brasil</a></blockquote></div>
       </div>
       <!--col-sm-4-->
       <div class="col-sm-4">
-        <h4>CONTATO</h4>
+           <?php echo do_shortcode('[instagram-feed]'); ?>
+      </div>
+      <!--col-sm-4-->
+      <div class="col-sm-4">
+	    <h4>CONTATO</h4>
         <?php
           if($contato)
           echo $contato; 
         ?>
-      </div>
-      <!--col-sm-4-->
-      <div class="col-sm-4">
+			  <div style="margin-top:30px">
+			  </div>
         <h4>Horário de Funcionamento</h4>
         <?php
-          if($contato)
-          echo $contato; 
+          if($horario)
+          echo $horario; 
         ?>
       </div>
       <!--col-sm-4-->
@@ -84,7 +80,7 @@ $count = 0; //Usado para mudar o ID dos panels
 <div class="copy container-fluid">
   <div class="container">
     <small>
-     	&copy; Copyright - ESCAPE BRASIL - by  <a href="http://8dpropaganda.com.br/" target="_blank" title="8D Propaganda">8D Propaganda</a>
+     	&copy; Copyright - ESCAPE BRASIL - Produzido por <a href="http://8dpropaganda.com.br/" target="_blank" title="8D Propaganda">8D Propaganda</a>
     </small>
   </div>
   <!--container-->

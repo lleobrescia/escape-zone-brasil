@@ -57,8 +57,8 @@ p {
 /*HEADER*/
 
 .top-bar {
-  height: 42px;
-  line-height: 42px;
+  height: 30px;
+  line-height: 30px;
   text-align: right;
 }
 
@@ -76,7 +76,7 @@ p {
 }
 
 .header {
-  min-height: 116px;
+  min-height: 92px;
   background: black;
 }
 
@@ -256,6 +256,13 @@ p {
   border-radius: 0;
 }
 
+.panel-body p span {
+  font-weight: 400;
+  font-size: 20px;
+  display: block;
+  padding: 35px;
+}
+
 
 /*FORMULARIO*/
 
@@ -338,6 +345,14 @@ input[type="submit"] {
 
 /*PRODUCT*/
 
+#wc-bookings-booking-form p span {
+  display: block;
+}
+
+.wc-bookings-booking-form label {
+  font-size: 18px;
+}
+
 .tabs.wc-tabs {
   display: none;
 }
@@ -396,10 +411,15 @@ input[type="submit"] {
   color: black
 }
 
+.woocommerce div.product .woocommerce-tabs .panel h3, .woocommerce div.product .woocommerce-tabs .panel h4, .woocommerce div.product .woocommerce-tabs .panel h5, .woocommerce div.product .woocommerce-tabs .panel p, .woocommerce div.product .woocommerce-tabs .panel a, .woocommerce div.product .woocommerce-tabs .panel span {
+  color: black;
+}
+
 .wc-bookings-booking-form fieldset .label {
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 700;
-  color: black
+  color: black;
+  padding: 0;
 }
 
 .woocommerce div.product .woocommerce-tabs .panel {
@@ -520,6 +540,41 @@ input[type="submit"] {
   border: solid 2px black;
 }
 
+.coupon {
+  padding-bottom: 80px;
+}
+
+.coupon label {
+  margin-bottom: 30px;
+}
+
+.coupon .input-text {
+  padding: .6180469716em !important;
+  background-color: #f2f2f2 !important;
+  color: #43454b !important;
+  outline: 0 !important;
+  border: 0 !important;
+  -webkit-appearance: none !important;
+  border-radius: 2px !important;
+  box-sizing: border-box !important;
+  font-weight: 400 !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125) !important;
+  height: 30px !important;
+  font-size: 1.6em !important;
+}
+
+.coupon .button {
+  background: transparent !important;
+  border: solid !important;
+  font-size: 1.6em !important;
+  width: auto !important;
+}
+
+.coupon p {
+  color: black !important;
+  margin-top: 25px !important;
+}
+
 
 /*CHECKOUT*/
 
@@ -573,7 +628,12 @@ input[type="submit"] {
 
 .woocommerce form .form-row label {
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.woocommerce-checkout #payment div.payment_box input.input-text {
+  background: white;
+  font-size: 16px !important;
 }
 
 #pagarme-credit-cart-form .input-text, #pagarme-credit-cart-form select {
@@ -588,6 +648,10 @@ input[type="submit"] {
   font-size: 1.4em;
   border: solid;
   width: 100%;
+}
+
+#pagseguro-card-number {
+  background-image: none !important;
 }
 
 

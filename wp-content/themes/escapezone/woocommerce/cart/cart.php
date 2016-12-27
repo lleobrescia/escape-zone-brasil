@@ -29,7 +29,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
 
-	<div class="col-sm-8">
+	<div class="col-sm-6 col-lg-8">
 	<table class="shop_table shop_table_responsive cart" cellspacing="0">
 	<thead>
 		<tr>
@@ -134,14 +134,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<tr>
 			<td colspan="6" class="actions">
 
-				<?php if ( wc_coupons_enabled() ) { ?>
-					<div class="coupon">
-
-						<label for="coupon_code"><?php _e( 'Coupon:', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
-
-						<?php do_action( 'woocommerce_cart_coupon' ); ?>
-					</div>
-				<?php } ?>
+			
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -152,12 +145,24 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 	</tbody>
 </table>
+
+	<?php if ( wc_coupons_enabled() ) { ?>
+		<div class="coupon">
+
+			<label for="coupon_code">Código Promocional</label>
+			 <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Entre com seu código promocional" / style="width:100%; margin-bottom:15px;    background: transparent !important;    border: solid thin gray !important;"> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>" />
+
+			<?php do_action( 'woocommerce_cart_coupon' ); ?>
+
+			<p>O  cupom de desconto só é válido para pagamentos no site.</p>
+		</div>
+	<?php } ?>
 </div>
 
 <?php do_action( 'woocommerce_after_cart_table' ); ?>
 
 </form>
-<div class="col-sm-4 total-cart" >
+<div class="col-sm-6 col-lg-4 total-cart" >
 
 		<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 </div>
@@ -165,3 +170,5 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+

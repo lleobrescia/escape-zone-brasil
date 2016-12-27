@@ -32,13 +32,10 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 ?>
 
-<div class="col-xs-12">
-	<a id="imprimir" href="" class="imprimir">Imprimir</a>
-</div>
 
 	<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
-	<div class="col-sm-8">
+	<div class="col-sm-6 col-lg-8">
 			<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
 
 			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
@@ -56,7 +53,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-	<div class="col-sm-4">
+	<div class="col-sm-6 col-lg-4">
 			<div id="order_review" class="woocommerce-checkout-review-order">
 				<?php do_action( 'woocommerce_checkout_order_review' ); ?>
 		</div>

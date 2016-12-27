@@ -225,7 +225,7 @@ function load_admin_js() {
 }
 
 function custom_menu_for_manager(){
-
+    
   if(current_user_can('shop_manager')){
     /**
     * Se for o usuario gerente de loja vai remover os serguintes menus:
@@ -237,6 +237,7 @@ function custom_menu_for_manager(){
     remove_menu_page( 'wpcf7' );// contact
     remove_menu_page( 'edit.php?post_type=page' );// Pages
     remove_menu_page( 'upload.php' ); // Media 
+    remove_menu_page('edit.php?post_type=product');//jogos
 
     add_filter('show_admin_bar', '__return_false');
 
@@ -244,5 +245,23 @@ function custom_menu_for_manager(){
   }
 }
 add_action( 'admin_menu', 'custom_menu_for_manager' );
+
+function manage_available_gateways( $gateways ) {
+  unset($gateways['wc-booking-gateway']);
+  return $gateways;
+}
+
+	add_filter( 'woocommerce_available_payment_gateways', 'manage_available_gateways' );
+
+
+  // First, create a function that includes the path to your favicon
+function add_favicon() {
+  	$favicon_url = get_stylesheet_directory_uri() . '/favicon.ico';
+	echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
+}
+  
+// Now, just make sure that function runs when you're on the login page and admin pages  
+add_action('login_head', 'add_favicon');
+add_action('admin_head', 'add_favicon');
 
 ?>

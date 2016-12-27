@@ -22,12 +22,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_before_account_navigation' );
 ?>
-
+<style>
+.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--downloads{
+ display:none !important;
+}
+</style>
 <nav class="woocommerce-MyAccount-navigation">
 	<ul>
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
+		<?php $label = esc_html( $label ); ?>
+
+		<?php
+			if($label == "Pedidos") {$label = "Minhas Reservas" ;}
+			elseif($label == "Endereços") {$label = "Endereço" ;}
+			elseif($label == "Painel") {$label = "Início" ;}
+			elseif($label == "Detalhes da conta") {$label = "Minha Conta" ;}
+		?>
 			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo $label; ?></a>
 			</li>
 		<?php endforeach; ?>
 	</ul>

@@ -19,6 +19,7 @@
 ,.form-field._wc_booking_person_qty_multiplier_field 
 ,.form-field._wc_booking_has_person_types_field 
 ,#menu-posts-wc_booking .wp-submenu.wp-submenu-wrap li:nth-child(5),
-.form-field._booking_parent_id_field  {
+.form-field._booking_parent_id_field ,
+#menu-posts-wc_booking ul.wp-submenu li:last-child {
   display: none !important;
 }

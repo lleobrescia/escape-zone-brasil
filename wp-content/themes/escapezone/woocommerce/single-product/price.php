@@ -23,6 +23,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
+
+<script>
+ jQuery(document).ready(function () {
+		jQuery("#wc-bookings-booking-form p[class*='wc_bookings_field_persons_']").each(function(item){
+			var label = jQuery(this).find('label');
+			var span = jQuery(this).find('.desc');
+
+			jQuery(this).find('.desc').remove();
+			jQuery(this).find('label').remove();
+
+			jQuery(this).prepend(span);
+				jQuery(this).prepend(label);
+			
+			console.log(jQuery(this).find('.desc'));
+
+		});
+ });
+
+</script>
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 	<p class="price">Total da sala: <?php echo $product->get_price_html(); ?></p>
