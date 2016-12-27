@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
 "Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
 "POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
-"PO-Revision-Date: 2016-12-18 22:57-0200\n"
+"PO-Revision-Date: 2016-12-22 11:03-0200\n"
 "Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-"
 "bookings/language/pt_BR/)\n"
@@ -1380,7 +1380,7 @@ msgstr ""
 #: includes/booking-form/class-wc-booking-form-date-picker.php:37
 #: includes/booking-form/class-wc-booking-form-datetime-picker.php:30
 msgid "Date"
-msgstr "Data"
+msgstr "Escolha o dia"
 
 #: includes/booking-form/class-wc-booking-form-month-picker.php:29
 #: templates/booking-form/date-picker.php:22
