@@ -75,6 +75,12 @@ class WC_Bookings_Customer_Meta_Box {
 				echo esc_html( $order->billing_phone );
 				echo '</td>';
 			echo '</tr>';
+				echo '<tr>';
+				echo '<th>' . __( 'Celular:', 'woocommerce-bookings' ) . '</th>';
+				echo '<td>';
+				echo esc_html( $order->billing_cellphone );
+				echo '</td>';
+			echo '</tr>';
 			echo '<tr class="view">';
 				echo '<th>&nbsp;</th>';
 				echo '<td>';

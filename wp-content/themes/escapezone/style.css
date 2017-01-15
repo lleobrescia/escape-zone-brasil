@@ -34,7 +34,11 @@ body {
   font-size: 62.5%;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: #ffffff;
   font-family: 'Arvo', serif;
   font-weight: 700
@@ -140,7 +144,7 @@ p {
   position: relative;
 }
 
-.header .menu li.menu-item-has-children:hover > .sub-menu {
+.header .menu li.menu-item-has-children:hover>.sub-menu {
   display: block;
 }
 
@@ -272,7 +276,8 @@ label {
   width: 100%
 }
 
-input, textarea {
+input,
+textarea {
   border: solid #999999;
   box-shadow: none;
   background: transparent;
@@ -383,7 +388,8 @@ input[type="submit"] {
   font-family: 'Arvo', serif;
 }
 
-.wc-bookings-date-picker-date-fields, .wc-bookings-date-picker-choose-date {
+.wc-bookings-date-picker-date-fields,
+.wc-bookings-date-picker-choose-date {
   display: none !important;
 }
 
@@ -391,11 +397,15 @@ input[type="submit"] {
   display: block!important;
 }
 
-.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+.woocommerce #content div.product div.summary,
+.woocommerce div.product div.summary,
+.woocommerce-page #content div.product div.summary,
+.woocommerce-page div.product div.summary {
   width: 46%;
 }
 
-.woocommerce-breadcrumb, #sidebar {
+.woocommerce-breadcrumb,
+#sidebar {
   display: none;
 }
 
@@ -407,11 +417,17 @@ input[type="submit"] {
   color: black;
 }
 
-.summary p, .woocommerce div.product .woocommerce-tabs .panel h2 {
+.summary p,
+.woocommerce div.product .woocommerce-tabs .panel h2 {
   color: black
 }
 
-.woocommerce div.product .woocommerce-tabs .panel h3, .woocommerce div.product .woocommerce-tabs .panel h4, .woocommerce div.product .woocommerce-tabs .panel h5, .woocommerce div.product .woocommerce-tabs .panel p, .woocommerce div.product .woocommerce-tabs .panel a, .woocommerce div.product .woocommerce-tabs .panel span {
+.woocommerce div.product .woocommerce-tabs .panel h3,
+.woocommerce div.product .woocommerce-tabs .panel h4,
+.woocommerce div.product .woocommerce-tabs .panel h5,
+.woocommerce div.product .woocommerce-tabs .panel p,
+.woocommerce div.product .woocommerce-tabs .panel a,
+.woocommerce div.product .woocommerce-tabs .panel span {
   color: black;
 }
 
@@ -430,12 +446,17 @@ input[type="submit"] {
   color: black
 }
 
-.woocommerce-error, .woocommerce-message {
+.woocommerce-error,
+.woocommerce-message {
   font-size: 1.6em;
 }
 
 
 /*CARRINHO*/
+
+.woocommerce-checkout #payment div.payment_box .form-row {
+  width: 100%
+}
 
 .imprimir {
   padding: 10px;
@@ -476,7 +497,10 @@ input[type="submit"] {
   padding: 10px 15px;
 }
 
-.woocommerce table.shop_table tbody th, .woocommerce table.shop_table tfoot td, .woocommerce table.shop_table tfoot th, .woocommerce table.shop_table td {
+.woocommerce table.shop_table tbody th,
+.woocommerce table.shop_table tfoot td,
+.woocommerce table.shop_table tfoot th,
+.woocommerce table.shop_table td {
   border-top: 2px solid rgba(0, 0, 0, .1);
 }
 
@@ -582,7 +606,8 @@ input[type="submit"] {
   font-size: 1.4em
 }
 
-.woocommerce-billing-fields p, .woocommerce-billing-fields h3 {
+.woocommerce-billing-fields p,
+.woocommerce-billing-fields h3 {
   color: black
 }
 
@@ -591,7 +616,8 @@ input[type="submit"] {
   font-weight: 400;
 }
 
-.woocommerce-billing-fields input, .woocommerce-billing-fields select {
+.woocommerce-billing-fields input,
+.woocommerce-billing-fields select {
   padding: 7px 5px;
   border-width: 1px;
   border-color: #999999 !important
@@ -609,7 +635,8 @@ input[type="submit"] {
   margin-bottom: 50px;
 }
 
-.woocommerce-checkout .woocommerce-checkout-payment, .woocommerce-checkout .wc_payment_methods.payment_methods.methods {
+.woocommerce-checkout .woocommerce-checkout-payment,
+.woocommerce-checkout .wc_payment_methods.payment_methods.methods {
   border: none;
   background: transparent !important;
 }
@@ -622,7 +649,8 @@ input[type="submit"] {
   background: transparent !important
 }
 
-.payment_method_wc-booking-gateway, .woocommerce-checkout #payment div.payment_box::before {
+.payment_method_wc-booking-gateway,
+.woocommerce-checkout #payment div.payment_box::before {
   display: none !important;
 }
 
@@ -636,7 +664,8 @@ input[type="submit"] {
   font-size: 16px !important;
 }
 
-#pagarme-credit-cart-form .input-text, #pagarme-credit-cart-form select {
+#pagarme-credit-cart-form .input-text,
+#pagarme-credit-cart-form select {
   font-size: inherit !important;
   border-width: 1px;
   border-color: #999999 !important
@@ -668,7 +697,9 @@ input[type="submit"] {
 
 /*CONTA*/
 
-.woocommerce-MyAccount-content p, .woocommerce-MyAccount-content h2, .woocommerce-MyAccount-content h3 {
+.woocommerce-MyAccount-content p,
+.woocommerce-MyAccount-content h2,
+.woocommerce-MyAccount-content h3 {
   color: black
 }
 
