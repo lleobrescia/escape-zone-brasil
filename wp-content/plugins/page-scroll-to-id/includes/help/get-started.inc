@@ -2,34 +2,26 @@
 $help_get_started_text=<<<EOD
 
 <p>
-	The plugin works simply by connecting links in the form of <code>&lt;a href="#id"&gt;link&lt;/a&gt;</code>, to sections within the document, in the form of <code>&lt;div id="id"&gt;target&lt;/div&gt;</code>. Clicking the links will smoothly animate the page to the connected sections, provided the links are included in the Selector(s) field. <br />
-	The default value of Selector(s) is <code>a[rel='m_PageScroll2id']</code>, meaning the plugin will apply on links with <code>m_PageScroll2id</code> rel attribute value (e.g. <code>&lt;a href="#id" rel="m_PageScroll2id"&gt;link&lt;/a&gt;</code>). <br />
-	The plugin will also apply automatically on links with class <code>ps2id</code> or links that are direct children of an element with that same class. 
+	The plugin works by "connecting" links with href/URL in the form of <code>#my-id</code> or <code>http://my-site.com/page/#my-id</code> to sections/elements within the document with an equivalent id attribute value (e.g. <code>&lt;div id="my-id"&gt;...&lt;/div&gt;</code>). Clicking such links will scroll the page smoothly to their target id position. 
 </p>
 
 <p>
-	<strong>Get started</strong> by adding <code>rel="m_PageScroll2id"</code> or <code>class="ps2id"</code> to your links that point to existing sections within your page, making sure each link's href value contains a hash (<code>#</code>) with the id of the section you want to scroll-to. 
+	<strong>Get started</strong> by creating or setting-up your links. The plugin is enabled by default on WordPress Menu links (created in Appearance &rarr; Menus), so you can start adding custom links and set their URL to the id/target you want to scroll to (e.g. <code>#my-id</code>, <code>/page/#my-id</code>, <code>http://my-site.com/page/#my-id</code> etc.). <br />
+	You can use id values that already exist in your theme or you can create your own id targets using plugin's "Insert Page scroll to id target" button in wp post visual editor or the <code>[ps2id]</code> shortcode (e.g. <code>[ps2id id='my-id'/]</code>). 
 </p>
 
 <p>
-	To enable the plugin on custom links in your WordPress menu(s), simply enable "Enable on WordPress Menu links" option in plugin's settings. 
-	If you prefer to use the non-automatic method of enabling it in your WordPress menu, you can insert the value <code>ps2id</code> in "CSS Classes" field or the <code>m_PageScroll2id</code> value in "Link Relationship (XFN)" field in each of your links. <br />
-	To add <code>rel="m_PageScroll2id"</code> to links in custom menus (menus created in Appearance &rsaquo; Menus), do the following: <br />
-	While on the Menus admin page, click "Screen Options" and check "Link Relationship (XFN)". To enable the plugin on a menu item, click the arrow on the right of the item and insert <code>m_PageScroll2id</code> in the "Link Relationship (XFN)" field (assuming your menu contains links with "URL" value in the form of <code>#id</code>). 
+	To create links within your content, use plugin's "Insert/edit Page scroll to id link" button and/or shortcode (e.g. <code>[ps2id url='#my-id']link text[/ps2id]</code>) in wp post visual/text editor. <br />
+	To enable the plugin on existing links, add the <code>ps2id</code> class or the <code>m_PageScroll2id</code> rel attribute to them, making sure the link's href/URL value contains a hash (<code>#</code>) with the id of the section you want to scroll-to. In addition, you can simply add your links CSS selector (e.g. <code>.menu-item a</code>, <code>a[href*=#]:not([href=#])</code> etc.) in "Selector(s)" field in plugin settings.
 </p>
 
 <p>
-	If you cannot edit your html markup or don't want to alter your links rel or class attributes, you can change the Selector(s) field value to existing matching sets of elements in your theme, e.g. <code>a.class-name</code>, <code>#id a</code>, <code>a[href*='#']</code> etc. For multiple selectors, use comma separated values: e.g. <code>a[rel='m_PageScroll2id'], a.class-name</code>.
-</p>
-
-<p>
-	To highlight your links and/or targets, use the class(es) provided by the plugin in your theme's stylesheet. The default highlight class is <code>mPS2id-highlight</code> but you can set your own in the Classes fields below. <br />
-	For example, to style the highlighted link (the link whose target element is considered to be within the viewport), you could add in your CSS: <br />
+	To highlight your links (or targets), use the classes provided by the plugin in your theme's stylesheet or custom CSS. The default highlight class is <code>mPS2id-highlight</code> but you can set your own in the "Classes &amp; highlight options". For example, to style the highlighted link (the link whose target element is considered to be within the viewport), you could add in your CSS: <br />
 	<code>a.mPS2id-highlight{ background: #ff0; }</code> or <code>.menu-item a.mPS2id-highlight{ background: #ff0; }</code> for highlighting custom menus links only.
 </p>
 
 <p>
-	If you have a fixed-positioned menu which overlaps your target's content when page scrolling is completed, insert your menu selector in the Offset field. For example, inserting <code>#navigation-menu</code> will offset the scroll-to position according to the height/width/position of the element with id <code>navigation-menu</code>. 
+	If you have a fixed-positioned/sticky menu which overlaps your target's content when page scrolling is completed, insert your menu CSS selector or a fixed pixel value in the "Offset" field. For example, inserting <code>#navigation-menu</code> will offset the scroll-to position according to the height/width/position of the element with id <code>navigation-menu</code>. In the same manner, setting the "Offset" value to <code>100</code> will offset page scrolling by 100 pixels. 
 </p>
 
 EOD;

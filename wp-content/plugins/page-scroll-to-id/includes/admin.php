@@ -2,7 +2,7 @@
 // --edit--
 $repeatables=false; 
 $shortcodes=false;
-$plugin_info=__('<a href="#" class="mPS2id-open-help mPS2id-open-help-overview">Overview</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-get-started">Get started</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-plugin-settings">Plugin settings</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-shortcodes">Shortcodes</a>', $this->plugin_slug);
+$plugin_info=__('<span><span class="dashicons dashicons-editor-help"></span> Plugin help &amp; resources:</span> <a href="#" class="mPS2id-open-help mPS2id-open-help-overview">Overview</a> <a href="#" class="mPS2id-open-help mPS2id-open-help-get-started">Get started</a> <a href="#" class="mPS2id-open-help mPS2id-open-help-plugin-settings">Plugin settings</a> <a href="#" class="mPS2id-open-help mPS2id-open-help-shortcodes">Shortcodes</a> <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/" class="mPS2id-external-link" target="_blank">Plugin homepage &amp; documentation</a> <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/2/" class="mPS2id-external-link" target="_blank">Knowledge Base – FAQ</a> <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress-tutorial/" class="mPS2id-external-link" target="_blank">Basic tutorial</a>', $this->plugin_slug);
 $btn_add=__('Add instance', $this->plugin_slug);
 $btn_more_actions=__('More actions', $this->plugin_slug);
 $btn_reset=($repeatables) ? __('Delete all and reset to default', $this->plugin_slug) : __('Reset to default', $this->plugin_slug);
@@ -23,10 +23,6 @@ $toggle_instance_title=__('Click to toggle', $this->plugin_slug);
 				<!-- --edit-- -->
 				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-overview">
 					<?php include_once(plugin_dir_path( __FILE__ ).'help/overview.inc'); ?>
-					<p>
-						<strong>For more information</strong> <br />
-						<a href="http://manos.malihu.gr/page-scroll-to-id" target="_blank">Plugin homepage</a>&nbsp;&nbsp;&nbsp;<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress-tutorial/" target="_blank">Page scroll to id for WordPress tutorial</a>&nbsp;&nbsp;&nbsp;<a href="http://manos.malihu.gr/page-scroll-to-id/2/" target="_blank">Code examples &amp; short tutorials</a>
-					</p>
 				</div>
 				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-get-started">
 					<?php include_once(plugin_dir_path( __FILE__ ).'help/get-started.inc'); ?>

@@ -225,6 +225,7 @@ function load_admin_js() {
 }
 
 function custom_menu_for_manager(){
+
     
   if(current_user_can('shop_manager')){
     /**

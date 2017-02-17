@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Bookings\n"
 "Report-Msgid-Bugs-To: https://support.woothemes.com/hc/\n"
 "POT-Creation-Date: 2016-02-04 15:58:09+00:00\n"
-"PO-Revision-Date: 2017-01-14 23:48-0200\n"
+"PO-Revision-Date: 2017-02-17 17:53-0200\n"
 "Last-Translator: Akeda Bagus <admin@gedex.web.id>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/woothemes/woocommerce-"
 "bookings/language/pt_BR/)\n"
@@ -241,7 +241,7 @@ msgstr "Essa reserva não está disponível"
 
 #: includes/admin/class-wc-bookings-ajax.php:89
 msgid "Booking cost"
-msgstr "Custo individual"
+msgstr "Valor"
 
 #: includes/admin/class-wc-bookings-ajax.php:121
 msgid "Please enter a valid date."

@@ -17,6 +17,15 @@
 	font-style: italic;
 }
 
+.plugin-info > *{
+	margin-right: 10px;
+}
+
+.mPS2id-external-link .dashicons-external{
+	font-size: 100%;
+	text-decoration: none;
+}
+
 .plugin-version{
 	float: right;
 	text-align: right;

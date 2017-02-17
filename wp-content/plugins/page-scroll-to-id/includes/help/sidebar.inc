@@ -4,9 +4,9 @@ $help_sidebar_text=<<<EOD
 <p><strong>For more information</strong></p>
 
 <ul>
-	<li><a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress-tutorial/" target="_blank">Page scroll to id for WordPress tutorial</a></li>
-	<li><a href="http://manos.malihu.gr/page-scroll-to-id" target="_blank">Plugin homepage</a></li>
-	<li><a href="http://manos.malihu.gr/page-scroll-to-id/2/" target="_blank">Code examples &amp; short tutorials</a></li>
+	<li><a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/" target="_blank">Plugin homepage &amp; documentation</a></li>
+	<li><a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/2/" target="_blank">Knowledge Base – FAQ</a></li>
+	<li><a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress-tutorial/" target="_blank">Basic tutorial</a></li>
 </ul>
 
 EOD;

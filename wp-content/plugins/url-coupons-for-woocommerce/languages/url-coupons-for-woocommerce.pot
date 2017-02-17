@@ -1,0 +1,267 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: URL Coupons For WooCommerce\n"
+"POT-Creation-Date: 2016-12-09 11:40+0800\n"
+"PO-Revision-Date: 2016-11-11 14:38+0800\n"
+"Last-Translator: \n"
+"Language-Team: Rymera Web Co <support@marketingsuiteplugin.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: .hg\n"
+"X-Poedit-SearchPathExcluded-1: .idea\n"
+"X-Poedit-SearchPathExcluded-2: js/lib\n"
+
+#: Models/Bootstrap.php:355
+msgid "Settings"
+msgstr ""
+
+#: Models/Coupons/Coupon_Restriction.php:184
+msgid "Sorry, you aren't authorized to use this coupon"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:217
+msgid "Coupon Applied Successfully"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:218
+msgid "Coupon Applied Successfully, please improve text"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:223
+msgid "Failed To Apply Coupon"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:224
+msgid "Failed To Apply Coupon, please improve text."
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:243
+msgid "Invalid Coupon"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:461
+msgid "Inactive coupon url"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:501
+msgid "<pre>Please provide coupon code</pre>"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon.php:506
+msgid "<pre>"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:131
+msgid "User Role Restrictions"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:132
+msgid "No user role restriction"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:135
+#: Models/Coupons/URL_Coupon_Admin.php:252
+msgid "Guest"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:140
+msgid ""
+"Customer must have one of these roles in order for them to avail to this "
+"coupon"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:159 Models/UCFW_Settings.php:29
+msgid "URL Coupons"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:191
+msgid "Coupon URL"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:192
+msgid ""
+"<br>Visitors to this link will have the coupon code applied to their cart "
+"automatically."
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:210
+msgid "Disable Coupon URL"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:211
+msgid ""
+"When checked, it disables the coupon url functionality for the current "
+"coupon."
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:229
+msgid "Code URL Override"
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:230
+msgid ""
+"<br>Customize the coupon code on the coupon url. Leave blank to disable "
+"feature."
+msgstr ""
+
+#: Models/Coupons/URL_Coupon_Admin.php:440
+msgid ""
+"Failed to save <b>Code URL Override</b>. Already used by another coupon."
+msgstr ""
+
+#: Models/Script_Loader.php:126
+msgid "Copied to clipboard"
+msgstr ""
+
+#: Models/Script_Loader.php:127
+msgid "Failed to copy to clipboard"
+msgstr ""
+
+#: Models/UCFW_Settings.php:54
+msgid "General"
+msgstr ""
+
+#: Models/UCFW_Settings.php:55
+msgid "Help"
+msgstr ""
+
+#: Models/UCFW_Settings.php:146
+msgid "General Options"
+msgstr ""
+
+#: Models/UCFW_Settings.php:153
+msgid "URL Prefix"
+msgstr ""
+
+#: Models/UCFW_Settings.php:155
+msgid ""
+"The prefix to be used before the coupon code. Eg. [siteurl]/coupon/[coupon-"
+"name]"
+msgstr ""
+
+#: Models/UCFW_Settings.php:162
+msgid "Redirect To URL After Applying Coupon"
+msgstr ""
+
+#: Models/UCFW_Settings.php:164
+msgid ""
+"Optional. Will redirect the user to the provided URL when coupon has been "
+"applied. You can also pass query args to the URL for the following "
+"variables: {ucfw_coupon_code}, {ucfw_coupon_applied} or "
+"{ucfw_coupon_error_message} and they will be replaced with proper data. Eg. ?"
+"foo={ucfw_coupon_error_message}, then test the 'foo' query arg to get the "
+"message if there is one."
+msgstr ""
+
+#: Models/UCFW_Settings.php:170
+msgid "Redirect to url if invalid coupon is visited"
+msgstr ""
+
+#: Models/UCFW_Settings.php:172
+msgid ""
+"Optional. Will redirect the user to the provided URL when an invalid coupon "
+"has been attempted. You can also pass query args to the URL for the "
+"following variables {ucfw_coupon_code} or {ucfw_coupon_error_message} and it "
+"will be replaced with proper data. Eg. ?foo={ucfw_coupon_error_message}, "
+"then test the 'foo' query arg to get the message if there is one."
+msgstr ""
+
+#: Models/UCFW_Settings.php:178
+msgid "Hide coupon fields"
+msgstr ""
+
+#: Models/UCFW_Settings.php:180
+msgid ""
+"Hide the coupon fields from the cart and checkout pages on the front end."
+msgstr ""
+
+#: Models/UCFW_Settings.php:206
+msgid "Help Options"
+msgstr ""
+
+#: Models/UCFW_Settings.php:220
+msgid "Clean up plugin options on un-installation"
+msgstr ""
+
+#: Models/UCFW_Settings.php:222
+msgid ""
+"If checked, removes all plugin options when this plugin is uninstalled. "
+"<b>Warning:</b> This process is irreversible."
+msgstr ""
+
+#: Models/UCFW_Settings.php:257
+msgid "Knowledge Base"
+msgstr ""
+
+#: Models/UCFW_Settings.php:260
+#, php-format
+msgid ""
+"Looking for documentation? Please see our growing <a href=\"%1$s\" target="
+"\"_blank\">Knowledge Base</a>"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:18
+#: tests/woocommerce/tests/unit-tests/order/functions.php:48
+#: tests/woocommerce/tests/unit-tests/order/functions.php:49
+msgid "Pending payment"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:19
+msgid "Processing"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:20
+msgid "On hold"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:21
+msgid "Completed"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:22
+msgid "Cancelled"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:23
+msgid "Refunded"
+msgstr ""
+
+#: tests/woocommerce/tests/unit-tests/order/functions.php:24
+msgid "Failed"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:201
+msgid "Activate this plugin"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:201
+msgid "Click here to activate &rarr;"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:203
+msgid "Install this plugin"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:203
+msgid "Click here to install from WordPress.org repo &rarr;"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:205
+#, php-format
+msgid ""
+"<br/>Please ensure you have the <a href=\"%1$s\" target=\"_blank\">%2$s</a> "
+"plugin installed and activated.<br/>"
+msgstr ""
+
+#: url-coupons-for-woocommerce.php:212
+msgid "<b>URL Coupons for WooCommerce</b> plugin missing dependency.<br/>"
+msgstr ""

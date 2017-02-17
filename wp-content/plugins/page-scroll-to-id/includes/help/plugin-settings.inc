@@ -1,114 +1,75 @@
 <?php 
 $help_plugin_settings_text=<<<EOD
 
+<p><em>Click an option to visit plugin's documentation for additional info and guides</em>.</p>
+
 <p>
-	<strong>Selector(s)</strong> - 
-	The matching set of elements handled by the plugin (<a href="http://www.w3.org/TR/css3-selectors/" target="_blank">strings that represent ways of choosing elements in the DOM</a>). These should be anchor tags (links) with an href value in the form of <code>#id</code>. <br />
-	Each selector is separated by comma, so multiple matching sets of elements can be defined as: <code>selector1, selector2, selector3</code> etc. <br />
-	The default selector value is <code>a[rel='m_PageScroll2id']</code>, meaning the plugin is applied to all anchor elements with <code>m_PageScroll2id</code> rel attribute value. <br />
-	Other examples: <code>a[href*='#']</code> (anchors that contain <code>#</code> in their href attribute), <code>a[href='#top']</code> (anchors with href attribute value: <code>#top</code>), <code>a.className</code> (anchors with class: <code>className</code>).
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-selectors" target="_blank"><strong>Selector(s)</strong></a> - 
+	Use this field when you need to instruct the plugin to handle specific links. The value(s) should be anchor tags (<code>a</code>, i.e. links) in the form of <a href="http://www.w3.org/TR/css3-selectors/" target="_blank">strings that represent ways of choosing elements in the DOM</a> (i.e. CSS selectors). Each selector is separated by comma, so multiple selectors can be defined as: <code>selector1, selector2, selector3</code> etc. <br />
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-enable-on-wp-menu-links" target="_blank">Enable on WordPress Menu links</a> enables the plugin automatically on custom links created in WordPress Menus (Appearance &rarr; Menus).
 </p>
 
 <p>
-	Other default selectors which the plugin is applied automatically include the class <code>ps2id</code> (actual selectors: <code>.ps2id > a[href*='#']</code> and <code>a.ps2id[href*='#']</code>). This means that any link with a hash in its URL/href (e.g. <code>#id</code>) which has the class or is contained (direct children) within an element with the class `ps2id` will be handled by the plugin automatically. 
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-scroll-duration" target="_blank"><strong>Scroll duration</strong></a> - 
+	Scroll animation duration (i.e. scrolling speed) in milliseconds (1000 milliseconds equal 1 second). Lower values equal faster scrolling. <br />
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-auto-adjust-scrolling-duration" target="_blank">Auto-adjust scrolling duration</a> instructs the plugin to fine-tune scrolling duration/speed according to target and page scroll position.
 </p>
 
 <p>
-	Checking "Enable on WordPress Menu links" enables the plugin on custom links (that contain a hash in their URL) created in WordPress Menus automatically (no need to use XFN and/or class values). 
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-scroll-type-easing" target="_blank"><strong>Scroll type/easing</strong></a> - 
+	Scroll animation easing type (i.e. the way the animation progresses at different points within its duration). <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#ps2id-duration-easings-demo" target="_blank">Click here to see a visual representation &amp; demo of all easing types</a>. <br />
 </p>
 
 <p>
-	<strong>Scroll animation speed</strong> - 
-	Sets the duration of scrolling animation in milliseconds. By checking "Auto-adjust animation speed", the duration is adjusted automatically according to target element position and window scroll. This normalizes animation speed in order to avoid short-distance animations that take too long (e.g. a page scrolling of just 100 pixels will last shorter than the value specified above).
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-scroll-behavior" target="_blank"><strong>Scroll behavior</strong></a> - 
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-always-scroll-smoothly" target="_blank">Always scroll smoothly when reaching the end of the page/document</a> option adjusts scroll-to position so it does not exceed document length. <br />
+	Enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-stop-scroll-on-event" target="_blank">Stop page scrolling on mouse-wheel or touch-swipe</a> if you want to stop page scrolling when the user tries to scroll the page manually (e.g. via mouse-wheel or touch-swipe).
 </p>
 
 <p>
-	<strong>Scroll animation easing</strong> - 
-	Sets the easing type of scrolling animation (the speed at which an animation progresses at different points within the animation). <br />
-	You can set different easing types: one for when page is idle (no animation currently running) and another that applies while page is animating. <br />
-	<a href="http://api.jqueryui.com/easings/" target="_blank">Visual representation of all easings</a>
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-page-layout" target="_blank"><strong>Page layout</strong></a> - 
+	Set page scrolling direction (i.e. restrict scrolling) to top-bottom (vertical) or left-right (horizontal) accordingly.
 </p>
 
 <p>
-	<strong>Scroll-to position</strong> - 
-	Adjusts automatically the scroll-to position so it does not exceed document length. For example, when scrolling to a target element that sits at the bottom of the document, the animation stops smoothly at bottom of the page, instead of breaking at an earlier point.
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-offset" target="_blank"><strong>Offset</strong></a> - 
+	Offset scroll-to position by x amount of pixels or by selector. The offset value can a be a positive or negative number (indicating pixels), or a matching set of elements in your html (selector).
 </p>
 
 <p>
-	<strong>Page layout</strong> - 
-	Defines the page scrolling axis. Selecting <code>vertical</code> will scroll the page in the y axis (top-bottom only), while <code>horizontal</code> will scroll the page in the x axis (left-right only). To scroll both axis simultaneously select <code>auto</code>.
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-highlight-selectors" target="_blank"><strong>Highlight selector(s)</strong></a> - 
+	The matching set of elements (i.e. selectors) handled by the plugin, that will be eligible for highlighting. The value(s) should be anchor tags (<code>a</code>, i.e. links).
 </p>
 
 <p>
-	<strong>Offset</strong> - 
-	Defines the amount of pixels to offset the scroll-to position. The value can a be a positive or negative number, or a matching element in your html. For example, setting Offset to 50 will stop page scrolling 50 pixels before reaching the target. <br />
-	If you need to offset scroll-to position accoring to the height or width of some element (e.g. accoring to a responsive, fixed-positioned navigation menu), insert its selector in the Offset field. For example, if you have a fixed menu with id <code>navigation-menu</code>, set Offset to <code>#navigation-menu</code> in order to stop page scrolling below it and avoid overlapping your content. <br />
-	To set different vertical and horizontal offsets (e.g. when Layout is set to auto), add comma seperated values in Offset field, e.g. <code>100,50</code> (vertical offset 100, horizontal offset 50). <br />
-	You may also define link specific offsets by using the <code>ps2id</code> shortcode in your content, e.g. <code>[ps2id url='#id' offset='100']link[/ps2id]</code>. 
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-classes-highlight" target="_blank"><strong>Classes &amp; highlight options</strong></a> - 
+	The plugin adds special classes to the links and the target elements it handles according to user action and page scrolling position. You can change the clicked link class, as well as the highlight classes for links and targets. <br />
+	Enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-force-single-highlight" target="_blank">Allow only one highlighted element at a time</a> to prevent multiple elements from being highlighted at the same time. <br />
+	Enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-keep-highlight-until-next" target="_blank">Keep the current element highlighted until the next one comes into view</a> when you need to keep at least one element (e.g. a menu link) always highlighted. <br />
+	Enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-highlight-by-next-target" target="_blank">Highlight by next target</a> to highlight elements according to the next adjucent element from the actual target (useful when target elements have zero dimensions).
 </p>
 
 <p>
-	The plugin offers few extra selector expressions in order to define more advanced offsets. Examples: 
-</p>
-
-<ul>
-	<li>Offset by element with id "some-id" and CSS position fixed: <code>#some-id:fixed</code> </li>
-	<li>Offset by element with class "class-name" and height equal to 100 pixels: <code>.class-name:height(100)</code> </li>
-	<li>Offset by element with id "some-id" and width greater than 800 pixels: <code>#some-id:width(>800)</code> </li>
-	<li>Offset by element with id "some-id", CSS position fixed and height between 50 and 100 pixels: <code>#some-id:fixed:height(>50):height(<100)</code> </li>
-</ul>
-
-<p>
-	<strong>Highlight selector(s)</strong> - 
-	The matching set of elements already handled by the plugin (defined in Selector(s) field) that will be highlighted. <br /> 
-	The plugin adds a class (specified in Classes fields) on the links whose target elements are considered to be within the viewport. Highlight selector(s) specifies those links. <br />
-	Leaving the field empty (also the default setting), all selectors specified in Selector(s) field are eligible for highlighting. In case you need to highlight only a specific selector (e.g. your navigation menu links but not back-to-top links etc.), you should enter those selector(s) (e.g. <code>.menu-item a[rel='m_PageScroll2id']</code>).
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-links-behavior" target="_blank"><strong>Links behavior</strong></a> - 
+	If you want the link’s URL hash value (e.g. <code>#some-id</code>) to appear in browser's address bar when it's clicked, enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-append-hash" target="_blank">Append the clicked link's hash value to browser's URL/address bar</a> option. <br />
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-scroll-to-different-pages" target="_blank">Scroll from/to different pages</a> option enables the plugin to smoothly scroll a newly loaded page to a target (i.e. the hash value in browser's address bar).
 </p>
 
 <p>
-	<strong>Classes</strong> - 
-	Set the classes added to links and targets by the plugin: 
-</p>
-
-<ol>
-	<li>The class name for the link that's been clicked </li>
-	<li>The class name for the (current) target element </li>
-	<li>The class name for the (current) highlighted link </li>
-</ol>
-
-<p>
-	In addition, the plugin will add the above classes with the <code>-first</code> and <code>-last</code> suffix (e.g. <code>mPS2id-highlight-first</code>, <code>mPS2id-highlight-last</code>) in order to differentiate multiple highlighted elements. This is useful when you need to style only the first or last of the highlighted links or targets in your CSS.
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-disable-plugin-below" target="_blank"><strong>Disable plugin below</strong></a> - 
+	Set the viewport/screen-size in pixels, below which the plugin will be disabled. The value can be <code>width</code> (e.g. <code>1024</code>) or <code>width,height</code> (e.g. <code>1024,600</code>).
 </p>
 
 <p>
-	By checking "Force single highlight", only one highlighted element (the first one) is allowed at a time.
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-administration" target="_blank"><strong>Administration</strong></a> - 
+	Check <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-display-widgets-id" target="_blank">Display widgets id attribute</a> to have the id attribute value of each widget (in Appearance &rarr; Widgets) displayed within its panel. <br />
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-post-editor-buttons" target="_blank">Enable insert link/target buttons in post visual editor</a> activates plugin’s buttons in WordPress visual editor toolbar.
 </p>
 
 <p>
-	Check "Keep highlight until next" when you need to keep the current element highlighted until the next one comes into view. This way at least one element always stays highlighted.
-</p>
-
-<p>
-	Check "Highlight by next target" when your target elements have zero height and/or width to enable better highlighting. This option is similar to "Keep highlight until next" but it's especially useful when your target elements are in the form of <code>&lt;a id='id'&gt;&lt;/a&gt;</code>.
-</p>
-
-<p>
-	<strong>Scroll to location hash</strong> - 
-	Scrolls to target id (e.g. <code>&lt;div id="id" /&gt;</code>) based on location hash (e.g. <code>mysite.com/mypage#id</code>) on page load. <br />
-	Enable when you need to scroll to an id in another page. <br />
-	By default, this option will only work for target elements that are handled by the plugin (e.g. are connected to a link which scrolls the page via "Page scroll to id"). To enable the option for all targets (even for elements that are not handled by the plugin) check "Enable for all targets". <br />
-	To set an animation delay for "Scroll to location hash", use the "Delay" field and set a value which represents milliseconds (default value is 0 meaning no delay). For example, a value of <code>500</code> will delay page scrolling by half a second after the page has loaded. 
-</p>
-
-<p>
-	<strong>Disable plugin below screen-size</strong> - 
-	Set a minimum width and/or height screen-size (in pixels) that's required for the plugin to be enabled. For example, insert <code>1024</code> to disable plugin functionality when window width is below 1024 pixels or <code>1024,600</code> to disable plugin when window width/height is below 1024 and 600 pixels respectively. Leave field value empty or set to 0 to disable.<br />
-</p>
-
-<p>
-	<strong>Administration</strong> - 
-	Check "Display widgets id attribute" in order to Show the id attribute of each widget in Appearance &rarr; Widgets. This is a convenient way of finding existing id attributes to use as targets on your links. 
-	"Enable insert link/target buttons in post visual editor" allows the insertion of plugin's shortcodes via buttons in WordPress post/page editor. <br />
+	<a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-advanced" target="_blank"><strong>Advanced options</strong></a> - 
+	If another plugin or a theme script handles page scrolling and conflicts with "Page scroll to id", try enabling <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-remove-other-click-events" target="_blank">Prevent other scripts from handling plugin’s links</a> option. <br />
+	Enable <a href="http://manos.malihu.gr/page-scroll-to-id-for-wordpress/#plugin-settings-advanced-normalize-targets" target="_blank">Normalize anchor-point targets</a> to normalize/reset the CSS properties (height, line-height, border etc.) of anchor-point targets.
 </p>
 
 EOD;

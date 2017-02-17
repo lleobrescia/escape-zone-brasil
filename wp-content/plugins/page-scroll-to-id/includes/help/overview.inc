@@ -2,12 +2,12 @@
 $help_overview_text=<<<EOD
 
 <p>
-	<strong>Page scroll to id</strong> is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
+	<strong>Page scroll to id</strong> is a fully featured plugin for creating links that scroll the page smoothly to any id within the document.  
 </p>
 
 <p>
-	The plugin replaces the default browser behaviour of "jumping" to page sections when links with href value containing <code>#</code> are clicked, by smoothly animating the page to those sections. <br />
-	You can use it for simple back-to-top links or complex, single-page website navigation and features include: adjustable animation speed, advanced animation easings, vertical and/or horizontal scrolling, links highlighting etc. 
+	The plugin replaces browser's "jumping" behavior with a smooth scrolling animation, when links with href value containing <code>#</code> are clicked. <br />
+	It provides all the basic tools and advanced functionality for single-page websites, in-page navigation, back-to-top links etc. with features like: adjustable scrolling animation duration and easing, link and target highlighting via ready-to-use CSS classes, vertical and/or horizontal scrolling, scrolling from/to different pages etc. 
 </p>
 
 <p>If you like this plugin and find it useful, consider making a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28" target="_blank">donation</a> :)</p>
