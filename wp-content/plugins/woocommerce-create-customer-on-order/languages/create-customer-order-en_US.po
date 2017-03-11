@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Create Customer on Order v1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-29 01:54+0200\n"
+"PO-Revision-Date: 2015-08-29 01:54+0200\n"
+"Last-Translator: admin <brent@kairaweb.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ create-customer-order
+#: create-user-order.php:140 create-user-order.php:213
+msgid "Create Customer"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:147
+msgid "First Name"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:153
+msgid "Last Name"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:159
+msgid "Email Address"
+msgstr ""
+
+#: create-user-order.php:166
+msgid "Set Username (optional)"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:171
+msgid "Role"
+msgstr ""
+
+#: create-user-order.php:181
+msgid "(Your user capability prevents this)"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:189
+msgid "Customer"
+msgstr ""
+
+#: create-user-order.php:205
+msgid "Disable customer registration email"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:210
+msgid "Cancel"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:232 create-user-order.php:240
+msgid "Save to Customer"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:270
+msgid "Email Address already exists"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:271
+msgid "Please enter an email address"
+msgstr ""
+
+#: create-user-order.php:272
+msgid "Invalid Email Address"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:273
+msgid "This email address already exists as another users Username"
+msgstr ""
+
+#: create-user-order.php:274
+msgid "Invalid Username"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:275
+msgid "User created and linked to this order"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:276
+msgid "Please enter a valid email address"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:277
+msgid "Success"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:278
+msgid "Error"
+msgstr ""
+
+#: create-user-order.php:279
+msgid ""
+"Your user role does not have the capability to create a user with this role"
+msgstr ""
+
+#: create-user-order.php:480
+msgid "As this is your first time logging in, please set your password."
+msgstr ""
+
+#: create-user-order.php:510
+msgid "Set your Password"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:532
+msgid ""
+"You have successfully activated your account. Please login with your email "
+"address and new password"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:550
+msgid "Your account has been created"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:554
+#, php-format
+msgid "Your account on %s"
+msgstr ""
+
+#: create-user-order.php:563
+#, php-format
+msgid ""
+"Hi, we've created an account for you on our site.\n"
+"\n"
+"<strong>Username:</strong> %s\n"
+"<strong>Password:</strong> Please %s to set your new password\n"
+"\n"
+"Copy and paste this link into your browser if you are having trouble with "
+"the above password link %s\n"
+"\n"
+"Thank-you\n"
+"%s"
+msgstr ""
+
+#: create-user-order.php:577
+msgid "click here"
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:666
+#, php-format
+msgid ""
+"%sCreate Customer on Order for WooCommerce needs WooCommerce%s %sWooCommerce"
+"%s must be active for Create Customer on Order to work. Please install & "
+"activate WooCommerce."
+msgstr ""
+
+# @ create-customer-order
+#: create-user-order.php:683
+#, php-format
+msgid ""
+"%sCreate Customer on Order for WooCommerce is inactive%s This version of "
+"Create Customer on Order requires WooCommerce %s or newer. For more "
+"information about our WooCommerce version support %sclick here%s."
+msgstr ""
