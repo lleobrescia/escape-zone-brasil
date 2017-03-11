@@ -26,11 +26,11 @@ class Plugin extends AbsBaseAp
     use Traits\Plugin\NoticeUtils;
     use Traits\Plugin\OptionUtils;
     use Traits\Plugin\PostUtils;
-    use Traits\Plugin\UpdateUtils;
     use Traits\Plugin\UrlUtils;
     use Traits\Plugin\UserUtils;
     use Traits\Plugin\WcpAuthorUtils;
     use Traits\Plugin\WcpCommentUtils;
+    use Traits\Plugin\WcpDateArchiveUtils;
     use Traits\Plugin\WcpFeedUtils;
     use Traits\Plugin\WcpHomeBlogUtils;
     use Traits\Plugin\WcpJetpackUtils;
@@ -227,6 +227,7 @@ class Plugin extends AbsBaseAp
             'auto_cache_user_agent',
 
             'htaccess_browser_caching_enable',
+            'htaccess_enforce_exact_host_name',
             'htaccess_enforce_canonical_urls',
             'htaccess_access_control_allow_origin',
 
@@ -322,6 +323,12 @@ class Plugin extends AbsBaseAp
             'cache_clear_term_post_tag_enable' => '1', // `0|1`.
             'cache_clear_term_other_enable'    => '1', // `0|1`.
 
+            'cache_clear_date_archives_enable' => '1', // `0|1|2|3`.
+            // 0 = No, don't clear any associated Date archive views.
+            // 1 = Yes, if any single Post is cleared/reset, also clear the associated Date archive views.
+            // 2 = Yes, but only clear the associated Day and Month Date archive views.
+            // 3 = Yes, but only clear the associated Day Date archive view.
+
             /* Misc. cache behaviors. */
 
             'allow_client_side_cache'           => '0', // `0|1`.
@@ -388,6 +395,7 @@ class Plugin extends AbsBaseAp
 
             'htaccess_browser_caching_enable'      => '0', // `0|1`; enable browser caching?
             'htaccess_gzip_enable'                 => '0', // `0|1`; enable GZIP compression?
+            'htaccess_enforce_exact_host_name'     => '0', // `0|1`; enforce exact hostname?
             'htaccess_enforce_canonical_urls'      => '0', // `0|1`; enforce canonical URLs?
             'htaccess_access_control_allow_origin' => '0', // `0|1`; send Access-Control-Allow-Origin header?
 
@@ -429,12 +437,8 @@ class Plugin extends AbsBaseAp
 
             /* Related to automatic pro updates. */
 
-            'lite_update_check'      => '0', // `0|1`; enable?
-            'latest_lite_version'    => VERSION, // Latest version.
-            'last_lite_update_check' => '0', // Timestamp.
-
             'pro_update_check'        => '1', // `0|1`; enable?
-            'pro_update_check_stable' => '1', // `0` for beta/RC checks; defaults to `1`
+            'pro_update_check_stable' => '1', // `0` for beta/RC checks.
             'last_pro_update_check'   => '0', // Timestamp.
 
             'latest_pro_version' => VERSION, // Latest version.
@@ -468,13 +472,16 @@ class Plugin extends AbsBaseAp
         }
         /* -------------------------------------------------------------- */
 
+        add_action('init', [$this, 'checkVersion']);
         add_action('init', [$this, 'checkAdvancedCache']);
         add_action('init', [$this, 'checkBlogPaths']);
         add_action('init', [$this, 'checkCronSetup'], PHP_INT_MAX);
+
         add_action('wp_loaded', [$this, 'actions']);
 
-        add_action('admin_init', [$this, 'checkVersion']);
-        add_action('admin_init', [$this, 'maybeCheckLatestLiteVersion']);
+        
+
+        
 
         
 
@@ -501,10 +508,13 @@ class Plugin extends AbsBaseAp
 
         add_filter('enable_live_network_counts', [$this, 'updateBlogPaths']);
 
+        add_action('admin_init', [$this, 'autoClearCacheOnSettingChanges']);
+
+        add_action('safecss_save_pre', [$this, 'autoClearCacheOnJetpackCustomCss'], 10, 1);
+
         add_action('activated_plugin', [$this, 'autoClearOnPluginActivationDeactivation'], 10, 2);
         add_action('deactivated_plugin', [$this, 'autoClearOnPluginActivationDeactivation'], 10, 2);
-        add_action('admin_init', [$this, 'autoClearCacheOnSettingChanges']);
-        add_action('safecss_save_pre', [$this, 'autoClearCacheOnJetpackCustomCss'], 10, 1);
+
         add_action('upgrader_process_complete', [$this, 'autoClearOnUpgraderProcessComplete'], 10, 2);
         add_action('upgrader_process_complete', [$this, 'wipeOpcacheByForce'], PHP_INT_MAX);
 

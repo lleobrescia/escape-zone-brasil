@@ -98,6 +98,15 @@ trait ObUtils
     public $cache_max_age = 0;
 
     /**
+     * Max age has been disabled?
+     *
+     * @since 161226 Load average checks.
+     *
+     * @type bool Max age disabled?
+     */
+    public $cache_max_age_disabled = false;
+
+    /**
      * Calculated 12 hour expiration time.
      *
      * @since 161119 Calculated 12 hour expiration time.
@@ -109,9 +118,12 @@ trait ObUtils
     /**
      * Start output buffering or serve cache.
      *
-     * @since 150422 Rewrite. This is a vital part of Comet Cache.
-     * This method serves existing (fresh) cache files. It is also responsible
-     * for beginning the process of collecting the output buffer.
+     * @since 150422 Rewrite.
+     * @since 170220 Adding API request constants.
+     *
+     * @note This is a vital part of Comet Cache.
+     *       This method serves existing (fresh) cache files. It is also responsible
+     *       for beginning the process of collecting the output buffer.
      */
     public function maybeStartOutputBuffering()
     {
@@ -135,6 +147,12 @@ trait ObUtils
         }
         if (isset($_SERVER['DONOTCACHEPAGE'])) {
             return $this->maybeSetDebugInfo($this::NC_DEBUG_DONOTCACHEPAGE_SERVER_VAR);
+        }
+        if (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST) {
+            return $this->maybeSetDebugInfo($this::NC_DEBUG_XMLRPC_REQUEST_CONSTANT);
+        }
+        if (defined('REST_REQUEST') && REST_REQUEST) {
+            return $this->maybeSetDebugInfo($this::NC_DEBUG_REST_REQUEST_CONSTANT);
         }
         if (isset($_GET[mb_strtolower(SHORT_NAME).'AC']) && !filter_var($_GET[mb_strtolower(SHORT_NAME).'AC'], FILTER_VALIDATE_BOOLEAN)) {
             return $this->maybeSetDebugInfo($this::NC_DEBUG_AC_GET_VAR);
@@ -215,24 +233,21 @@ trait ObUtils
 
         if (IS_PRO && COMET_CACHE_WHEN_LOGGED_IN === 'postload' && $this->isLikeUserLoggedIn()) {
             $this->postload['when_logged_in'] = true; // Enable postload check.
-        } elseif (is_file($this->cache_file) && (!$this->cache_max_age || filemtime($this->cache_file) >= $this->cache_max_age)) {
+        } elseif (is_file($this->cache_file) && ($this->cache_max_age_disabled || filemtime($this->cache_file) >= $this->cache_max_age)) {
             list($headers, $cache) = explode('<!--headers-->', file_get_contents($this->cache_file), 2);
 
-            $headers_list = $this->headersList();
+            $headers_list = $this->headersList(); // Headers that are enqueued already.
+
             foreach (unserialize($headers) as $_header) {
                 if (!in_array($_header, $headers_list, true) && mb_stripos($_header, 'Last-Modified:') !== 0) {
                     header($_header); // Only cacheable/safe headers are stored in the cache.
                 }
-            }
-            unset($_header); // Just a little housekeeping.
+            } // unset($_header); // Just a little housekeeping.
 
             if (COMET_CACHE_DEBUGGING_ENABLE && $this->isHtmlXmlDoc($cache)) {
                 $total_time = number_format(microtime(true) - $this->timer, 5, '.', '');
 
                 $DebugNotes = new Classes\Notes();
-
-                $DebugNotes->addAsciiArt(sprintf(__('%1$s is Fully Functional', 'comet-cache'), NAME));
-                $DebugNotes->addLineBreak();
 
                 $DebugNotes->add(__('Loaded via Cache On', 'comet-cache'), date('M jS, Y @ g:i a T'));
                 $DebugNotes->add(__('Loaded via Cache In', 'comet-cache'), sprintf(__('%1$s seconds', 'comet-cache'), $total_time));
@@ -249,10 +264,8 @@ trait ObUtils
     /**
      * Output buffer handler; i.e. the cache file generator.
      *
-     * @note We CANNOT depend on any WP functionality here; it will cause problems.
-     *    Anything we need from WP should be saved in the postload phase as a scalar value.
-     *
      * @since 150422 Rewrite.
+     * @since 170220 Adding API request constants.
      *
      * @param string $buffer The buffer from {@link \ob_start()}.
      * @param int    $phase  A set of bitmask flags.
@@ -260,6 +273,9 @@ trait ObUtils
      * @throws \Exception If unable to handle output buffering for any reason.
      *
      * @return string|bool The output buffer, or `FALSE` to indicate no change.
+     *
+     * @note We CANNOT depend on any WP functionality here; it will cause problems.
+     *    Anything we need from WP should be saved in the postload phase as a scalar value.
      *
      * @attaches-to {@link \ob_start()}
      */
@@ -289,6 +305,12 @@ trait ObUtils
         }
         if (isset($_SERVER['DONOTCACHEPAGE'])) {
             return (bool) $this->maybeSetDebugInfo($this::NC_DEBUG_DONOTCACHEPAGE_SERVER_VAR);
+        }
+        if (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST) {
+            return (bool) $this->maybeSetDebugInfo($this::NC_DEBUG_XMLRPC_REQUEST_CONSTANT);
+        }
+        if (defined('REST_REQUEST') && REST_REQUEST) {
+            return (bool) $this->maybeSetDebugInfo($this::NC_DEBUG_REST_REQUEST_CONSTANT);
         }
         if ((!IS_PRO || !COMET_CACHE_WHEN_LOGGED_IN) && $this->is_user_logged_in) {
             return (bool) $this->maybeSetDebugInfo($this::NC_DEBUG_IS_LOGGED_IN_USER);
@@ -362,7 +384,7 @@ trait ObUtils
             $time       = time(); // Needed below for expiration calculation.
 
             $DebugNotes = new Classes\Notes();
-            $DebugNotes->addAsciiArt(sprintf(__('%1$s Notes', 'comet-cache'), NAME));
+            $DebugNotes->addAsciiArt(sprintf(__('%1$s is Fully Functional', 'comet-cache'), NAME));
             $DebugNotes->addLineBreak();
 
             if (IS_PRO && COMET_CACHE_WHEN_LOGGED_IN && $this->user_token) {
@@ -387,8 +409,7 @@ trait ObUtils
 
             $DebugNotes->addLineBreak();
 
-            if (IS_PRO && COMET_CACHE_WHEN_LOGGED_IN && $this->cache_max_age < $this->nonce_cache_max_age
-                    && preg_match('/\b(?:_wpnonce|akismet_comment_nonce)\b/u', $cache)) {
+            if (IS_PRO && COMET_CACHE_WHEN_LOGGED_IN && $this->cache_max_age < $this->nonce_cache_max_age && preg_match('/\b(?:_wpnonce|akismet_comment_nonce)\b/u', $cache)) {
                 $DebugNotes->add(__('Cache File Expires Early', 'comet-cache'), __('yes, due to nonce in markup', 'comet-cache'));
                 $DebugNotes->add(__('Cache File Expires On', 'comet-cache'), date('M jS, Y @ g:i a T', $time + ($time - $this->nonce_cache_max_age)));
                 $DebugNotes->add(__('Cache File Auto-Rebuild On', 'comet-cache'), date('M jS, Y @ g:i a T', $time + ($time - $this->nonce_cache_max_age)));
@@ -404,11 +425,11 @@ trait ObUtils
                     throw new \Exception(sprintf(__('Unable to create symlink: `%1$s` » `%2$s`. Possible permissions issue (or race condition), please check your cache directory: `%3$s`.', 'comet-cache'), $this->cache_file, $this->cache_file_404, COMET_CACHE_DIR));
                 }
                 $this->cacheUnlock($cache_lock); // Release.
-                return $cache; // Return the newly built cache; with possible debug information also.
+                return $cache; // Return the newly built cache; with possible debug info.
             }
         } elseif (file_put_contents($cache_file_tmp, serialize($this->cacheableHeadersList()).'<!--headers-->'.$cache) && rename($cache_file_tmp, $this->cache_file)) {
             $this->cacheUnlock($cache_lock); // Release.
-            return $cache; // Return the newly built cache; with possible debug information also.
+            return $cache; // Return the newly built cache; with possible debug info.
         }
         @unlink($cache_file_tmp); // Clean this up (if it exists); and throw an exception with information for the site owner.
         throw new \Exception(sprintf(__('%1$s: failed to write cache file for: `%2$s`; possible permissions issue (or race condition), please check your cache directory: `%3$s`.', 'comet-cache'), NAME, $_SERVER['REQUEST_URI'], COMET_CACHE_DIR));
