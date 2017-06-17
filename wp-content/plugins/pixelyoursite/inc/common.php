@@ -430,19 +430,16 @@ if ( ! function_exists( 'pys_get_product_content_id' ) ) {
 	 * Return product id or sku.
 	 */
 	function pys_get_product_content_id( $product_id ) {
-//		global $wpdb;
+
+		$content_id_format = pys_get_option( 'woo', 'content_id_format', 'default' );
 
 		if ( pys_get_option( 'woo', 'content_id' ) == 'sku' ) {
-			
-			$sku = get_post_meta( $product_id, '_sku', true );
-
-			return '"' . $sku . '"';
-
+			$content_id = get_post_meta( $product_id, '_sku', true );
 		} else {
-
-			return $product_id;
-
+			$content_id = $product_id;
 		}
+
+		return apply_filters( 'pys_fb_pixel_woo_product_content_id', $content_id, $product_id, $content_id_format );
 
 	}
 
@@ -471,64 +468,95 @@ if ( ! function_exists( 'pys_insert_attribute' ) ) {
 	/**
 	 * Add attribute with value to a HTML tag.
 	 *
-	 * @param string $attr_name  Attribute name. Eg. "class"
+	 * @param string $attr_name  Attribute name, eg. "class"
 	 * @param string $attr_value Attribute value
-	 * @param string $tag        HTML content where attribute should be inserted
-	 * @param bool   $overwrite  Should function override existing value of attribute or append it?
-	 * @param string $tag_name   Selector name. Eg. "button". Default "a"
+	 * @param string $content    HTML content where attribute should be inserted
+	 * @param bool   $overwrite  Override existing value of attribute or append it
+	 * @param string $tag        Selector name, eg. "button". Default "a"
 	 *
 	 * @return string Modified HTML content
 	 */
-	function pys_insert_attribute( $attr_name, $attr_value, $tag, $overwrite = false, $tag_name = 'a' ) {
+	function pys_insert_attribute( $attr_name, $attr_value, $content, $overwrite = false, $tag = 'a' ) {
 
 		## do not modify js attributes
 		if( $attr_name == 'on' ) {
-			return $tag;
+			return $content;
 		}
 
 		$attr_value = trim( $attr_value );
 
-		$doc = new DOMDocument();
+		try {
 
-		/**
-		 * Old libxml does not support options parameter.
-		 * @since 3.2.0
-		 */
-		if( defined('LIBXML_DOTTED_VERSION') && version_compare( LIBXML_DOTTED_VERSION, '2.6.0', '>=' ) &&
-		    version_compare( phpversion(), '5.4.0', '>=' ) ) {
-			@$doc->loadHTML( '<?xml encoding="UTF-8">' . $tag, LIBXML_NOEMPTYTAG );
-		} else {
-			@$doc->loadHTML( '<?xml encoding="UTF-8">' . $tag );
+			$doc = new DOMDocument();
+
+			/**
+			 * Old libxml does not support options parameter.
+			 *
+			 * @since 3.2.0
+			 */
+			if ( defined( 'LIBXML_DOTTED_VERSION' ) && version_compare( LIBXML_DOTTED_VERSION, '2.6.0', '>=' ) &&
+				version_compare( phpversion(), '5.4.0', '>=' )
+			) {
+				@$doc->loadHTML( '<?xml encoding="UTF-8">' . $content, LIBXML_NOEMPTYTAG );
+			} else {
+				@$doc->loadHTML( '<?xml encoding="UTF-8">' . $content );
+			}
+
+			/**
+			 * Select top-level tag if it is not specified in args.
+			 *
+			 * @since: 5.0.6
+			 */
+			if ( $tag == 'any' ) {
+
+				/** @var DOMNodeList $node */
+				$node = $doc->getElementsByTagName( 'body' );
+
+				if ( $node->length == 0 ) {
+					throw new Exception( 'Empty or wrong tag passed to filter.' );
+				}
+
+				$node = $node->item( 0 )->childNodes->item( 0 );
+
+			} else {
+				$node = $doc->getElementsByTagName( $tag )->item( 0 );
+			}
+
+			if ( is_null( $node ) ) {
+				return $content;
+			}
+
+			/** @noinspection PhpUndefinedMethodInspection */
+			$attribute = $node->getAttribute( $attr_name );
+
+			// add attribute or override old one
+			if ( empty( $attribute ) || $overwrite ) {
+
+				/** @noinspection PhpUndefinedMethodInspection */
+				$node->setAttribute( $attr_name, $attr_value );
+
+				return str_replace( array( '<?xml encoding="UTF-8">', '<html>', '</html>', '<body>', '</body>' ), null, $doc->saveHTML() );
+
+			}
+
+			// append value to exist attribute
+			if ( $overwrite == false ) {
+
+				$value = $attribute . ' ' . $attr_value;
+				/** @noinspection PhpUndefinedMethodInspection */
+				$node->setAttribute( $attr_name, $value );
+
+				return str_replace( array( '<?xml encoding="UTF-8">', '<html>', '</html>', '<body>', '</body>' ), null, $doc->saveHTML() );
+
+			}
+
+		} catch ( Exception $e ) {
+
+			error_log( $e );
+
 		}
 
-		$node = $doc->getElementsByTagName( $tag_name )->item(0);
-
-		if( is_null( $node ) ) {
-			return $tag;
-		}
-
-		$attribute = $node->getAttribute( $attr_name );
-
-		// add attribute or override old one
-		if ( empty( $attribute ) || $overwrite ) {
-
-			$node->setAttribute( $attr_name, $attr_value );
-
-			return str_replace( array( '<?xml encoding="UTF-8">', '<html>', '</html>', '<body>', '</body>' ), null, $doc->saveHTML() );
-
-		}
-
-		// append value to exist attribute
-		if( $overwrite == false ) {
-
-			$value = $attribute . ' ' . $attr_value;
-			$node->setAttribute( $attr_name, $value );
-
-			return str_replace( array( '<?xml encoding="UTF-8">', '<html>', '</html>', '<body>', '</body>' ), null, $doc->saveHTML() );
-
-		}
-
-		return $tag;
+		return $content;
 
 	}
 
@@ -899,7 +927,7 @@ if( ! function_exists( 'pys_output_js_events_code' ) ) {
 			return;
 		}
 
-		wp_localize_script( 'pys', 'pys_events', $pys_events );
+		wp_localize_script( 'pys-public', 'pys_events', $pys_events );
 
 	}
 
@@ -914,7 +942,7 @@ if( ! function_exists( 'pys_output_custom_events_code' ) ) {
 			return;
 		}
 
-		wp_localize_script( 'pys', 'pys_customEvents', $pys_custom_events );
+		wp_localize_script( 'pys-public', 'pys_customEvents', $pys_custom_events );
 
 	}
 
@@ -978,7 +1006,7 @@ if( !function_exists( 'pys_get_woo_checkout_params' ) ) {
 			$params['num_items'] = $woocommerce->cart->get_cart_contents_count();
 		}
 
-		$params['content_ids'] = '[' . implode( ',', $ids ) . ']';
+		$params['content_ids'] = "['" . implode( "','", $ids ) . "']";
 
 		if ( ! empty( $names ) ) {
 			$params['content_name'] = $names;
@@ -1121,7 +1149,7 @@ if( !function_exists( 'pys_get_default_options' ) ) {
 		$options['edd']['purchase_add_payment_method'] = true;
 		$options['edd']['purchase_add_coupons']        = true;
 
-		return $options;
+		return apply_filters( 'pys_fb_pixel_setting_defaults', $options );
 
 	}
 
@@ -1322,7 +1350,7 @@ if( ! function_exists( 'pys_output_options' ) ) {
 			'traffic_source_enabled' => pys_get_option( 'general', 'add_traffic_source' )
 		);
 
-		wp_localize_script( 'pys', 'pys_options', $options );
+		wp_localize_script( 'pys-public', 'pys_options', $options );
 
 	}
 
@@ -1470,4 +1498,20 @@ if ( ! function_exists( 'pys_delete_events' ) ) {
 
 	}
 
+}
+
+if( ! function_exists( 'pys_is_wc_version_gte' ) ) {
+	
+	function pys_is_wc_version_gte( $version ) {
+		
+		if ( defined( 'WC_VERSION' ) && WC_VERSION ) {
+			return version_compare( WC_VERSION, $version, '>=' );
+		} else if ( defined( 'WOOCOMMERCE_VERSION' ) && WOOCOMMERCE_VERSION ) {
+			return version_compare( WOOCOMMERCE_VERSION, $version, '>=' );
+		} else {
+			return false;
+		}
+		
+	}
+	
 }

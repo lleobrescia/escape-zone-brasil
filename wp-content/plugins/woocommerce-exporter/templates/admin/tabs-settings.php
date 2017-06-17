@@ -187,6 +187,6 @@
 		<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'woocommerce-exporter' ); ?>" />
 	</p>
 	<input type="hidden" name="action" value="save-settings" />
-	<?php wp_nonce_field( 'save_settings', 'woo_ce_save_settings' ); ?>
+	<?php wp_nonce_field( 'woo_ce_save_settings' ); ?>
 </form>
 <?php do_action( 'woo_ce_export_settings_bottom' ); ?>

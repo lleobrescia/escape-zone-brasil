@@ -1,6 +1,15 @@
 <?php
 function woo_ce_extend_product_fields( $fields = array() ) {
 
+	// WordPress MultiSite
+	if( is_multisite() ) {
+		$fields[] = array(
+			'name' => 'blog_id',
+			'label' => __( 'Blog ID', 'woocommerce-exporter' ),
+			'hover' => __( 'WordPress Multisite', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
 /*
 	// Attributes
 	if( $attributes = woo_ce_get_product_attributes() ) {
@@ -16,7 +25,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 */
 
 	// Advanced Google Product Feed - http://www.leewillis.co.uk/wordpress-plugins/
-	if( function_exists( 'woocommerce_gpf_install' ) ) {
+	if( woo_ce_detect_export_plugin( 'gpf' ) ) {
 		$fields[] = array(
 			'name' => 'gpf_availability',
 			'label' => __( 'Advanced Google Product Feed - Availability', 'woocommerce-exporter' ),
@@ -75,7 +84,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// All in One SEO Pack - http://wordpress.org/extend/plugins/all-in-one-seo-pack/
-	if( function_exists( 'aioseop_activate' ) ) {
+	if( woo_ce_detect_export_plugin( 'aioseop' ) ) {
 		$fields[] = array(
 			'name' => 'aioseop_keywords',
 			'label' => __( 'All in One SEO - Keywords', 'woocommerce-exporter' ),
@@ -104,7 +113,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WordPress SEO - http://wordpress.org/plugins/wordpress-seo/
-	if( function_exists( 'wpseo_admin_init' ) ) {
+	if( woo_ce_detect_export_plugin( 'wpseo' ) ) {
 		$fields[] = array(
 			'name' => 'wpseo_focuskw',
 			'label' => __( 'WordPress SEO - Focus Keyword', 'woocommerce-exporter' ),
@@ -168,7 +177,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// Ultimate SEO - http://wordpress.org/plugins/seo-ultimate/
-	if( function_exists( 'su_wp_incompat_notice' ) ) {
+	if( woo_ce_detect_export_plugin( 'ultimate_seo' ) ) {
 		$fields[] = array(
 			'name' => 'useo_meta_title',
 			'label' => __( 'Ultimate SEO - Title Tag', 'woocommerce-exporter' ),
@@ -206,16 +215,6 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 		);
 	}
 
-	// WooCommerce MSRP Pricing - http://woothemes.com/woocommerce/
-	if( function_exists( 'woocommerce_msrp_activate' ) ) {
-		$fields[] = array(
-			'name' => 'msrp',
-			'label' => __( 'MSRP', 'woocommerce-exporter' ),
-			'hover' => __( 'Manufacturer Suggested Retail Price (MSRP)', 'woocommerce-exporter' ),
-			'disabled' => 1
-		);
-	}
-
 	// WooCommerce Brands Addon - http://woothemes.com/woocommerce/
 	// WooCommerce Brands - http://proword.net/Woocommerce_Brands/
 	if( woo_ce_detect_product_brands() ) {
@@ -227,8 +226,18 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 		);
 	}
 
+	// WooCommerce MSRP Pricing - http://woothemes.com/woocommerce/
+	if( woo_ce_detect_export_plugin( 'wc_msrp' ) ) {
+		$fields[] = array(
+			'name' => 'msrp',
+			'label' => __( 'MSRP', 'woocommerce-exporter' ),
+			'hover' => __( 'Manufacturer Suggested Retail Price (MSRP)', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
 	// Cost of Goods - http://www.skyverge.com/product/woocommerce-cost-of-goods-tracking/
-	if( class_exists( 'WC_COG' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_cog' ) ) {
 		$fields[] = array(
 			'name' => 'cost_of_goods',
 			'label' => __( 'Cost of Goods', 'woocommerce-exporter' ),
@@ -238,7 +247,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// Per Product Shipping - http://www.woothemes.com/products/per-product-shipping/
-	if( class_exists( 'WC_Shipping_Per_Product_Init' ) ) {
+	if( woo_ce_detect_export_plugin( 'per_product_shipping' ) ) {
 		$fields[] = array(
 			'name' => 'per_product_shipping',
 			'label' => __( 'Per-Product Shipping', 'woocommerce-exporter' ),
@@ -284,7 +293,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// Product Vendors - http://www.woothemes.com/products/product-vendors/
-	if( class_exists( 'WC_Product_Vendors' ) ) {
+	if( woo_ce_detect_export_plugin( 'vendors' ) ) {
 		$fields[] = array(
 			'name' => 'vendors',
 			'label' => __( 'Product Vendors', 'woocommerce-exporter' ),
@@ -306,7 +315,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WC Vendors - http://wcvendors.com
-	if( class_exists( 'WC_Vendors' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_vendors' ) ) {
 		$fields[] = array(
 			'name' => 'vendor',
 			'label' => __( 'Vendor' ),
@@ -321,8 +330,24 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 		);
 	}
 
+	// YITH WooCommerce Multi Vendor Premium - http://yithemes.com/themes/plugins/yith-woocommerce-product-vendors/
+	if( woo_ce_detect_export_plugin( 'yith_vendor' ) ) {
+		$fields[] = array(
+			'name' => 'vendor',
+			'label' => __( 'Vendor' ),
+			'hover' => __( 'YITH WooCommerce Multi Vendor Premium', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'vendor_commission_rate',
+			'label' => __( 'Commission (%)' ),
+			'hover' => __( 'YITH WooCommerce Multi Vendor Premium', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
 	// WooCommerce Wholesale Pricing - http://ignitewoo.com/woocommerce-extensions-plugins-themes/woocommerce-wholesale-pricing/
-	if( class_exists( 'woocommerce_wholesale_pricing' ) ) {
+	if( woo_ce_detect_export_plugin( 'wholesale_pricing' ) ) {
 		$fields[] = array(
 			'name' => 'wholesale_price',
 			'label' => __( 'Wholesale Price', 'woocommerce-exporter' ),
@@ -338,7 +363,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// Advanced Custom Fields - http://www.advancedcustomfields.com
-	if( class_exists( 'acf' ) ) {
+	if( woo_ce_detect_export_plugin( 'acf' ) ) {
 		$custom_fields = woo_ce_get_acf_product_fields();
 		if( !empty( $custom_fields ) ) {
 			foreach( $custom_fields as $custom_field ) {
@@ -354,27 +379,46 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Custom Fields - http://www.rightpress.net/woocommerce-custom-fields
-	if( class_exists( 'RP_WCCF' ) ) {
-		$options = get_option( 'rp_wccf_options' );
-		if( !empty( $options ) ) {
-			$custom_fields = ( isset( $options[1]['product_admin_fb_config'] ) ? $options[1]['product_admin_fb_config'] : false );
+	if( woo_ce_detect_export_plugin( 'wc_customfields' ) ) {
+		if( !get_option( 'wccf_migrated_to_20' ) ) {
+			// Legacy WooCommerce Custom Fields was stored in a single Option
+			$options = get_option( 'rp_wccf_options' );
+			if( !empty( $options ) ) {
+				$custom_fields = ( isset( $options[1]['product_admin_fb_config'] ) ? $options[1]['product_admin_fb_config'] : false );
+				if( !empty( $custom_fields ) ) {
+					foreach( $custom_fields as $custom_field ) {
+						$fields[] = array(
+							'name' => sprintf( 'wccf_%s', sanitize_key( $custom_field['key'] ) ),
+							'label' => ucfirst( $custom_field['label'] ),
+							'hover' => __( 'WooCommerce Custom Fields', 'woocommerce-exporter' ),
+							'disabled' => 1
+						);
+					}
+				}
+			}
+			unset( $options );
+		} else {
+			// WooCommerce Custom Fields uses CPT for Product properties
+			$custom_fields = woo_ce_get_wccf_product_properties();
 			if( !empty( $custom_fields ) ) {
 				foreach( $custom_fields as $custom_field ) {
+					$label = get_post_meta( $custom_field->ID, 'label', true );
+					$key = get_post_meta( $custom_field->ID, 'key', true );
 					$fields[] = array(
-						'name' => sprintf( 'wccf_%s', sanitize_key( $custom_field['key'] ) ),
-						'label' => ucfirst( $custom_field['label'] ),
+						'name' => sprintf( 'wccf_pp_%s', sanitize_key( $key ) ),
+						'label' => ucfirst( $label ),
 						'hover' => __( 'WooCommerce Custom Fields', 'woocommerce-exporter' ),
 						'disabled' => 1
 					);
 				}
 			}
-			unset( $custom_fields, $custom_field );
+			unset( $label, $key );
 		}
-		unset( $options );
+		unset( $custom_fields, $custom_field );
 	}
 
 	// WooCommerce Subscriptions - http://www.woothemes.com/products/woocommerce-subscriptions/
-	if( class_exists( 'WC_Subscriptions_Manager' ) ) {
+	if( woo_ce_detect_export_plugin( 'subscriptions' ) ) {
 		$fields[] = array(
 			'name' => 'subscription_price',
 			'label' => __( 'Subscription Price', 'woocommerce-exporter' ),
@@ -426,7 +470,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Bookings - http://www.woothemes.com/products/woocommerce-bookings/
-	if( class_exists( 'WC_Bookings' ) ) {
+	if( woo_ce_detect_export_plugin( 'woocommerce_bookings' ) ) {
 		$fields[] = array(
 			'name' => 'booking_has_persons',
 			'label' => __( 'Booking Has Persons', 'woocommerce-exporter' ),
@@ -472,7 +516,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// Barcodes for WooCommerce - http://www.wolkenkraft.com/produkte/barcodes-fuer-woocommerce/
-	if( function_exists( 'wpps_requirements_met' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_barcodes' ) ) {
 		$fields[] = array(
 			'name' => 'barcode_type',
 			'label' => __( 'Barcode Type', 'woocommerce-exporter' ),
@@ -488,7 +532,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Pre-Orders - http://www.woothemes.com/products/woocommerce-pre-orders/
-	if( class_exists( 'WC_Pre_Orders' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_preorders' ) ) {
 		$fields[] = array(
 			'name' => 'pre_orders_enabled',
 			'label' => __( 'Pre-Order Enabled', 'woocommerce-exporter' ),
@@ -516,7 +560,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Product Fees - https://wordpress.org/plugins/woocommerce-product-fees/
-	if( class_exists( 'WooCommerce_Product_Fees' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_productfees' ) ) {
 		$fields[] = array(
 			'name' => 'fee_name',
 			'label' => __( 'Product Fee Name', 'woocommerce-exporter' ),
@@ -538,7 +582,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Events - http://www.woocommerceevents.com/
-	if( class_exists( 'WooCommerce_Events' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_events' ) ) {
 		$fields[] = array(
 			'name' => 'is_event',
 			'label' => __( 'Is Event', 'woocommerce-exporter' ),
@@ -614,7 +658,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Uploads - https://wpfortune.com/shop/plugins/woocommerce-uploads/
-	if( class_exists( 'WPF_Uploads' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_uploads' ) ) {
 		$fields[] = array(
 			'name' => 'enable_uploads',
 			'label' => __( 'Enable Uploads', 'woocommerce-exporter' ),
@@ -624,7 +668,7 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 	}
 
 	// WooCommerce Profit of Sales Report - http://codecanyon.net/item/woocommerce-profit-of-sales-report/9190590
-	if( function_exists( 'POSRFront' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_posr' ) ) {
 		$fields[] = array(
 			'name' => 'posr',
 			'label' => __( 'Cost of Good', 'woocommerce-exporter' ),
@@ -633,8 +677,46 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 		);
 	}
 
+	// WooCommerce Product Bundles - http://www.woothemes.com/products/product-bundles/
+	if( woo_ce_detect_export_plugin( 'wc_product_bundles' ) ) {
+		$fields[] = array(
+			'name' => 'bundled_products',
+			'label' => __( 'Bundled Products', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Product Bundles', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'bundled_product_ids',
+			'label' => __( 'Bundled Product ID\'s', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Product Bundles', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
+	// WooCommerce Min/Max Quantities - https://woocommerce.com/products/minmax-quantities/
+	if( woo_ce_detect_export_plugin( 'wc_min_max' ) ) {
+		$fields[] = array(
+			'name' => 'minimum_quantity',
+			'label' => __( 'Minimum Quantity', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Min/Max Quantities', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'maximum_quantity',
+			'label' => __( 'Maximum Quantity', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Min/Max Quantities', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'group_of',
+			'label' => __( 'Group of', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Min/Max Quantities', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
 	// WooCommerce Tab Manager - http://www.woothemes.com/products/woocommerce-tab-manager/
-	if( class_exists( 'WC_Tab_Manager' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_tabmanager' ) ) {
 		// Custom Product Tabs
 		$custom_product_tabs = woo_ce_get_option( 'custom_product_tabs', '' );
 		if( !empty( $custom_product_tabs ) ) {
@@ -650,6 +732,135 @@ function woo_ce_extend_product_fields( $fields = array() ) {
 			}
 		}
 		unset( $custom_product_tabs, $custom_product_tab );
+	}
+
+	// WooTabs - https://codecanyon.net/item/wootabsadd-extra-tabs-to-woocommerce-product-page/7891253
+	if( woo_ce_detect_export_plugin( 'wootabs' ) ) {
+		// Custom WooTabs
+		$custom_wootabs = woo_ce_get_option( 'custom_wootabs', '' );
+		if( !empty( $custom_wootabs ) ) {
+			foreach( $custom_wootabs as $custom_wootab ) {
+				if( !empty( $custom_wootab ) ) {
+					$fields[] = array(
+						'name' => sprintf( 'wootab_%s', sanitize_key( $custom_wootab ) ),
+						'label' => sprintf( __( 'WooTab: %s', 'woocommerce-exporter' ), woo_ce_clean_export_label( $custom_wootab ) ),
+						'hover' => sprintf( __( 'WooTab: %s', 'woocommerce-exporter' ), $custom_wootab ),
+						'disabled' => 1
+					);
+				}
+			}
+		}
+		unset( $custom_wootabs, $custom_wootab );
+	}
+
+	// WooCommerce Tiered Pricing - http://ignitewoo.com/woocommerce-extensions-plugins-themes/woocommerce-tiered-pricing/
+	if( woo_ce_detect_export_plugin( 'ign_tiered' ) ) {
+
+		global $wp_roles;
+
+		// User Roles
+		if( isset( $wp_roles->roles ) ) {
+			asort( $wp_roles->roles );
+			foreach( $wp_roles->roles as $role => $role_data ) {
+				// Skip default User Roles
+				if( 'ignite_level_' != substr( $role, 0, 13 ) )
+					continue;
+				$fields[] = array(
+					'name' => sanitize_key( $role ),
+					'label' => sprintf( __( '%s ($)', 'woocommerce-exporter' ), woo_ce_clean_export_label( stripslashes( $role_data['name'] ) ) ),
+					'hover' => __( 'WooCommerce Tiered Pricing', 'woocommerce-exporter' ),
+					'disabled' => 1
+				);
+			}
+			unset( $role, $role_data );
+		}
+	}
+
+	// WooCommerce BookStore - http://www.wpini.com/woocommerce-bookstore-plugin/
+	if( woo_ce_detect_export_plugin( 'wc_books' ) ) {
+		$custom_books = ( function_exists( 'woo_book_get_custom_fields' ) ? woo_book_get_custom_fields() : false );
+		if( !empty( $custom_books ) ) {
+			foreach( $custom_books as $custom_book ) {
+				if( !empty( $custom_book ) ) {
+					$fields[] = array(
+						'name' => sprintf( 'book_%s', sanitize_key( $custom_book['name'] ) ),
+						'label' => $custom_book['name'],
+						'hover' => __( 'WooCommerce BookStore', 'woocommerce-exporter' ),
+						'disabled' => 1
+					);
+				}
+			}
+		}
+		unset( $custom_books, $custom_book );
+		$fields[] = array(
+			'name' => 'book_category',
+			'label' => __( 'Book Category', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce BookStore', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'book_author',
+			'label' => __( 'Book Author', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce BookStore', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+		$fields[] = array(
+			'name' => 'book_publisher',
+			'label' => __( 'Book Publisher', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce BookStore', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
+	// WooCommerce Multilingual - https://wordpress.org/plugins/woocommerce-multilingual/
+	if( woo_ce_detect_wpml() && woo_ce_detect_export_plugin( 'wpml_wc' ) ) {
+		$fields[] = array(
+			'name' => 'language',
+			'label' => __( 'Language', 'woocommerce-exporter' ),
+			'hover' => __( 'WooCommerce Multilingual', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
+	// Products Purchase Price for Woocommerce - https://wordpress.org/plugins/products-purchase-price-for-woocommerce/
+	if( woo_ce_detect_export_plugin( 'wc_products_purchase_price' ) ) {
+		$fields[] = array(
+			'name' => 'purchase_price',
+			'label' => __( 'Purchase Price', 'woocommerce-exporter' ),
+			'hover' => __( 'Products Purchase Price for WooCommerce', 'woocommerce-exporter' ),
+			'disabled' => 1
+		);
+	}
+
+	// WooCommerce Currency Switcher - http://dev.pathtoenlightenment.net/shop
+	if( woo_ce_detect_export_plugin( 'currency_switcher' ) ) {
+		$options = get_option( 'wc_aelia_currency_switcher' );
+		$currencies = ( isset( $options['enabled_currencies'] ) ? $options['enabled_currencies'] : false );
+		if( !empty( $currencies ) ) {
+			$woocommerce_currency = get_option( 'woocommerce_currency' );
+			foreach( $currencies as $currency ) {
+
+				// Skip the WooCommerce default currency
+				if( $woocommerce_currency == $currency )
+					continue;
+
+				$fields[] = array(
+					'name' => sprintf( 'wcae_regular_price_%s', sanitize_key( $currency ) ),
+					'label' => sprintf( __( 'Regular Price (%s)', 'woocommerce-exporter' ), $currency ),
+					'hover' => __( 'WooCommerce Currency Switcher', 'woocommerce-exporter' ),
+					'disabled' => 1
+				);
+				$fields[] = array(
+					'name' => sprintf( 'wcae_sale_price_%s', sanitize_key( $currency ) ),
+					'label' => sprintf( __( 'Sale Price (%s)', 'woocommerce-exporter' ), $currency ),
+					'hover' => __( 'WooCommerce Currency Switcher', 'woocommerce-exporter' ),
+					'disabled' => 1
+				);
+
+			}
+			unset( $woocommerce_currency, $currencies, $currency );
+		}
+		unset( $options );
 	}
 
 	// Custom Product meta
@@ -675,23 +886,24 @@ add_filter( 'woo_ce_product_fields', 'woo_ce_extend_product_fields' );
 function woo_ce_extend_product_item( $product, $product_id ) {
 
 	// Advanced Google Product Feed - http://plugins.leewillis.co.uk/downloads/wp-e-commerce-product-feeds/
-	if( function_exists( 'woocommerce_gpf_install' ) ) {
-		$product->gpf_data = get_post_meta( $product_id, '_woocommerce_gpf_data', true );
-		$product->gpf_availability = ( isset( $product->gpf_data['availability'] ) ? woo_ce_format_gpf_availability( $product->gpf_data['availability'] ) : '' );
-		$product->gpf_condition = ( isset( $product->gpf_data['condition'] ) ? woo_ce_format_gpf_condition( $product->gpf_data['condition'] ) : '' );
-		$product->gpf_brand = ( isset( $product->gpf_data['brand'] ) ? $product->gpf_data['brand'] : '' );
-		$product->gpf_product_type = ( isset( $product->gpf_data['product_type'] ) ? $product->gpf_data['product_type'] : '' );
-		$product->gpf_google_product_category = ( isset( $product->gpf_data['google_product_category'] ) ? $product->gpf_data['google_product_category'] : '' );
-		$product->gpf_gtin = ( isset( $product->gpf_data['gtin'] ) ? $product->gpf_data['gtin'] : '' );
-		$product->gpf_mpn = ( isset( $product->gpf_data['mpn'] ) ? $product->gpf_data['mpn'] : '' );
-		$product->gpf_gender = ( isset( $product->gpf_data['gender'] ) ? $product->gpf_data['gender'] : '' );
-		$product->gpf_age_group = ( isset( $product->gpf_data['age_group'] ) ? $product->gpf_data['age_group'] : '' );
-		$product->gpf_color = ( isset( $product->gpf_data['color'] ) ? $product->gpf_data['color'] : '' );
-		$product->gpf_size = ( isset( $product->gpf_data['size'] ) ? $product->gpf_data['size'] : '' );
+	if( woo_ce_detect_export_plugin( 'gpf' ) ) {
+		$gpf_data = get_post_meta( $product_id, '_woocommerce_gpf_data', true );
+		$product->gpf_availability = ( isset( $gpf_data['availability'] ) ? woo_ce_format_gpf_availability( $gpf_data['availability'] ) : '' );
+		$product->gpf_condition = ( isset( $gpf_data['condition'] ) ? woo_ce_format_gpf_condition( $gpf_data['condition'] ) : '' );
+		$product->gpf_brand = ( isset( $gpf_data['brand'] ) ? $gpf_data['brand'] : '' );
+		$product->gpf_product_type = ( isset( $gpf_data['product_type'] ) ? $gpf_data['product_type'] : '' );
+		$product->gpf_google_product_category = ( isset( $gpf_data['google_product_category'] ) ? $gpf_data['google_product_category'] : '' );
+		$product->gpf_gtin = ( isset( $gpf_data['gtin'] ) ? $gpf_data['gtin'] : '' );
+		$product->gpf_mpn = ( isset( $gpf_data['mpn'] ) ? $gpf_data['mpn'] : '' );
+		$product->gpf_gender = ( isset( $gpf_data['gender'] ) ? $gpf_data['gender'] : '' );
+		$product->gpf_age_group = ( isset( $gpf_data['age_group'] ) ? $gpf_data['age_group'] : '' );
+		$product->gpf_color = ( isset( $gpf_data['color'] ) ? $gpf_data['color'] : '' );
+		$product->gpf_size = ( isset( $gpf_data['size'] ) ? $gpf_data['size'] : '' );
+		unset( $gpf_data );
 	}
 
 	// All in One SEO Pack - http://wordpress.org/extend/plugins/all-in-one-seo-pack/
-	if( function_exists( 'aioseop_activate' ) ) {
+	if( woo_ce_detect_export_plugin( 'aioseop' ) ) {
 		$product->aioseop_keywords = get_post_meta( $product_id, '_aioseop_keywords', true );
 		$product->aioseop_description = get_post_meta( $product_id, '_aioseop_description', true );
 		$product->aioseop_title = get_post_meta( $product_id, '_aioseop_title', true );
@@ -700,7 +912,7 @@ function woo_ce_extend_product_item( $product, $product_id ) {
 	}
 
 	// WordPress SEO - http://wordpress.org/plugins/wordpress-seo/
-	if( function_exists( 'wpseo_admin_init' ) ) {
+	if( woo_ce_detect_export_plugin( 'wpseo' ) ) {
 		$product->wpseo_focuskw = get_post_meta( $product_id, '_yoast_wpseo_focuskw', true );
 		$product->wpseo_metadesc = get_post_meta( $product_id, '_yoast_wpseo_metadesc', true );
 		$product->wpseo_title = get_post_meta( $product_id, '_yoast_wpseo_title', true );
@@ -716,7 +928,7 @@ function woo_ce_extend_product_item( $product, $product_id ) {
 	}
 
 	// Ultimate SEO - http://wordpress.org/plugins/seo-ultimate/
-	if( function_exists( 'su_wp_incompat_notice' ) ) {
+	if( woo_ce_detect_export_plugin( 'ultimate_seo' ) ) {
 		$product->useo_meta_title = get_post_meta( $product_id, '_su_title', true );
 		$product->useo_meta_description = get_post_meta( $product_id, '_su_description', true );
 		$product->useo_meta_keywords = get_post_meta( $product_id, '_su_keywords', true );
@@ -727,7 +939,7 @@ function woo_ce_extend_product_item( $product, $product_id ) {
 	}
 
 	// WooCommerce MSRP Pricing - http://woothemes.com/woocommerce/
-	if( function_exists( 'woocommerce_msrp_activate' ) ) {
+	if( woo_ce_detect_export_plugin( 'wc_msrp' ) ) {
 		$product->msrp = get_post_meta( $product_id, '_msrp_price', true );
 		if( $product->msrp == false && $product->post_type == 'product_variation' )
 			$product->msrp = get_post_meta( $product_id, '_msrp', true );
@@ -750,6 +962,21 @@ function woo_ce_extend_product_item( $product, $product_id ) {
 
 }
 add_filter( 'woo_ce_product_item', 'woo_ce_extend_product_item', 10, 2 );
+
+function woo_ce_get_wccf_product_properties() {
+
+	$post_type = 'wccf_product_prop';
+	$args = array(
+		'post_type' => $post_type,
+		'post_status' => 'publish',
+		'posts_per_page' => -1
+	);
+	$product_fields = new WP_Query( $args );
+	if( !empty( $product_fields->posts ) ) {
+		return $product_fields->posts;
+	}
+
+}
 
 function woo_ce_format_wpseo_noindex( $noindex = '' ) {
 

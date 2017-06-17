@@ -21,7 +21,7 @@ if ( ! function_exists( 'pys_edd_events' ) ) {
 		// ViewContent Event
 		if ( pys_get_option( 'edd', 'on_view_content' ) && is_singular( array( 'download' ) ) ) {
 
-			$params['content_ids'] = '[' . pys_get_edd_content_id( $post->ID ) . ']';
+			$params['content_ids'] = "['" . pys_get_edd_content_id( $post->ID ) . "']";
 			
 			// currency, value
 			if ( pys_get_option( 'edd', 'enable_view_content_value' ) ) {
@@ -55,7 +55,7 @@ if ( ! function_exists( 'pys_edd_events' ) ) {
 
 			}
 
-			$params['content_ids'] = '[' . implode( ',', $ids ) . ']';
+			$params['content_ids'] = "'[" . implode( "','", $ids ) . "']";
 
 			// currency, value
 			if ( pys_get_option( 'edd', 'enable_checkout_value' ) ) {
@@ -118,7 +118,7 @@ if ( ! function_exists( 'pys_edd_events' ) ) {
 
 			}
 
-			$params['content_ids'] = '[' . implode( ',', $ids ) . ']';
+			$params['content_ids'] = "['" . implode( "','", $ids ) . "']";
 
 			// currency, value
 			if ( pys_get_option( 'edd', 'enable_purchase_value' ) ) {
@@ -148,7 +148,7 @@ if ( ! function_exists( 'pys_edd_purchase_link_args' ) ) {
 
 		$params                 = array();
 		$params['content_type'] = 'product';
-		$params['content_ids']  = '[' . pys_get_edd_content_id( $download_id ) . ']';
+		$params['content_ids']  = "['" . pys_get_edd_content_id( $download_id ) . "']";
 
 		// currency, value
 		if ( pys_get_option( 'edd', 'enable_add_to_cart_value' ) ) {

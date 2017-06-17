@@ -1,5 +1,37 @@
 == Changelog ==
 
+= 2.1.2 =
+Release Date: May 3rd, 2017
+
+* [Fixed] Sorting for coupon type
+
+= 2.1.1 =
+Release Date: April 26th, 2017
+
+* [Fixed] Fixed compatibility with select2 (version 4) js library
+
+= 2.1 =
+Release Date: April 26th, 2017
+
+* [Important] Made compatible with WooCommerce 3
+* [Important] Made compatible with Admin Columns 4.0.3
+* [Added] Reintroduced an improved WooCommerce purchased column
+* [Fixed] Product Custom Field column on Order overview now works as expected
+* [Improved] Product variation column now uses Ajax to get the variations (performance improvement)
+
+= 2.0 =
+Release Date: April 4th, 2017
+
+* [Important] Only compatible with Admin Columns Pro 4.0
+* [Added] New column for Orders: Customer Role
+* [Added] New column for Coupons: Maximum amount
+* [Improved] Values for WooCommerce Taxonomy and Category columns can now be cleared
+* [Refactor] Autoloader added
+* [Refactor] Moved all WooCommerce methods from Admin Columns Pro to the WooCommerce addon
+* [Refactor] This addon now requires Admin Column Pro 4 or greater to function
+* [Refactor] WooCommerce addon now contains their own xEditable templates
+* [Refactor] Each WooCommerce column now has it's own class for sorting, editing and filtering.
+
 = 1.4 =
 Release Date: March 16th, 2016
 

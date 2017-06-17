@@ -24,8 +24,11 @@ function woo_ce_admin_notice( $message = '', $priority = 'updated', $screen = ''
 }
 
 // HTML template for admin notice
-function woo_ce_admin_notice_html( $message = '', $priority = 'updated', $screen = '' ) {
+function woo_ce_admin_notice_html( $message = '', $priority = 'updated', $screen = '', $id = '' ) {
 
+	// Default priority to updated
+	if( empty( $priority ) )
+		$priority = 'updated';
 	// Display admin notice on specific screen
 	if( !empty( $screen ) ) {
 
@@ -39,8 +42,11 @@ function woo_ce_admin_notice_html( $message = '', $priority = 'updated', $screen
 				return;
 		}
 
-	} ?>
-<div id="message" class="<?php echo $priority; ?>">
+	}
+	// Override for WooCommerce notice styling
+	if( $priority == 'notice' )
+		$priority = 'updated woocommerce-message'; ?>
+<div id="<?php echo ( !empty( $id ) ? sprintf( 'message-%s', $id ) : 'message' ); ?>" class="<?php echo $priority; ?>">
 	<p><?php echo $message; ?></p>
 </div>
 <?php
@@ -127,6 +133,27 @@ function woo_ce_add_settings_link( $links, $file ) {
 }
 add_filter( 'plugin_action_links', 'woo_ce_add_settings_link', 10, 2 );
 
+function woo_ce_admin_custom_fields_save() {
+
+	// Save Custom Product Meta
+	if( isset( $_POST['custom_products'] ) ) {
+		$custom_products = $_POST['custom_products'];
+		$custom_products = explode( "\n", trim( $custom_products ) );
+		if( !empty( $custom_products ) ) {
+			$size = count( $custom_products );
+			if( !empty( $size ) ) {
+				for( $i = 0; $i < $size; $i++ )
+					$custom_products[$i] = sanitize_text_field( trim( stripslashes( $custom_products[$i] ) ) );
+				woo_ce_update_option( 'custom_products', $custom_products );
+			}
+		} else {
+			woo_ce_update_option( 'custom_products', '' );
+		}
+		unset( $custom_products );
+	}
+
+}
+
 // Add Store Export page to WooCommerce screen IDs
 function woo_ce_wc_screen_ids( $screen_ids = array() ) {
 
@@ -200,28 +227,23 @@ function woo_ce_add_help_tab() {
 
 }
 
-function woo_ce_plugin_page_notices() {
+function woo_ce_admin_plugin_row() {
 
-	global $pagenow;
+	$troubleshooting_url = 'http://www.visser.com.au/documentation/store-exporter-deluxe/';
 
-	if( $pagenow == 'plugins.php' ) {
-		if( woo_is_jigo_activated() || woo_is_wpsc_activated() ) {
-			$r_plugins = array(
-				'woocommerce-exporter/exporter.php',
-				'woocommerce-store-exporter/exporter.php'
-			);
-			$i_plugins = get_plugins();
-			foreach( $r_plugins as $path ) {
-				if( isset( $i_plugins[$path] ) ) {
-					add_action( 'after_plugin_row_' . $path, 'woo_ce_plugin_page_notice', 10, 3 );
-					break;
-				}
-			}
-		}
+	// Detect if another e-Commerce platform is activated
+	if( !woo_is_woo_activated() && ( woo_is_jigo_activated() || woo_is_wpsc_activated() ) ) {
+		$message = __( 'We have detected another e-Commerce Plugin than WooCommerce activated, please check that you are using Store Exporter for the correct platform.', 'woocommerce-exporter' );
+		$message .= sprintf( ' <a href="%s" target="_blank">%s</a>', __( 'Need help?', 'woocommerce-exporter' ), $troubleshooting_url );
+		echo '</tr><tr class="plugin-update-tr"><td colspan="3" class="plugin-update colspanchange"><div class="update-message">' . $message . '</div></td></tr>';
+	} else if( !woo_is_woo_activated() ) {
+		$message = __( 'We have been unable to detect the WooCommerce Plugin activated on this WordPress site, please check that you are using Exporter Deluxe for the correct platform.', 'woocommerce-exporter' );
+		$message .= sprintf( ' <a href="%s" target="_blank">%s</a>', $troubleshooting_url, __( 'Need help?', 'woocommerce-exporter' ) );
+		echo '</tr><tr class="plugin-update-tr"><td colspan="3" class="plugin-update colspanchange"><div class="update-message">' . $message . '</div></td></tr>';
 	}
 
 }
-
+ 
 // HTML active class for the currently selected tab on the Store Exporter screen
 function woo_ce_admin_active_tab( $tab_name = null, $tab = null ) {
 
@@ -436,7 +458,7 @@ function woo_ce_tab_template( $tab = '' ) {
 
 			// Export modules
 			$module_status = ( isset( $_GET['module_status'] ) ? sanitize_text_field( $_GET['module_status'] ) : false );
-			$modules = woo_ce_admin_modules_list( $module_status );
+			$modules = woo_ce_modules_list( $module_status );
 			$modules_all = get_transient( WOO_CE_PREFIX . '_modules_all_count' );
 			$modules_active = get_transient( WOO_CE_PREFIX . '_modules_active_count' );
 			$modules_inactive = get_transient( WOO_CE_PREFIX . '_modules_inactive_count' );

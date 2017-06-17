@@ -564,4 +564,25 @@ function woo_ce_export_settings_extend() {
 	ob_end_flush();
 
 }
+
+function woo_ce_export_settings_save() {
+
+	// Strip file extension from export filename
+	$export_filename = strip_tags( (string)$_POST['export_filename'] );
+	woo_ce_update_option( 'export_filename', $export_filename );
+	woo_ce_update_option( 'delete_file', sanitize_text_field( absint( $_POST['delete_file'] ) ) );
+	woo_ce_update_option( 'encoding', sanitize_text_field( (string)$_POST['encoding'] ) );
+	woo_ce_update_option( 'delimiter', sanitize_text_field( (string)$_POST['delimiter'] ) );
+	woo_ce_update_option( 'category_separator', sanitize_text_field( (string)$_POST['category_separator'] ) );
+	woo_ce_update_option( 'bom', absint( $_POST['bom'] ) );
+	woo_ce_update_option( 'escape_formatting', sanitize_text_field( (string)$_POST['escape_formatting'] ) );
+	if( $_POST['date_format'] == 'custom' && !empty( $_POST['date_format_custom'] ) )
+		woo_ce_update_option( 'date_format', sanitize_text_field( (string)$_POST['date_format_custom'] ) );
+	else
+		woo_ce_update_option( 'date_format', sanitize_text_field( (string)$_POST['date_format'] ) );
+
+	$message = __( 'Changes have been saved.', 'woocommerce-exporter' );
+	woo_ce_admin_notice( $message );
+
+}
 ?>

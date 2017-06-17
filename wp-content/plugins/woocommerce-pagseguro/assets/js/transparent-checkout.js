@@ -273,7 +273,10 @@
 								instalmments.append( '<option value="0">--</option>' );
 
 								$.each( data.installments[brand], function( index, installment ) {
-									instalmments.append( pagSeguroGetInstallmentOption( installment ) );
+                  if(index == 0){
+                    instalmments.append( pagSeguroGetInstallmentOption( installment ) );
+                  }
+									
 								});
 							} else {
 								pagSeguroAddErrorMessage( wc_pagseguro_params.invalid_card );

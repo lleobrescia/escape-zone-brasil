@@ -1,7 +1,116 @@
 == Changelog ==
 
+= 4.0.4 =
+Release Date: May 2nd, 2017
+
+* [Fixed] Date filtering dropdowns order and options fix
+* [Fixed] Taxonomy dropdown while using inline edit menu now populates correctly
+* [Improved] Horizontal scrolling in table keeps columns width
+
+= 4.0.3 =
+Release Date: April 25th, 2017
+
+* [Improved] No duplicate category filter
+* [Improved] Sorting for Post count on User overview now works together with the display value
+* [Improved] Improved internal method for registering columns
+* [Improved] Filtering cache timeout now expires after 10s, instead of 60s
+* [Fixed] Network Users view-button now links to the correct page
+
+* Core
+* [Improved] Column can now have a togglebox with ajax loading
+* [Fixed] Network users without the correct capabilities will no longer see add-on activation buttons
+* [Improved] By default a dash "–" charcater is shown when the column value is empty.
+
+= 4.0.2 =
+Release Date: April 11th, 2017
+
+* [Fixed] Javascript bug for editing numeric fields
+* [Fixed] Layout switcher is now correctly placed on post screen
+* [Fixed] Filtering Csutom Field values by ranged on future / past dates has been fixed
+* [Fixed] Scripts on the listings screen are now loaded in the footer
+* [Fixed] Third party columns are now be loaded correctly
+* [Fixed] Removed plugin group for columns
+
+= 4.0.1 =
+Release Date: April 5th, 2017
+
+* [Fixed] The link_category taxonomy will only show when the Link Manager is enabled
+* [Fixed] Network Sites "View" button will now link to the correct column set
+* [Fixed] Refreshing the Network Sites screen will load the correct column set
+* [Fixed] Blog ID column is now visible for Network Sites
+* [Fixed] Filtering dropdowns cache now works correctly with external caching
+* [Fixed] Admin Columns is now compatible with WordPress version 4.5 and up
+
+= 4.0 =
+Release Date: April 4th, 2017
+
+* [Refactor] Complete refactor of core code. Please read [Upgrading from v3 to v4](hhttps://www.admincolumns.com/documentation/faq/upgrading-from-v3-to-v4/)
+* [Improved] Inline edit user dropdown now shows first name and last name by default
+* [Improved] Restyle user interface for column edit boxes
+* [Improved] Show first name and last name for filter dropdowns related to users
+* [Improved] Removed all image icons with dashicons for columns and interfaces
+* [Improved] Improved performance for sorting for a lot of columns
+* [Improved] Improved a lot of the phpdocs for methods
+* [Added] Native Taxonomy columns
+* [Added] Network Site columns
+* [Added] Added screen option to create a horizontal scrollable table
+* [Added] Inline edit and filtering support for native taxonomy columns
+* [Added] New methods for getting the current version of the plugin
+* [Added] Option for setting the filter top label
+* [Added] Inline edit support for BBPress forum on topic overview
+* [Added] Ranged filtering for ID column
+* [Added] Dependency check for addons with specific versions
+* [Added] Ranged filtering for WordPress date column
+* [Added] Pagination for filtering select2 dropdowns
+* [Added] New labels for empty / nonempty dropdowns
+* [Added] Yoast readability column support
+* [Added] Colorpicker added for inline edit
+* [Fixed] Row actions on first (custom) columns were removed after using inline edit for the column
+* [Fixed] Inline edit for role column fixed
+* [Fixed] New Image column for media overview
+* [Fixed] Disable inline edit for multi site user overview
+* [Fixed] Post format taxonomy check for inline edit, so not multiple formats can be selected
+* [Refactor] Renamed folders for filtering, editing and sorting
+* [Refactor] Removed all ACF addon methods from Admin Column Pro plugin
+* [Refactor] Removed all WooCommerce addon methods from Admin Column Pro plugin
+* [Refactor] Filtering now uses the pre_get_post hook instead of the request hook
+* [Refactor] Sorting now uses the WP_Query
+* [Refactor] Each Pro column now has it's own class extending the free column
+* [Refactor] Each Pro column that supports sorting now makes use of a sorting model class
+* [Refactor] Each Pro column that supports filtering now makes use of a filtering model class
+* [Refactor] Each Pro column that supports inline edit now makes use of an inline edit model class
+* [Refactor] Filter 'cac/editable/data' replaces 'cac/editable/options'
+* [Refactor] New Class interface for the Custom Field Column
+* [Refactor] New helper for Filtering acp_filtering()
+* [Refactor] New helper for Sorting acp_sorting()
+* [Refactor] New helper for Editing acp_editing()
+* [Updated] Admin Columns core to v3.0
+    * [Improved] Updated the User Interface
+    * [Improved] Using dashicons instead of image icons
+    * [Improved] Action column now always is the primary column
+    * [Improved] Heading structure in Admin is now correct
+    * [Improved] Page Template column supports post types (since WP 4.7)
+    * [Improved] Improved Custom Field column types
+    * [Added] New user column added: Author name
+    * [Added] New user column added: Show Toolbar
+    * [Added] New column for shortlink added
+    * [Added] Filter for suppressing admin notices
+    * [Added] New helpers added for array, date, formfield, icon, image, post, string ,taxonomy and user. Helpers can be accessed by using 'ac_helper()->array()'' etc
+    * [Added] Filter for enabling a 'clear all columns' button to the setting page. 'ac/settings/enable_clear_columns_button'
+    * [Added] New method for singleton for Admin Columns main class. 'ac()'
+    * [Fixed] Comment Response column is no longer displayed in the table when viewing "Comments On".
+
+= 3.8.9 =
+Release Date: December 9th, 2016
+
+* [Fixed] Default comment columns gave no results when sorting was enabled for those columns
+* [Fixed] WordPress 4.7 shows no titles and authors on page overview when sorting is saved as preference
+* [Fixed] JS error on Taxonomy screens for listings_screen.js is fixed
+* [Quickfix] WooCommerce order column sort now correct but sorting cannot be disabled for this column. Will be fixed in 4.0
+
 = 3.8.8 =
 Release Date: October 11th, 2016
+
 * [Fixed] ACF Inline Edit ajax search fix due ACF method removal (temporary)
 * [Fixed] ACF Sorting on User list did not work
 * [Added] Added screenreader labels for filter dropdowns
@@ -724,4 +833,3 @@ Release Date: May 4th, 2014
 * [Added] Restore sorting from Admin column settings screen
 * [Fixed] Filtering will work for values as all sizes. limit of 30 char has been removed.
 * [Fixed] Check if sortable property isset by custom columns
-

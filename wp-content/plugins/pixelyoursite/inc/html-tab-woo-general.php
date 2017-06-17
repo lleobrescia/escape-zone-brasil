@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <hr>
     <h2 class="section-title">Facebook Dynamic Product Ads Pixel Settings</h2>
-    <table class="layout">
+    <table class="layout" id="woo_content_id">
       <tr class="tall">
         <td colspan="2" class="narrow">
           <input type="checkbox" class="woo-events-toggle"><strong>Enable Facebook Dynamic Product Ads</strong>
@@ -21,7 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         </td>
       </tr>
       
-      <tr>
+      <?php do_action( 'pys_fb_pixel_admin_woo_content_id_before' ); ?>
+      
+      <tr class="content_id">
         <td class="alignright"><p class="label">content_ids:</p></td>
         <td>
           <select name="pys[woo][content_id]">
@@ -31,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </td>
       </tr>
       
-      <tr>
+      <tr class="content_id">
         <td class="alignright"><p class="label">Define Variation ID:</p></td>
         <td>
           <select name="pys[woo][variation_id]">
@@ -126,11 +128,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td class="alignright"><p class="label big">Define value:</p></td>
         <td></td>
       </tr>
-      
-      <tr class="disabled">
-        <td class="alignright"><p class="label">Product price</p></td>
+
+      <tr>
+        <td class="alignright"><p class="label"><?php _e( 'Product price', 'pys' ); ?></p></td>
         <td>
-          <input type="radio">
+          <input type="radio" name="pys[woo][view_content_value_option]" value="price"
+              <?php echo pys_radio_state( 'woo', 'view_content_value_option', 'price' ); ?> >
         </td>
       </tr>
       
@@ -141,12 +144,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <input type="text">%
         </td>
       </tr>
-      
+
       <tr>
-        <td class="alignright"><p class="label">Use Global value</p></td>
+        <td class="alignright"><p class="label"><?php _e( 'Use Global value', 'pys' ); ?></p></td>
         <td>
-          <input type="radio" checked>
-          <?php pys_text_field( 'woo', 'view_content_global_value' ); ?>
+          <input type="radio" name="pys[woo][view_content_value_option]" value="global"
+              <?php echo pys_radio_state( 'woo', 'view_content_value_option', 'global' ); ?> >
+          <input type="text" name="pys[woo][view_content_global_value]" value="<?php echo pys_get_option( 'woo', 'view_content_global_value' ); ?>">
         </td>
       </tr>
 
@@ -194,11 +198,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td class="alignright"><p class="label big">Define value:</p></td>
         <td></td>
       </tr>
-      
-      <tr class="disabled">
-        <td class="alignright"><p class="label">Product price</p></td>
+
+      <tr>
+        <td class="alignright"><p class="label"><?php _e( 'Products price (subtotal)', 'pys' ); ?></p></td>
         <td>
-          <input type="radio">
+          <input type="radio" name="pys[woo][add_to_cart_value_option]" value="price"
+              <?php echo pys_radio_state( 'woo', 'add_to_cart_value_option', 'price' ); ?> >
         </td>
       </tr>
       
@@ -209,12 +214,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <input type="text">%
         </td>
       </tr>
-      
+
       <tr>
-        <td class="alignright"><p class="label">Use Global value</p></td>
+        <td class="alignright"><p class="label"><?php _e( 'Use Global value', 'pys' ); ?></p></td>
         <td>
-          <input type="radio" checked>
-          <?php pys_text_field( 'woo', 'add_to_cart_global_value' ); ?>
+          <input type="radio" name="pys[woo][add_to_cart_value_option]" value="global"
+              <?php echo pys_radio_state( 'woo', 'add_to_cart_value_option', 'global' ); ?> >
+          <input type="text" name="pys[woo][add_to_cart_global_value]" value="<?php echo pys_get_option( 'woo', 'add_to_cart_global_value' ); ?>">
         </td>
       </tr>
 
@@ -253,11 +259,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td class="alignright"><p class="label big">Define value:</p></td>
         <td></td>
       </tr>
-      
-      <tr class="disabled">
-        <td class="alignright"><p class="label">Products price (subtotal)</p></td>
+
+      <tr>
+        <td class="alignright"><p class="label"><?php _e( 'Products price (subtotal)', 'pys' ); ?></p></td>
         <td>
-          <input type="radio">
+          <input type="radio" name="pys[woo][checkout_value_option]" value="price"
+              <?php echo pys_radio_state( 'woo', 'checkout_value_option', 'price' ); ?> >
         </td>
       </tr>
       
@@ -268,12 +275,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <input type="text">%
         </td>
       </tr>
-      
+
       <tr>
-        <td class="alignright"><p class="label">Use Global value</p></td>
+        <td class="alignright"><p class="label"><?php _e( 'Use Global value', 'pys' ); ?></p></td>
         <td>
-          <input type="radio" checked>
-          <?php pys_text_field( 'woo', 'checkout_global_value' ); ?>
+          <input type="radio" name="pys[woo][checkout_value_option]" value="global"
+              <?php echo pys_radio_state( 'woo', 'checkout_value_option', 'global' ); ?> >
+          <input type="text" name="pys[woo][checkout_global_value]" value="<?php echo pys_get_option( 'woo', 'checkout_global_value' ); ?>">
         </td>
       </tr>
 
@@ -332,11 +340,12 @@ if ( ! defined( 'ABSPATH' ) ) {
           </select>
         </td>
       </tr>
-      
-      <tr class="disabled">
-        <td class="alignright"><p class="label">Total</p></td>
+
+      <tr>
+        <td class="alignright"><p class="label"><?php _e( 'Total', 'pys' ); ?></p></td>
         <td>
-          <input type="radio">
+          <input type="radio" name="pys[woo][purchase_value_option]" value="total"
+              <?php echo pys_radio_state( 'woo', 'purchase_value_option', 'total' ); ?> >
         </td>
       </tr>
       
@@ -347,12 +356,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <input type="text">%
         </td>
       </tr>
-      
-      <tr>
-        <td class="alignright"><p class="label">Use Global value</p></td>
+
+      <tr class="tall">
+        <td class="alignright"><p class="label"><?php _e( 'Use Global value', 'pys' ); ?></p></td>
         <td>
-          <input type="radio" checked>
-          <?php pys_text_field( 'woo', 'purchase_global_value' ); ?>
+          <input type="radio" name="pys[woo][purchase_value_option]" value="global"
+              <?php echo pys_radio_state( 'woo', 'purchase_value_option', 'global' ); ?> >
+          <input type="text" name="pys[woo][purchase_global_value]" value="<?php echo pys_get_option( 'woo', 'purchase_global_value' ); ?>">
         </td>
       </tr>
 

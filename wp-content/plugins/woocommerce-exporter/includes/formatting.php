@@ -93,7 +93,7 @@ function woo_ce_count_object( $object = 0, $exclude_post_types = array() ) {
 
 	$count = 0;
 	if( is_object( $object ) ) {
-		if( $exclude_post_types ) {
+		if( !empty( $exclude_post_types ) ) {
 			$size = count( $exclude_post_types );
 			for( $i = 0; $i < $size; $i++ ) {
 				if( isset( $object->$exclude_post_types[$i] ) )
@@ -132,10 +132,10 @@ function woo_ce_convert_product_ids( $product_ids = null ) {
 }
 
 // Format the raw post_status
-function woo_ce_format_product_status( $product_status = '' ) {
+function woo_ce_format_post_status( $post_status = '' ) {
 
-	$output = $product_status;
-	switch( $product_status ) {
+	$output = $post_status;
+	switch( $post_status ) {
 
 		case 'publish':
 			$output = __( 'Publish', 'woocommerce-exporter' );
@@ -145,11 +145,20 @@ function woo_ce_format_product_status( $product_status = '' ) {
 			$output = __( 'Draft', 'woocommerce-exporter' );
 			break;
 
+		case 'pending':
+			$output = __( 'Pending', 'woocommerce-exporter' );
+			break;
+
+		case 'private':
+			$output = __( 'Private', 'woocommerce-exporter' );
+			break;
+
 		case 'trash':
 			$output = __( 'Trash', 'woocommerce-exporter' );
 			break;
 
 	}
+	$output = apply_filters( 'woo_ce_format_post_status', $output, $post_status );
 	return $output;
 
 }
@@ -268,25 +277,31 @@ function woo_ce_format_user_role_filters( $user_role_filters = array() ) {
 
 }
 
-function woo_ce_format_price( $price = '', $currency = '' ) {
+// Allow store owners to create their own woo_ce_format_price() as needed
+if( !function_exists( 'woo_ce_format_price' ) ) {
+	function woo_ce_format_price( $price = '', $currency = '' ) {
 
-	// Check that a valid price has been provided and that wc_price() exists
-	if( $price !== false && function_exists( 'wc_price' ) ) {
-		// WooCommerce adds currency formatting to the price, let's not do that
-		add_filter( 'wc_price', 'woo_ce_filter_wc_price', 10, 3 );
-		add_filter( 'formatted_woocommerce_price', 'woo_ce_formatted_woocommerce_price', 10, 5 );
-		add_filter( 'woocommerce_currency_symbol', 'woo_ce_woocommerce_currency_symbol', 10, 2 );
-		$price = wc_price( $price, array( 'currency' => $currency ) );
-		$price = str_replace( array( '<span class="amount">', '</span>' ), '', $price );
-		remove_filter( 'formatted_woocommerce_price', 'woo_ce_formatted_woocommerce_price' );
-		remove_filter( 'wc_price', 'woo_ce_filter_wc_price' );
-		remove_filter( 'woocommerce_currency_symbol', 'woo_ce_woocommerce_currency_symbol' );
+		// Check that a valid price has been provided and that wc_price() exists
+		if( $price !== false && function_exists( 'wc_price' ) ) {
+			// WooCommerce adds currency formatting to the price, let's not do that
+			add_filter( 'wc_price', 'woo_ce_filter_wc_price', 10, 3 );
+			add_filter( 'formatted_woocommerce_price', 'woo_ce_formatted_woocommerce_price', 10, 5 );
+			add_filter( 'woocommerce_currency_symbol', 'woo_ce_woocommerce_currency_symbol', 10, 2 );
+			$price = wc_price( $price, array( 'currency' => $currency ) );
+			remove_filter( 'formatted_woocommerce_price', 'woo_ce_formatted_woocommerce_price' );
+			remove_filter( 'wc_price', 'woo_ce_filter_wc_price' );
+			remove_filter( 'woocommerce_currency_symbol', 'woo_ce_woocommerce_currency_symbol' );
+		}
+		return $price;
+
 	}
-	return $price;
-
 }
 
 function woo_ce_filter_wc_price( $return, $price ) {
+
+	// Check price for negative values; weird method but neccesary
+	if( strstr( $return, '<span class="woocommerce-Price-amount amount">-' ) )
+		$price = '-' . $price;
 
 	return $price;
 
@@ -316,8 +331,20 @@ function woo_ce_format_date( $date = '', $format = '' ) {
 	$date_format = woo_ce_get_option( 'date_format', 'd/m/Y' );
 	if( !empty( $format ) )
 		$date_format = $format;
-	if( !empty( $date ) && $date_format != '' )
+	if( !empty( $date ) && $date_format != '' ) {
 		$output = mysql2date( $date_format, $date );
+	}
+	return $output;
+
+}
+
+// Take our pretty slashed date format and make it play nice with strtotime() and date()
+function woo_ce_format_order_date( $date = '', $format = 'export' ) {
+
+	$output = $date;
+	if( !empty( $date ) ) {
+		$output = str_replace( '/', '-', $date );
+	}
 	return $output;
 
 }
@@ -395,11 +422,13 @@ if( !function_exists( 'woo_ce_expand_country_name' ) ) {
 
 function woo_ce_allowed_countries() {
 
-	if( class_exists( 'WC_Countries' ) ) {
-		$countries = new WC_Countries();
-		if( method_exists( $countries, 'get_allowed_countries' ) ) {
-			$countries = $countries->get_allowed_countries();
-			return $countries;
+	if( apply_filters( 'woo_ce_override_wc_countries', true ) ) {
+		if( class_exists( 'WC_Countries' ) ) {
+			$countries = new WC_Countries();
+			if( method_exists( $countries, 'get_allowed_countries' ) ) {
+				$countries = $countries->get_allowed_countries();
+				return $countries;
+			}
 		}
 	}
 

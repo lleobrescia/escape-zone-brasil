@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce - Store Exporter
 Plugin URI: http://www.visser.com.au/woocommerce/plugins/exporter/
 Description: Export store details out of WooCommerce into simple formatted files (e.g. CSV, XML, Excel formats including XLS and XLSX, etc.)
-Version: 1.8.8
+Version: 1.9
 Author: Visser Labs
 Author URI: http://www.visser.com.au/about/
 Text Domain: woocommerce-exporter
@@ -21,7 +21,8 @@ define( 'WOO_CE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOO_CE_PREFIX', 'woo_ce' );
 
 // Turn this on to enable additional debugging options at export time
-define( 'WOO_CE_DEBUG', false );
+if( !defined( 'WOO_CE_DEBUG' ) )
+	define( 'WOO_CE_DEBUG', false );
 
 // Avoid conflicts if Store Exporter Deluxe is activated
 include_once( WOO_CE_PATH . 'common/common.php' );
@@ -51,6 +52,8 @@ if( is_admin() ) {
 
 		global $export, $wp_roles;
 
+		$action = ( function_exists( 'woo_get_action' ) ? woo_get_action() : false );
+
 		// Now is the time to de-activate Store Exporter if Store Exporter Deluxe is activated
 		if( defined( 'WOO_CD_PREFIX' ) ) {
 			include_once( WOO_CE_PATH . 'includes/install.php' );
@@ -58,213 +61,64 @@ if( is_admin() ) {
 			return;
 		}
 
-		// Check the User has the activate_plugins capability
-		if( current_user_can( 'activate_plugins' ) ) {
+		// An effort to reduce the memory load at export time
+		if( $action <> 'export' ) {
 
-			// Detect if any known conflict Plugins are activated
+			$troubleshooting_url = 'https://www.visser.com.au/documentation/store-exporter-deluxe/troubleshooting/';
 
-			// WooCommerce Subscriptions Exporter - http://codecanyon.net/item/woocommerce-subscription-exporter/6569668
-			if( function_exists( 'wc_subs_exporter_admin_init' ) ) {
-				$message = sprintf( __( 'We have detected an activated Plugin for WooCommerce that is known to conflict with Store Exporter, please de-activate WooCommerce Subscriptions Exporter to resolve export issues within Store Exporter. <a href="%s" target="_blank">Need help?</a>', 'woocommerce-exporter' ), $troubleshooting_url );
-				woo_ce_admin_notice( $message, 'error', array( 'plugins.php', 'admin.php' ) );
+			// Check the User has the activate_plugins capability
+			$user_capability = 'activate_plugins';
+			if( current_user_can( $user_capability ) ) {
+
+				// Detect if another e-Commerce platform is activated
+				if( !woo_is_woo_activated() && ( woo_is_jigo_activated() || woo_is_wpsc_activated() ) ) {
+					$message = __( 'We have detected another e-Commerce Plugin than WooCommerce activated, please check that you are using Store Exporter for the correct platform.', 'woocommerce-exporter' );
+					$message .= sprintf( ' <a href="%s" target="_blank">%s</a>', $troubleshooting_url, __( 'Need help?', 'woocommerce-exporter' ) );
+					woo_ce_admin_notice( $message, 'error', 'plugins.php' );
+				} else if( !woo_is_woo_activated() ) {
+					$message = __( 'We have been unable to detect the WooCommerce Plugin activated on this WordPress site, please check that you are using Store Exporter for the correct platform.', 'woocommerce-exporter' );
+					$message .= sprintf( ' <a href="%s" target="_blank">%s</a>', $troubleshooting_url, __( 'Need help?', 'woocommerce-exporter' ) );
+					woo_ce_admin_notice( $message, 'error', 'plugins.php' );
+				}
+
+				// Detect if any known conflict Plugins are activated
+
+				// WooCommerce Subscriptions Exporter - http://codecanyon.net/item/woocommerce-subscription-exporter/6569668
+				if( function_exists( 'wc_subs_exporter_admin_init' ) ) {
+					$message = __( 'We have detected an activated Plugin for WooCommerce that is known to conflict with Store Exporter, please de-activate WooCommerce Subscriptions Exporter to resolve export issues within Store Exporter.', 'woocommerce-exporter' );
+					$message .= sprintf( '<a href="%s" target="_blank">%s</a>', $troubleshooting_url, __( 'Need help?', 'woocommerce-exporter' ) );
+					woo_ce_admin_notice( $message, 'error', array( 'plugins.php', 'admin.php' ) );
+				}
+
+				// WP Easy Events Professional - https://emdplugins.com/plugins/wp-easy-events-professional/
+				if( class_exists( 'WP_Easy_Events_Professional' ) ) {
+					$message = __( 'We have detected an activated Plugin that is known to conflict with Store Exporter Deluxe, please de-activate WP Easy Events Professional to resolve export issues within Store Exporter Deluxe.', 'woocommerce-exporter' );
+					$message .= sprintf( '<a href="%s" target="_blank">%s</a>', $troubleshooting_url, __( 'Need help?', 'woocommerce-exporter' ) );
+					woo_ce_admin_notice( $message, 'error', array( 'plugins.php', 'admin.php' ) );
+				}
+
+				// Plugin row notices for the Plugins screen
+				add_action( 'after_plugin_row_' . WOO_CE_RELPATH, 'woo_ce_admin_plugin_row' );
+
 			}
+
+			// Check the User has the view_woocommerce_reports capability
+			$user_capability = apply_filters( 'woo_ce_admin_user_capability', 'view_woocommerce_reports' );
+			if( current_user_can( $user_capability ) == false )
+				return;
+
+			// Check that we are on the Store Exporter screen
+			$page = ( isset($_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : false );
+			if( $page != strtolower( WOO_CE_PREFIX ) )
+				return;
+
+			// Add memory usage to screen footer
+			add_filter( 'admin_footer_text', 'woo_ce_admin_footer_text' );
 
 		}
 
-		// Check the User has the view_woocommerce_reports capability
-		if( current_user_can( 'view_woocommerce_reports' ) == false )
-			return;
-
-		// Add memory usage to screen footer
-		add_filter( 'admin_footer_text', 'woo_ce_admin_footer_text' );
-
-		// Check that we are on the Store Exporter screen
-		$page = ( isset($_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : false );
-		if( $page != strtolower( WOO_CE_PREFIX ) )
-			return;
-
-		// Detect other platform versions
-		woo_ce_detect_non_woo_install();
-
 		// Process any pre-export notice confirmations
-		$action = ( function_exists( 'woo_get_action' ) ? woo_get_action() : false );
 		switch( $action ) {
-
-			// Reset all dismissed notices within Store Exporter Deluxe
-			case 'nuke_notices':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_nuke_notices' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_nuke_dismissed_notices();
-					$message = __( 'All dimissed notices within Store Exporter Deluxe have been restored.', 'woocommerce-exporter' );
-					woo_ce_admin_notice( $message );
-				}
-				break;
-
-			// Delete all WordPress Options associated with Store Exporter Deluxe
-			case 'nuke_options':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_nuke_options' ) ) {
-					// Delete WordPress Options used by Store Exporter Deluxe (Uninstall)
-					if( woo_ce_nuke_options() ) {
-						$message = __( 'All Store Exporter Deluxe WordPress Options have been deleted from your WordPress site, you can now de-activate and delete Store Exporter Deluxe.', 'woocommerce-exporter' );
-						woo_ce_admin_notice( $message );
-					} else {
-						$message = __( 'Not all Store Exporter Deluxe WordPress Options could be deleted from your WordPress site, please see the WordPress Options table for Options prefixed by <code>woo_ce_</code>.', 'woocommerce-exporter' );
-						woo_ce_admin_notice( $message, 'error' );
-					}
-				}
-				break;
-
-			// Delete all Archives
-			case 'nuke_archives':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_nuke_archives' ) ) {
-					// Delete saved exports
-					if( woo_ce_nuke_archive_files() ) {
-						$message = __( 'All existing Archives and their export files have been deleted from your WordPress site.', 'woocommerce-exporter' );
-						woo_ce_admin_notice( $message );
-					} else {
-						$message = __( 'There were no existing Archives to be deleted from your WordPress site.', 'woocommerce-exporter' );
-						woo_ce_admin_notice( $message, 'error' );
-					}
-				}
-				break;
-
-			// Prompt on Export screen when insufficient memory (less than 64M is allocated)
-			case 'dismiss_memory_prompt':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_dismiss_memory_prompt' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'dismiss_memory_prompt', 1 );
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			// Prompt on Export screen when PHP configuration option max_execution_time cannot be increased
-			case 'dismiss_execution_time_prompt':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_dismiss_execution_time_prompt' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'dismiss_execution_time_prompt', 1 );
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			// Prompt on Export screen when PHP 5.2 or lower is installed
-			case 'dismiss_php_legacy':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_dismiss_php_legacy' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'dismiss_php_legacy', 1 );
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			case 'dismiss_subscription_prompt':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_dismiss_subscription_prompt' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'dismiss_subscription_prompt', 1 );
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			case 'dismiss_archives_prompt':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_dismiss_archives_prompt' ) ) {
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'dismiss_archives_prompt', 1 );
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			case 'hide_archives_tab':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_hide_archives_tab' ) ) {
-					// Remember to hide the Archives tab
-					woo_ce_update_option( 'hide_archives_tab', 1 );
-					$url = add_query_arg( array( 'tab' => 'export', 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			case 'restore_archives_tab':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_restore_archives_tab' ) ) {
-					// Remember to show the Archives tab
-					woo_ce_update_option( 'hide_archives_tab', 0 );
-					$url = add_query_arg( array( 'tab' => 'archive', 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			// Reset the Transient counters for all Export Types
-			case 'refresh_export_type_counts':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_refresh_export_type_counts' ) ) {
-					$transients = array(
-						'product',
-						'category',
-						'tag',
-						'user'
-					);
-					foreach( $transients as $transient ) {
-						// Delete the existing count Transients
-						delete_transient( WOO_CE_PREFIX . '_' . $transient . '_count' );
-						// Refresh the count Transients
-						woo_ce_get_export_type_count( $transient );
-					}
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			case 'refresh_module_counts':
-				// We need to verify the nonce.
-				if( !empty( $_GET ) && check_admin_referer( 'woo_ce_refresh_module_counts' ) ) {
-					// Delete the existing count Transients
-					delete_transient( WOO_CE_PREFIX . '_modules_all_count' );
-					delete_transient( WOO_CE_PREFIX . '_modules_active_count' );
-					delete_transient( WOO_CE_PREFIX . '_modules_inactive_count' );
-					// Refresh the count Transients
-					woo_ce_admin_modules_list();
-					$url = add_query_arg( array( 'action' => null, '_wpnonce' => null ) );
-					wp_redirect( $url );
-					exit();
-				}
-				break;
-
-			// Save skip overview preference
-			case 'skip_overview':
-				// We need to verify the nonce.
-				if( !empty( $_POST ) && check_admin_referer( 'skip_overview', 'woo_ce_skip_overview' ) ) {
-					$skip_overview = false;
-					if( isset( $_POST['skip_overview'] ) )
-						$skip_overview = 1;
-					// Remember that we've dismissed this notice
-					woo_ce_update_option( 'skip_overview', $skip_overview );
-
-					if( $skip_overview == 1 ) {
-						$url = add_query_arg( array( 'tab' => 'export', '_wpnonce' => null ) );
-						wp_redirect( $url );
-						exit();
-					}
-				}
-				break;
 
 			// This is where the magic happens
 			case 'export':
@@ -275,18 +129,32 @@ if( is_admin() ) {
 
 				check_admin_referer( 'manual_export', 'woo_ce_export' );
 
+				// Hide error logging during the export process
+				if( function_exists( 'ini_set' ) )
+					@ini_set( 'display_errors', 0 );
+
 				// Welcome in the age of GZIP compression and Object caching
 				if( !defined( 'DONOTCACHEPAGE' ) )
 					define( 'DONOTCACHEPAGE', true );
 				if( !defined( 'DONOTCACHCEOBJECT' ) )
 					define( 'DONOTCACHCEOBJECT', true );
 
-				$timeout = woo_ce_get_option( 'timeout', 0 );
-				if( !ini_get( 'safe_mode' ) ) {
-					@set_time_limit( $timeout );
-					@ini_set( 'max_execution_time', $timeout );
+				// Set artificially high because we are building this export in memory
+				if( function_exists( 'wp_raise_memory_limit' ) ) {
+					add_filter( 'export_memory_limit', 'woo_ce_raise_export_memory_limit' );
+					wp_raise_memory_limit( 'export' );
 				}
-				@ini_set( 'memory_limit', WP_MAX_MEMORY_LIMIT );
+
+				$timeout = woo_ce_get_option( 'timeout', 0 );
+				$safe_mode = ( function_exists( 'safe_mode' ) ? ini_get( 'safe_mode' ) : false );
+				if( !$safe_mode ) {
+					if( function_exists( 'set_time_limit' ) )
+						@set_time_limit( $timeout );
+					if( function_exists( 'ini_set' ) )
+						@ini_set( 'max_execution_time', $timeout );
+				}
+				if( function_exists( 'ini_set' ) )
+					@ini_set( 'memory_limit', WP_MAX_MEMORY_LIMIT );
 
 				// Set up the basic export options
 				$export = new stdClass();
@@ -379,6 +247,9 @@ if( is_admin() ) {
 					$export->fields_order = ( isset( $_POST[$export->type . '_fields_order'] ) ? array_map( 'absint', $_POST[$export->type . '_fields_order'] ) : false );
 					woo_ce_update_option( 'last_export', $export->type );
 				}
+
+				woo_ce_load_export_types();
+
 				switch( $export->type ) {
 
 					case 'product':
@@ -571,25 +442,9 @@ if( is_admin() ) {
 			// Save changes on Settings screen
 			case 'save-settings':
 				// We need to verify the nonce.
-				if( !empty( $_POST ) && check_admin_referer( 'save_settings', 'woo_ce_save_settings' ) ) {
-					// Sanitize each setting field as needed
-
-					// Strip file extension from export filename
-					$export_filename = strip_tags( (string)$_POST['export_filename'] );
-					woo_ce_update_option( 'export_filename', $export_filename );
-					woo_ce_update_option( 'delete_file', sanitize_text_field( absint( $_POST['delete_file'] ) ) );
-					woo_ce_update_option( 'encoding', sanitize_text_field( (string)$_POST['encoding'] ) );
-					woo_ce_update_option( 'delimiter', sanitize_text_field( (string)$_POST['delimiter'] ) );
-					woo_ce_update_option( 'category_separator', sanitize_text_field( (string)$_POST['category_separator'] ) );
-					woo_ce_update_option( 'bom', absint( absint( $_POST['bom'] ) ) );
-					woo_ce_update_option( 'escape_formatting', sanitize_text_field( (string)$_POST['escape_formatting'] ) );
-					if( $_POST['date_format'] == 'custom' && !empty( $_POST['date_format_custom'] ) )
-						woo_ce_update_option( 'date_format', sanitize_text_field( (string)$_POST['date_format_custom'] ) );
-					else
-						woo_ce_update_option( 'date_format', sanitize_text_field( (string)$_POST['date_format'] ) );
-
-					$message = __( 'Changes have been saved.', 'woocommerce-exporter' );
-					woo_ce_admin_notice( $message );
+				if( !empty( $_POST ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'woo_ce_save_settings' ) ) {
+					if( check_admin_referer( 'woo_ce_save_settings' ) )
+						woo_ce_export_settings_save();
 				}
 				break;
 
@@ -620,6 +475,11 @@ if( is_admin() ) {
 	// HTML templates and form processor for Store Exporter screen
 	function woo_ce_html_page() {
 
+		// Check the User has the view_woocommerce_reports capability
+		$user_capability = apply_filters( 'woo_ce_admin_user_capability', 'view_woocommerce_reports' );
+		if( current_user_can( $user_capability ) == false )
+			return;
+
 		global $wpdb, $export;
 
 		$title = apply_filters( 'woo_ce_template_header', __( 'Store Exporter', 'woocommerce-exporter' ) );
@@ -630,7 +490,6 @@ if( is_admin() ) {
 
 			case 'export':
 				if( WOO_CE_DEBUG ) {
-					$output = '';
 					if( false === ( $export_log = get_transient( WOO_CE_PREFIX . '_debug_log' ) ) ) {
 						$export_log = __( 'No export entries were found within the debug Transient, please try again with different export filters.', 'woocommerce-exporter' );
 					} else {
@@ -671,22 +530,7 @@ if( is_admin() ) {
 				break;
 
 			case 'update':
-				// Save Custom Product Meta
-				if( isset( $_POST['custom_products'] ) ) {
-					$custom_products = $_POST['custom_products'];
-					$custom_products = explode( "\n", trim( $custom_products ) );
-					if( !empty( $custom_products ) ) {
-						$size = count( $custom_products );
-						if( !empty( $size ) ) {
-							for( $i = 0; $i < $size; $i++ )
-								$custom_products[$i] = sanitize_text_field( trim( stripslashes( $custom_products[$i] ) ) );
-							woo_ce_update_option( 'custom_products', $custom_products );
-						}
-					} else {
-						woo_ce_update_option( 'custom_products', '' );
-					}
-					unset( $custom_products );
-				}
+				woo_ce_admin_custom_fields_save();
 
 				$message = __( 'Custom Fields saved. You can now select those additional fields from the Export Fields list.', 'woocommerce-exporter' );
 				woo_ce_admin_notice_html( $message );
@@ -717,6 +561,7 @@ if( is_admin() ) {
 			return;
 		}
 
+		woo_ce_load_export_types();
 		woo_ce_admin_fail_notices();
 
 		include_once( WOO_CE_PATH . 'templates/admin/tabs.php' );

@@ -3,49 +3,27 @@ if( is_admin() ) {
 
 	/* Start of: WordPress Administration */
 
-	function woo_ce_get_export_type_brand_count( $count = 0, $export_type = '', $args ) {
+	if( !function_exists( 'woo_ce_get_export_type_brand_count' ) ) {
+		function woo_ce_get_export_type_brand_count( $count = 0, $export_type = '', $args ) {
 
-		if( $export_type <> 'brand' )
+			if( $export_type <> 'brand' )
+				return $count;
+
+			$count = 0;
+			// Check if the existing Transient exists
+			$cached = get_transient( WOO_CE_PREFIX . '_brand_count' );
+			if( $cached == false ) {
+				$term_taxonomy = apply_filters( 'woo_ce_brand_term_taxonomy', 'product_brand' );
+				if( taxonomy_exists( $term_taxonomy ) )
+					$count = wp_count_terms( $term_taxonomy );
+				set_transient( WOO_CE_PREFIX . '_brand_count', $count, HOUR_IN_SECONDS );
+			} else {
+				$count = $cached;
+			}
 			return $count;
 
-		$count = 0;
-		// Check if the existing Transient exists
-		$cached = get_transient( WOO_CE_PREFIX . '_brand_count' );
-		if( $cached == false ) {
-			$term_taxonomy = apply_filters( 'woo_ce_brand_term_taxonomy', 'product_brand' );
-			if( taxonomy_exists( $term_taxonomy ) )
-				$count = wp_count_terms( $term_taxonomy );
-			set_transient( WOO_CE_PREFIX . '_brand_count', $count, HOUR_IN_SECONDS );
-		} else {
-			$count = $cached;
 		}
-		return $count;
-
-	}
-	add_filter( 'woo_ce_get_export_type_count', 'woo_ce_get_export_type_brand_count', 10, 3 );
-
-	// HTML template for Coupon Sorting widget on Store Exporter screen
-	function woo_ce_brand_sorting() {
-
-		$orderby = woo_ce_get_option( 'brand_orderby', 'ID' );
-		$order = woo_ce_get_option( 'brand_order', 'DESC' );
-
-		ob_start(); ?>
-<p><label><?php _e( 'Brand Sorting', 'woocommerce-exporter' ); ?></label></p>
-<div>
-	<select name="brand_orderby" disabled="disabled">
-		<option value="id"><?php _e( 'Term ID', 'woocommerce-exporter' ); ?></option>
-		<option value="name"><?php _e( 'Brand Name', 'woocommerce-exporter' ); ?></option>
-	</select>
-	<select name="brand_order" disabled="disabled">
-		<option value="ASC"><?php _e( 'Ascending', 'woocommerce-exporter' ); ?></option>
-		<option value="DESC"><?php _e( 'Descending', 'woocommerce-exporter' ); ?></option>
-	</select>
-	<p class="description"><?php _e( 'Select the sorting of Brands within the exported file. By default this is set to export Product Brands by Term ID in Desending order.', 'woocommerce-exporter' ); ?></p>
-</div>
-<?php
-		ob_end_flush();
-
+		add_filter( 'woo_ce_get_export_type_count', 'woo_ce_get_export_type_brand_count', 10, 3 );
 	}
 
 	/* End of: WordPress Administration */

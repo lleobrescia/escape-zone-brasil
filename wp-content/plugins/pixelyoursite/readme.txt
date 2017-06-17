@@ -3,7 +3,7 @@ Contributors: PixelYourSite, c0d3fev3r, themister
 Tags: Facebook Pixel, New Facebook Pixel, Facebook Conversion Pixel, Facebook Pixel Events, Facebook, New Facebook Pixel Events, Dynamic Events, Standard Events, Facebook Events, Facebook Standard Events, Facebook Dynamic Product Ads, WooCommerce, WooCommerce Facebook Pixel, Facebook Custom Events, Facebook Conversion Value, WooCommerce Affiliate Products, Easy Digital Downloads Pixel, Easy Digital Downloads Facebook Pixel
 Requires at least: 3.0.1
 Tested up to: 4.7
-Stable tag: 5.0.0
+Stable tag: 5.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -108,21 +108,21 @@ Retargeting the users that performed a search on your site is a smart strategy b
 
 <strong>Superb WooCommerce Integration</strong><br>
 
+Tested with WooCommerce 3
+
 * You can **insert the Facebook pixel and start tracking events on any WooCommerce** website with just a few clicks (Purchase, ViewContent, AddToCart, InitiateCheckout)
 
 * Out of the box **Facebook Dynamic Ads** (promote a product catalog) pixel setup for your Woocommerce website (we also have a dedicated feed plugin for Facebook Dynamic Ads Product Catalog)
 
 * **Dynamic AddToCart** is fully supported (the AddToCart event will fire on add to cart button click)
 
-* **Track conversion value for WooCommerce** ([Pro Version](http://www.pixelyoursite.com/facebook-pixel-plugin))
+* **Track conversion value for WooCommerce**
 
 * **WooCommerce Conversion Value Optimization:** You can include or exclude TAX for all the WooCommere events and Shipping cost for the Purchase event. You can use the full product price or just a percent of the price for each event Value. You can also set a general value for each event.  ([Pro Version](http://www.pixelyoursite.com/facebook-pixel-plugin))
 
 * You can turn ON/OFF each WooCommerce event.
 
 * You can turn ON/OFF value for each WooCommerce event.
-
-* Set up a general value for each WooCommerce event.
 
 * Delay the WooCommerce ViewContent Event, so you don't spend your money on retargeting bouncing visitors ([Pro Version](http://www.pixelyoursite.com/facebook-pixel-plugin))
 
@@ -225,48 +225,62 @@ We maintain an up to date FAQ page on our site:
 
 <strong><a href="http://www.pixelyoursite.com/facebool-pixel-master-faq" target="_blank"><span style="color:#DE4D4D;">Click here for the FAQ page</span></a></strong>
 
-**Do I need to copy/paste the Facebook Pixel code somewhere?**
+**Do I need to copy/paste the full Facebook Pixel code somewhere?**
 
 No, you just have to enter your pixel ID in the dedicated field. The plugin will do the rest for you.
 
 **Where can I find the Facebook Pixel ID?**
 
-There are multiple ways to do that. One simple method is to:
+You can find it here:
+<a href="https://www.facebook.com/ads/manager/pixel/facebook_pixel" target="_blank">https://www.facebook.com/ads/manager/pixel/facebook_pixel</a>
 
-* Go to your Facebook Pixel tab in Ads Manager
-* You will find the Facebook Pixel ID on the right side of the page
+**Can I use the plugin for  Custom Audiences or Custom Conversions?**
 
-**What happens when I activate the plugin general settings?**
+Absolutely yes! Actually, the plugin will super-optimize your site for Custom Audiences and Custom Conversions. 
+You will be able to create the classical ones based on URLs, but also Custom Combinations, like people who visited posts from category XYZ, or tagged with tag ABC in the last 30 days. 
 
-a. The pixel code will be added on every page of your site
+Use the PRO version, and you'll be able to do crazy things, like targeting people that came from Google and visited products under category "blue widget", or clients who bought products of at least $100, using the discount coupon "promo".
 
-b. A "Search" standard event will be added to the search page of your site
+**I used the old Facebook Pixel, will my audiences still work?**
 
-c. A GeneralEvent will be added on every page, pulling content_name, content_ids, and content_type. It can be used for Custom Audiences.
+Yes, they will, you won't lose anything.
 
-**What happens when I activate the WooCommerce Setup?**
+**Does it work with WooCommerce?**
 
-ViewContent is added on the product pages
-AdToCart event is added on the cart page
-AddToCart events is activated on add to cart button click
-InitiateCheckout event is added on the Checkout page
-Purchase event is added on the Thank You page
+Yes, it does. The plugin adds all the necessary events, like ViewContent, AddToCart, InitiateCheckout and Purchase. This way you can easily track conversion and c**onversion value.**
 
-**Can I define new standard events?**
+** Do I have to manually add the events for WooCommerce?**
 
-Yes, you can! There is a simple menu where you can do that. You'll need to add a URL and select the event type you want to add. If necessary, you can give each event a monetary value and its own currency.
+No, you don't, the plugin will take care of everything for you. 
 
-**Can I have more than just one event on a page?**
+**Does it work with Easy Digital Downloads?**
 
-Yes, you can! You can have any number of events you want on a page.
+Yes, it works in the same way it does with WooCommerce.
 
-**Can I use your plugin for Facebook Dynamic Ads?**
+**Does it work with Dynamic Ads (promote a product catalog)**
 
-Yes, you can! Facebook Dynamic Product Ads are fully supported for WooCommerce. We plan to add a similar integration for Easy Digital Downloads soon.
+Yes, all the WooCommerce and EDD pixel events are Dynamic Ads ready. 
+
+**Can I fire additional events if I need to?**
+
+Of course, you can fire any type of event (standard or custom) on any URL of your site. You can also use a partial URL by adding a * at the end of it (this way all the URLs starting with that string will be targeted).
+
+With the PRO version, you can use Dynamic Events and fire them on:
+
+* clicks on external or internal links
+* clicks on CSS elements, like form buttons
+* mouse over CSS elements
+* page scroll
+
+**Will your plugin increase the loading time of my site?**
+
+The plugin itself is really fast. However, you have to remember that the pixel has to communicate with Facebook to send all the data, and this will add a little load on your site. 
+
+Will this impact on your visitors? No, because all the requests are asynchronous, meaning that the browser will continue to load and your users will not see any delay whatsoever.
 
 **Are there any known incompatibilities with other themes or plugins?**
 
-Any program, service, code or plugin that adds the Pixel Code, since you can't have to similar pixels on a page.
+Any program, service, code or plugin that adds the Pixel Code, since you can't have two similar pixels on a page.
 
 * We had a problem with Mamaya, a retargeting service
 * It won't work with LeadPages or any similar system  because those pages are generated outside WordPress
@@ -275,8 +289,9 @@ If any incompatibilities will arise we will add them here and, of course, will t
 
 **I have the pixel installed on my website and I am running a Facebook Campaign, but the reports are confusing me. How can I see my campaign results?**
 
-We have an article about how to optimize Facebook Ads Reports:
+We have an article about how to create Custom Reports:
 <strong><a href="http://www.pixelyoursite.com/facebook-ads-reports-optimisation" target="_blank"><span style="color:#DE4D4D;">How to optimize your Facebook Ads Reports for events tracking</span></a></strong>
+
 
 == Screenshots ==
 
@@ -291,6 +306,21 @@ We have an article about how to optimize Facebook Ads Reports:
 9. These are the normal events on a WooCommerce thank you page: the Purchase event has content_ids and content_types (required by Dynamic Ads). The reported error for the GeneralEvent can be ignored (as explained in the help pages)
 
 == Changelog ==
+
+= PixelYourSite 5.0.3 =
+
+* WooCommerce and EDD content_ids potential issue fix (the content was not correctly wrapped, leaving room for errors when SKU was used instead of the default WordPress IDs)
+
+= PixelYourSite 5.0.2 =
+
+* Added agent identifier (dvpixelyoursite) as we were directly requested by Facebook
+* Checked and confirmed WooCommerce 3 compatibility
+* Dynamic WooCommerce Events Value based on the product price
+* Facebook for WooCommerce support
+
+= PixelYourSite 5.0.1 =
+
+* WooCommerce 2.7 compatibility update: we made sure everything works with the latest WooCommerce version.
 
 = PixelYourSite 5.0 =
 

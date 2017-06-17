@@ -5,7 +5,7 @@
 	Plugin URI: http://www.pixelyoursite.com/facebook-pixel-plugin-help
 	Author: PixelYourSite
 	Author URI: http://www.pixelyoursite.com
-	Version: 5.0.0
+	Version: 5.0.3
 	License: GPLv3
 */
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'PYS_FREE_VERSION', '5.0.0' );
+define( 'PYS_FREE_VERSION', '5.0.3' );
 
 require_once( 'inc/admin_notices.php' );
 require_once( 'inc/common.php' );
@@ -21,6 +21,7 @@ require_once( 'inc/common-edd.php' );
 require_once( 'inc/core.php' );
 require_once( 'inc/core-edd.php' );
 require_once( 'inc/ajax-standard.php' );
+require_once( 'inc/integrations/facebook-for-woocommerce.php' );
 
 add_action( 'plugins_loaded', 'pys_free_init' );
 function pys_free_init() {
@@ -64,18 +65,14 @@ function pys_free_init() {
 	add_action( 'wp_footer', 'pys_output_woo_ajax_events_code', 10 );
 	add_action( 'wp_footer', 'pys_output_edd_ajax_events_code', 10 );
 
-	// add add_to_cart ajax support only if woocommerce installed and events enabled
-	if ( pys_get_option( 'woo', 'enabled' ) && ( pys_get_option( 'woo', 'on_add_to_cart_btn' ) || pys_get_option( 'woo', 'on_thank_you_page' ) ) ) {
-
+	// woocommerce shop page add_to_cart
+	if ( pys_get_option( 'woo', 'enabled' ) && pys_get_option( 'woo', 'on_add_to_cart_btn' ) ) {
 		add_filter( 'woocommerce_loop_add_to_cart_link', 'pys_add_code_to_woo_cart_link', 10, 2 );
-
 	}
 
 	## add pixel code to EDD add_to_cart buttons
 	if ( pys_get_option( 'edd', 'enabled' ) && pys_get_option( 'edd', 'on_add_to_cart_btn', false ) ) {
-
 		add_filter( 'edd_purchase_link_args', 'pys_edd_purchase_link_args', 10, 1 );
-
 	}
 
 	add_filter( 'pys_event_params', 'pys_add_domain_param', 10, 2 );
@@ -159,7 +156,7 @@ if ( ! function_exists( 'pys_admin_scripts' ) ) {
 			add_thickbox();
 
 			wp_enqueue_style( 'pys', plugins_url( 'css/admin.css', __FILE__ ), array(), PYS_FREE_VERSION );
-			wp_enqueue_script( 'pys', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), PYS_FREE_VERSION );
+			wp_enqueue_script( 'pys-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), PYS_FREE_VERSION );
 
 		}
 
@@ -173,7 +170,7 @@ if ( ! function_exists( 'pys_public_scripts' ) ) {
 
 		$in_footer = (bool) pys_get_option( 'general', 'in_footer', false );
 
-		wp_enqueue_script( 'pys', plugins_url( 'js/public.js', __FILE__ ), array( 'jquery' ), PYS_FREE_VERSION, $in_footer );
+		wp_enqueue_script( 'pys-public', plugins_url( 'js/public.js', __FILE__ ), array( 'jquery' ), PYS_FREE_VERSION, $in_footer );
 
 	}
 

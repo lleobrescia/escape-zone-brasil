@@ -3,16 +3,18 @@ if( is_admin() ) {
 
 	/* Start of: WordPress Administration */
 
+	// Product Vendors - http://www.woothemes.com/products/product-vendors/
+	// YITH WooCommerce Multi Vendor Premium - http://yithemes.com/themes/plugins/yith-woocommerce-product-vendors/
 	function woo_ce_get_export_type_product_vendor_count( $count = 0, $export_type = '', $args ) {
 
 		if( $export_type <> 'product_vendor' )
 			return $count;
 
 		$count = 0;
+		$term_taxonomy = apply_filters( 'woo_ce_product_vendor_term_taxonomy', 'wcpv_product_vendors' );
 		// Check if the existing Transient exists
 		$cached = get_transient( WOO_CE_PREFIX . '_product_vendor_count' );
 		if( $cached == false ) {
-			$term_taxonomy = 'shop_vendor';
 			if( taxonomy_exists( $term_taxonomy ) )
 				$count = wp_count_terms( $term_taxonomy );
 			set_transient( WOO_CE_PREFIX . '_product_vendor_count', $count, HOUR_IN_SECONDS );
@@ -28,7 +30,8 @@ if( is_admin() ) {
 
 }
 
-function woo_ce_get_product_vendor_fields( $format = 'full' ) {
+// Returns a list of Product Vendor export columns
+function woo_ce_get_product_vendor_fields( $format = 'full', $post_ID = 0 ) {
 
 	$export_type = 'product_vendor';
 
@@ -81,7 +84,7 @@ function woo_ce_get_product_vendor_fields( $format = 'full' ) {
 	add_filter( 'sanitize_key', 'woo_ce_sanitize_key' );
 
 	// Allow Plugin/Theme authors to add support for additional columns
-	$fields = apply_filters( 'woo_ce_' . $export_type . '_fields', $fields, $export_type );
+	$fields = apply_filters( sprintf( WOO_CE_PREFIX . '_%s_fields', $export_type ), $fields, $export_type );
 
 	// Remove our content filters here to play nice with other Plugins
 	remove_filter( 'sanitize_key', 'woo_ce_sanitize_key' );
@@ -100,7 +103,8 @@ function woo_ce_get_product_vendor_fields( $format = 'full' ) {
 
 		case 'full':
 		default:
-			$sorting = woo_ce_get_option( $export_type . '_sorting', array() );
+			// Load the default sorting
+			$sorting = woo_ce_get_option( sprintf( '%s_sorting', $export_type ), array() );
 			$size = count( $fields );
 			for( $i = 0; $i < $size; $i++ ) {
 				$fields[$i]['reset'] = $i;
@@ -116,6 +120,7 @@ function woo_ce_get_product_vendor_fields( $format = 'full' ) {
 
 }
 
+// Check if we should override field labels from the Field Editor
 function woo_ce_override_product_vendor_field_labels( $fields = array() ) {
 
 	$labels = woo_ce_get_option( 'product_vendor_labels', array() );
@@ -135,7 +140,9 @@ function woo_ce_get_product_vendors( $args = array(), $output = 'term_id' ) {
 
 	global $export;
 
-	$term_taxonomy = 'shop_vendor';
+	// Product Vendors - http://www.woothemes.com/products/product-vendors/
+	// YITH WooCommerce Multi Vendor Premium - http://yithemes.com/themes/plugins/yith-woocommerce-product-vendors/
+	$term_taxonomy = apply_filters( 'woo_ce_product_vendor_term_taxonomy', 'wcpv_product_vendors' );
 	$defaults = array(
 		'orderby' => 'name',
 		'order' => 'ASC',

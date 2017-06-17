@@ -36,6 +36,7 @@ if ( ! function_exists( 'pys_edit_std_event' ) ) {
 				'content_type'     => null,
 				'content_category' => null,
 				'num_items'        => null,
+				'order_id'         => null,
 				'search_string'    => null,
 				'status'           => null,
 				'code'             => null,
