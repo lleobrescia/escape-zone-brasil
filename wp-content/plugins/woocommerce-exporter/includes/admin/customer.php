@@ -6,7 +6,7 @@ if( is_admin() ) {
 	// HTML template for Filter Customers by Order Status widget on Store Exporter screen
 	function woo_ce_customers_filter_by_status() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$order_statuses = woo_ce_get_order_statuses();
@@ -38,7 +38,7 @@ if( is_admin() ) {
 	// HTML template for Filter Customers by User Role widget on Store Exporter screen
 	function woo_ce_customers_filter_by_user_role() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$user_roles = woo_ce_get_user_roles();
@@ -70,7 +70,7 @@ if( is_admin() ) {
 	// HTML template for disabled Custom Customers widget on Store Exporter screen
 	function woo_ce_customers_custom_fields() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$custom_customers = '-';

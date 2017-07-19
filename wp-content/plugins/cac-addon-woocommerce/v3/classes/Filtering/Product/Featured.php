@@ -4,12 +4,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class ACA_WC_Filtering_Product_Featured extends ACP_Filtering_Model_Meta {
+class ACA_WC_Filtering_Product_Featured extends ACP_Filtering_Model {
 
 	public function get_filtering_vars( $vars ) {
-		$vars['meta_query'][] = array(
-			'key'   => $this->column->get_meta_key(),
-			'value' => 'yes' === $this->get_filter_value() ? 'yes' : 'no',
+		$product_visibility_term_ids = wc_get_product_visibility_term_ids();
+
+		$operator = 'yes' == $this->get_filter_value() ? 'IN' : 'NOT IN';
+
+		$vars['tax_query'] = array(
+			array(
+				'taxonomy' => 'product_visibility',
+				'field'    => 'term_taxonomy_id',
+				'terms'    => array( $product_visibility_term_ids['featured'] ),
+				'operator' => $operator,
+			),
 		);
 
 		return $vars;

@@ -250,6 +250,13 @@
 					});
 				}
 			});
+			$( 'body' ).on( 'updated_checkout', function() {
+				var field = $( 'body #pagseguro-card-number' );
+
+				if ( 0 < field.length ) {
+					field.focusout();
+				}
+			});
 
 			// Set the errors.
 			$( 'body' ).on( 'focus', '#pagseguro-card-number, #pagseguro-card-expiry', function() {
@@ -260,7 +267,7 @@
 			$( 'body' ).on( 'pagseguro_credit_card_brand', function( event, brand ) {
 				if ( 'error' !== brand ) {
 					PagSeguroDirectPayment.getInstallments({
-						amount: $( 'body #pagseguro-cart-total' ).val(),
+						amount: $( 'body #pagseguro-payment-form' ).data( 'cart_total' ),
 						brand: brand,
 						success: function( data ) {
 							var instalmments = $( 'body #pagseguro-card-installments' );
@@ -271,10 +278,9 @@
 								instalmments.append( '<option value="0">--</option>' );
 
 								$.each( data.installments[brand], function( index, installment ) {
-                  if(index == 0){
-                    instalmments.append( pagSeguroGetInstallmentOption( installment ) );
-                  }
-									
+                  if(index == 0){ 
+                    instalmments.append( pagSeguroGetInstallmentOption( installment ) ); 
+                  } 
 								});
 							} else {
 								pagSeguroAddErrorMessage( wc_pagseguro_params.invalid_card );

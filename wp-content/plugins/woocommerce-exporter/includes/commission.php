@@ -79,7 +79,7 @@ if( is_admin() ) {
 	// HTML template for disabled Filter Commissions by Product Vendor widget on Store Exporter screen
 	function woo_ce_commissions_filter_by_product_vendor() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$product_vendors = woo_ce_get_product_vendors( array(), 'full' );
@@ -110,7 +110,7 @@ if( is_admin() ) {
 	// HTML template for disabled Filter Commissions by Commission Status widget on Store Exporter screen
 	function woo_ce_commissions_filter_by_commission_status() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>

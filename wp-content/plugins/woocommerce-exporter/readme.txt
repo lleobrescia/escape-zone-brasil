@@ -4,8 +4,8 @@ Contributors: visser, visser.labs
 Donate link: https://www.visser.com.au/donations/
 Tags: e-commerce, woocommerce, shop, cart, ecommerce, export, csv, xml, xls, xlsx, excel, customers, products, sales, orders, coupons, users, attributes, subscriptions
 Requires at least: 2.9.2
-Tested up to: 4.7.4
-Stable tag: 1.9
+Tested up to: 4.7.5
+Stable tag: 1.9.1.1
 License: GPLv2 or later
 
 Export store details out of WooCommerce into simple formatted files (e.g. CSV, XML, Excel 2007, XLS, etc.).
@@ -60,7 +60,7 @@ Features include:
 
 > ** Go Pro **
 >
-> Unlock the business focused e-commerce features within Store Exporter such as scheduled exporting from [this link](http://www.visser.com.au/plugins/store-exporter-deluxe/).
+> Unlock the business focused e-commerce features within Store Exporter such as scheduled exporting from [this link](https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc).
 >
 > Full documentation and usage of Store Exporter Deluxe is available from the [support section for Store Exporter Deluxe](http://www.visser.com.au/documentation/store-exporter-deluxe/).
 
@@ -132,6 +132,14 @@ http://www.visser.com.au/woocommerce/forums/
 9. Drag-and-drop export fields to your preferred ordering, sorting is saved between screen refreshes.
 
 == Changelog ==
+
+= 1.9.1.1 =
+* Fixed: Visibility field empty for default value
+
+= 1.9.1 =
+* Fixed: Visibility field empty for default value (thanks spbuckle)
+* Changed: Compatibility with WooCommerce 3.0+
+* Changed: Updated WordPress compatibility
 
 = 1.9 =
 * Changed: Moved export type filters to their own files

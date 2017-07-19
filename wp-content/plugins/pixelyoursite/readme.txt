@@ -2,8 +2,8 @@
 Contributors: PixelYourSite, c0d3fev3r, themister
 Tags: Facebook Pixel, New Facebook Pixel, Facebook Conversion Pixel, Facebook Pixel Events, Facebook, New Facebook Pixel Events, Dynamic Events, Standard Events, Facebook Events, Facebook Standard Events, Facebook Dynamic Product Ads, WooCommerce, WooCommerce Facebook Pixel, Facebook Custom Events, Facebook Conversion Value, WooCommerce Affiliate Products, Easy Digital Downloads Pixel, Easy Digital Downloads Facebook Pixel
 Requires at least: 3.0.1
-Tested up to: 4.7
-Stable tag: 5.0.3
+Tested up to: 4.8
+Stable tag: 5.0.5.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -180,6 +180,17 @@ Tested with WooCommerce 3
 
 >With Advanced Matching ON, the plugin will send to Facebook the data you have about your clients, like their names, address, email or phone, improving conversion attribution and retargeting results.
 
+
+**[The Pro Version](http://www.pixelyoursite.com/facebook-pixel-plugin) was seriously improved:
+
+* Add multiple pixels IDs - [with the Super-Pack](http://www.pixelyoursite.com/super-pack)
+* Use dynamic parameters - [with the Super-Pack](http://www.pixelyoursite.com/super-pack)
+* Remove the pixel from any page - [with the Super-Pack](http://www.pixelyoursite.com/super-pack)
+* Custom Thank You Page for WooCommerce - [with the Super-Pack](http://www.pixelyoursite.com/super-pack)
+
+**NEW:** insert ANY script with our new Head/Footer option.
+
+
 <strong>What's next<strong>
 
 We are working on some new handy features for the plugin and we will release them soon.
@@ -306,6 +317,20 @@ We have an article about how to create Custom Reports:
 9. These are the normal events on a WooCommerce thank you page: the Purchase event has content_ids and content_types (required by Dynamic Ads). The reported error for the GeneralEvent can be ignored (as explained in the help pages)
 
 == Changelog ==
+
+= PixelYourSite 5.0.5.2 =
+
+
+* Quick fix for a small error with our previous release (we didn't included all the files)
+
+
+= PixelYourSite 5.0.5 =
+
+* Treat WooCommerce variable products like simple products - useful if your Product Catalog doesn't include variations. When ON, ViewContent content_type will be product and the main item ID will be used for all events instead of the variation item.
+
+= PixelYourSite 5.0.4 =
+
+* Changed WooCommerce ViewContent event content_type to product_group for variable products
 
 = PixelYourSite 5.0.3 =
 

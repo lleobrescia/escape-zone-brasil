@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @since 1.2
  */
-class ACA_WC_Column_Product_Featured extends AC_Column_Meta
-	implements ACP_Column_EditingInterface, ACP_Column_FilteringInterface {
+class ACA_WC_Column_Product_Featured extends AC_Column
+	implements ACP_Column_FilteringInterface, ACP_Column_SortingInterface {
 
 	public function __construct() {
 		$this->set_type( 'featured' );
@@ -17,12 +17,6 @@ class ACA_WC_Column_Product_Featured extends AC_Column_Meta
 
 	public function get_value( $id ) {
 		return null;
-	}
-
-	// Meta
-
-	public function get_meta_key() {
-		return '_featured';
 	}
 
 	// Display
@@ -37,8 +31,8 @@ class ACA_WC_Column_Product_Featured extends AC_Column_Meta
 		return new ACA_WC_Filtering_Product_Featured( $this );
 	}
 
-	public function editing() {
-		return new ACA_WC_Editing_Product_Featured( $this );
+	public function sorting() {
+		return new ACA_WC_Sorting_Product_Featured( $this );
 	}
 
 }

@@ -10,7 +10,7 @@ if ( ! function_exists( 'pys_get_woo_ajax_addtocart_params' ) ) {
 		
 		$params                 = array();
 		$params['content_type'] = 'product';
-		$params['content_ids']  = "['" . pys_get_product_content_id( $product_id ) . "']";
+		$params['content_ids']  = json_encode( pys_get_product_content_id( $product_id ) );
 		
 		// currency, value
 		if ( pys_get_option( 'woo', 'enable_add_to_cart_value' ) ) {
@@ -69,8 +69,18 @@ if ( ! function_exists( 'pys_get_woo_code' ) ) {
 		
 		// ViewContent Event
 		if ( pys_get_option( 'woo', 'on_view_content' ) && is_product() ) {
-			
-			$params['content_ids'] = "['" . pys_get_product_content_id( $post->ID ) . "']";
+
+            $product = wc_get_product( $post->ID );
+
+            $params['content_type'] = $product->get_type() == 'variable' ? 'product_group' : 'product';
+
+            $params['content_ids']  = json_encode( pys_get_product_content_id( $post->ID ) );
+
+            if ( $product->get_type() == 'variable' && pys_get_option( 'woo', 'variation_id' ) != 'main' ) {
+                $params['content_type'] = 'product_group';
+            } else {
+                $params['content_type'] = 'product';
+            }
 			
 			// currency, value
 			if ( pys_get_option( 'woo', 'enable_view_content_value' ) ) {
@@ -106,14 +116,13 @@ if ( ! function_exists( 'pys_get_woo_code' ) ) {
 			$ids = array();  // cart items ids or sku
 			
 			foreach ( $woocommerce->cart->cart_contents as $cart_item_key => $item ) {
-				
-				$product_id = pys_get_product_id( $item );
-				$value      = pys_get_product_content_id( $product_id );
-				$ids[]      = $value;
+                
+                $product_id = pys_get_product_id( $item );
+                $ids        = array_merge( $ids, pys_get_product_content_id( $product_id ) );
 				
 			}
 			
-			$params['content_ids'] = "['" . implode( "','", $ids ) . "']";
+			$params['content_ids'] = json_encode( $ids );
 			
 			// currency, value
 			if ( pys_get_option( 'woo', 'enable_add_to_cart_value' ) ) {
@@ -186,14 +195,13 @@ if ( ! function_exists( 'pys_get_woo_code' ) ) {
 			$ids = array();     // order items ids or sku
 			
 			foreach ( $items as $item ) {
-				
-				$product_id = pys_get_product_id( $item );
-				$value      = pys_get_product_content_id( $product_id );
-				$ids[]      = $value;
+                
+                $product_id = pys_get_product_id( $item );
+                $ids        = array_merge( $ids, pys_get_product_content_id( $product_id ) );
 				
 			}
 			
-			$params['content_ids'] = "['" . implode( "','", $ids ) . "']";
+			$params['content_ids'] = json_encode( $ids );
 			
 			// currency, value
 			if ( pys_get_option( 'woo', 'enable_purchase_value' ) ) {
@@ -272,7 +280,7 @@ if ( ! function_exists( 'pys_add_code_to_woo_cart_link' ) ) {
 		// common params
 		$params                 = array();
 		$params['content_type'] = 'product';
-		$params['content_ids']  = "['" . pys_get_product_content_id( $product_id ) . "']";
+		$params['content_ids']  = json_encode( pys_get_product_content_id( $product_id ) );
 		
 		// currency, value
 		if ( pys_get_option( 'woo', 'enable_add_to_cart_value' ) ) {

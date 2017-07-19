@@ -91,7 +91,7 @@ function woo_ce_template_footer() { ?>
 
 function woo_ce_export_options_export_format() {
 
-	$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+	$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 	$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 	ob_start(); ?>
@@ -270,7 +270,7 @@ function woo_ce_tab_template( $tab = '' ) {
 		$tab = 'overview';
 
 	// Store Exporter Deluxe
-	$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+	$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 	$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 	$troubleshooting_url = 'http://www.visser.com.au/documentation/store-exporter-deluxe/';

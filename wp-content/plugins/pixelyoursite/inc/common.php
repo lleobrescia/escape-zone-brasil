@@ -7,23 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if( !function_exists( 'dd' ) ) {
-
-	function dd( $data ) {
-		echo "<pre>" . print_r( $data, 1 ) . "</pre>";
-		die();
-	}
-
-}
-
-if( !function_exists( 'precho' ) ) {
-
-	function precho( $data ) {
-		echo "<pre>" . print_r( $data, 1 ) . "</pre>";
-	}
-
-}
-
 /**
  * Check if WooCommerce plugin is installed and activated.
  */
@@ -77,19 +60,20 @@ if( !function_exists( 'pys_get_option' ) ) {
 
 if( !function_exists( 'pys_checkbox_state' ) ) {
 
-	/**
-	 * @param string $section Option section name
-	 * @param string $option Option name
-	 * @param bool   $echo Echo or return value
-	 *
-	 * @return string
-	 */
-	function pys_checkbox_state( $section, $option, $echo = true ) {
+    /**
+     * @param string $section Option section name
+     * @param string $option  Option name
+     * @param bool   $echo    Echo or return value
+     * @param int    $checked Value to state compare
+     *
+     * @return string
+     */
+	function pys_checkbox_state( $section, $option, $echo = true, $checked = 1 ) {
 
 		$options = get_option( 'pixel_your_site' );
 
 		if ( isset( $options[ $section ][ $option ] ) ) {
-			$value = $options[ $section ][ $option ] == 1 ? 'checked' : '';
+			$value = $options[ $section ][ $option ] == $checked ? 'checked' : '';
 		} else {
 			$value = '';
 		}
@@ -105,21 +89,24 @@ if( !function_exists( 'pys_checkbox_state' ) ) {
 }
 
 if ( ! function_exists( 'pys_checkbox' ) ) {
-
-	/**
-	 * Echos checkbox input.
-	 *
-	 * @param string $section Input section name
-	 * @param string $option  Input option name
-	 * @param string $classes Class names (optional)                      
-	 */
-	function pys_checkbox( $section, $option, $classes = '' ) {
-		
-		$state = pys_checkbox_state( $section, $option, false );
-		echo "<input type='checkbox' value='1' name='pys[$section][$option]' class='$classes' $state>";
-
-	}
-
+    
+    /**
+     * Echos checkbox input.
+     *
+     * @param string $section Input section name
+     * @param string $option  Input option name
+     * @param string $classes Class names (optional)
+     * @param int    $value   Input value (optional)
+     */
+    function pys_checkbox( $section, $option, $classes = '', $value = 1 ) {
+        
+        $state = pys_checkbox_state( $section, $option, false, $value );
+        $value = esc_attr( $value );
+        
+        echo "<input type='checkbox' value='$value' name='pys[$section][$option]' class='$classes' $state>";
+        
+    }
+    
 }
 
 if ( ! function_exists( 'pys_text_field' ) ) {
@@ -429,19 +416,20 @@ if ( ! function_exists( 'pys_get_product_content_id' ) ) {
 	/**
 	 * Return product id or sku.
 	 */
-	function pys_get_product_content_id( $product_id ) {
-
-		$content_id_format = pys_get_option( 'woo', 'content_id_format', 'default' );
-
-		if ( pys_get_option( 'woo', 'content_id' ) == 'sku' ) {
-			$content_id = get_post_meta( $product_id, '_sku', true );
-		} else {
-			$content_id = $product_id;
-		}
-
-		return apply_filters( 'pys_fb_pixel_woo_product_content_id', $content_id, $product_id, $content_id_format );
-
-	}
+    function pys_get_product_content_id( $product_id ) {
+        
+        $content_id_format = pys_get_option( 'woo', 'content_id_format', 'default' );
+        
+        if ( pys_get_option( 'woo', 'content_id' ) == 'sku' ) {
+            $content_id = get_post_meta( $product_id, '_sku', true );
+        } else {
+            $content_id = intval( $product_id );
+        }
+        
+        return apply_filters( 'pys_fb_pixel_woo_product_content_id', array( $content_id ), $product_id,
+            $content_id_format );
+        
+    }
 
 }
 
@@ -452,11 +440,11 @@ if ( ! function_exists( 'pys_get_product_id' ) ) {
 	 */
 	function pys_get_product_id( $product ) {
 
-		$id = $product['product_id'];
-
-		if ( pys_get_option( 'woo', 'variation_id' ) == 'variation' && isset( $product['variation_id'] ) && $product['variation_id'] != 0 ) {
+		if ( pys_get_option( 'woo', 'variation_id' ) != 'main' && isset( $product['variation_id'] ) && $product['variation_id'] != 0 ) {
 			$id = $product['variation_id'];
-		}
+		} else {
+            $id = $product['product_id'];
+        }
 
 		return $id;
 	}
@@ -985,9 +973,8 @@ if( !function_exists( 'pys_get_woo_checkout_params' ) ) {
 
 		foreach ( $woocommerce->cart->cart_contents as $cart_item_key => $item ) {
 
-			$product_id = pys_get_product_id( $item );
-			$value      = pys_get_product_content_id( $product_id );
-			$ids[]      = $value;
+            $product_id = pys_get_product_id( $item );
+            $ids        = array_merge( $ids, pys_get_product_content_id( $product_id ) );
 
 			// content_name, category_name for each cart item
 			if ( $additional_params_enabled ) {
@@ -1006,7 +993,7 @@ if( !function_exists( 'pys_get_woo_checkout_params' ) ) {
 			$params['num_items'] = $woocommerce->cart->get_cart_contents_count();
 		}
 
-		$params['content_ids'] = "['" . implode( "','", $ids ) . "']";
+		$params['content_ids'] = json_encode( $ids );
 
 		if ( ! empty( $names ) ) {
 			$params['content_name'] = $names;
@@ -1056,7 +1043,7 @@ if( !function_exists( 'pys_get_default_options' ) ) {
 		$options['woo']['enabled'] = pys_is_woocommerce_active() ? 1 : 0;
 
 		$options['woo']['content_id']   = 'id';
-		$options['woo']['variation_id'] = 'main';
+		$options['woo']['variation_id'] = 'variation';
 
 		$options['woo']['enable_additional_params'] = 1;
 		$options['woo']['enable_tags']              = 1;
@@ -1272,12 +1259,12 @@ if( ! function_exists( 'pys_woocommerce_events' ) ) {
 
 		// WooCommerce non-ajax AddToCart Event handler
 		if ( isset( $_REQUEST['add-to-cart'] ) ) {
-
-			$product_id = isset( $_REQUEST['add-to-cart'] ) ? $_REQUEST['add-to-cart'] : null;
-
-			if ( pys_get_option( 'woo', 'variation_id' ) == 'variation' && isset( $_REQUEST['variation_id'] ) ) {
+            
+			if ( pys_get_option( 'woo', 'variation_id' ) != 'main' && isset( $_REQUEST['variation_id'] ) ) {
 				$product_id = $_REQUEST['variation_id'];
-			}
+			} else {
+                $product_id = isset( $_REQUEST['add-to-cart'] ) ? $_REQUEST['add-to-cart'] : null;
+            }
 
 			$params = pys_get_woo_ajax_addtocart_params( $product_id );
 

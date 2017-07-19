@@ -7,10 +7,11 @@ if( is_admin() ) {
 		function woo_ce_get_export_type_product_count() {
 
 			$count = 0;
+			$post_type = apply_filters( 'woo_ce_get_export_type_product_count_post_types', array( 'product', 'product_variation' ) );
+
 			// Check if the existing Transient exists
 			$cached = get_transient( WOO_CE_PREFIX . '_product_count' );
 			if( $cached == false ) {
-				$post_type = apply_filters( 'woo_ce_get_export_type_product_count_post_types', array( 'product', 'product_variation' ) );
 				$args = array(
 					'post_type' => $post_type,
 					'posts_per_page' => 1,
@@ -193,6 +194,26 @@ function woo_ce_get_product_fields( $format = 'full' ) {
 	$fields[] = array(
 		'name' => 'image_embed',
 		'label' => __( 'Featured Image (Embed)', 'woocommerce-exporter' ),
+		'disabled' => 1
+	);
+	$fields[] = array(
+		'name' => 'image_title',
+		'label' => __( 'Featured Image Title', 'woocommerce-exporter' ),
+		'disabled' => 1
+	);
+	$fields[] = array(
+		'name' => 'image_caption',
+		'label' => __( 'Featured Image Caption', 'woocommerce-exporter' ),
+		'disabled' => 1
+	);
+	$fields[] = array(
+		'name' => 'image_alt',
+		'label' => __( 'Featured Image Alternative Text', 'woocommerce-exporter' ),
+		'disabled' => 1
+	);
+	$fields[] = array(
+		'name' => 'image_description',
+		'label' => __( 'Featured Image Description', 'woocommerce-exporter' ),
 		'disabled' => 1
 	);
 	$fields[] = array(
@@ -987,9 +1008,13 @@ function woo_ce_get_product_addons() {
 function woo_ce_format_product_visibility( $visibility = '' ) {
 
 	$output = '';
+	// Check for empty default for Visibility
+	if( empty( $visibility ) )
+		$visibility = 'visible';
 	if( !empty( $visibility ) ) {
 		switch( $visibility ) {
 
+			default:
 			case 'visible':
 				$output = __( 'Catalog & Search', 'woocommerce-exporter' );
 				break;
@@ -1189,7 +1214,9 @@ function woo_ce_format_product_type( $type_id = '' ) {
 			'virtual' => __( 'Virtual', 'woocommerce' ),
 			'variable' => __( 'Variable', 'woocommerce' ),
 			'external' => __( 'External/Affiliate Product', 'woocommerce' ),
-			'variation' => __( 'Variation', 'woocommerce-exporter' )
+			'variation' => __( 'Variation', 'woocommerce-exporter' ),
+			'subscription' => __( 'Simple Subscription', 'woocommerce-exporter' ),
+			'variable-subscription' => __( 'Variable Subscription', 'woocommerce-exporter' )
 		) );
 		if( isset( $product_types[$type_id] ) )
 			$output = $product_types[$type_id];
@@ -1205,6 +1232,10 @@ function woo_ce_get_product_types() {
 	$args = array(
 		'hide_empty' => 0
 	);
+
+	// Allow other developers to bake in their own filters
+	$args = apply_filters( 'woo_ce_get_product_types_args', $args );
+
 	$types = get_terms( $term_taxonomy, $args );
 	if( !empty( $types ) && is_wp_error( $types ) == false ) {
 		$output = array();
@@ -1234,6 +1265,10 @@ function woo_ce_get_product_types() {
 			'name' => __( 'variation', 'woocommerce-exporter' ),
 			'count' => woo_ce_get_product_type_count( 'product_variation' )
 		);
+
+		// Allow Plugin/Theme authors to add support for additional Product Types
+		$output = apply_filters( 'woo_ce_get_product_types_output', $output );
+
 		asort( $output );
 		return $output;
 	}
@@ -1250,6 +1285,10 @@ function woo_ce_get_product_type_count( $post_type = 'product', $args = array() 
 	$args = wp_parse_args( $args, $defaults );
 	$product_ids = new WP_Query( $args );
 	$size = $product_ids->found_posts;
+
+	// Allow Plugin/Theme authors to override Product Type counts as needed
+	$size = apply_filters( 'woo_ce_get_product_type_count', $size, $post_type );
+
 	return $size;
 
 }

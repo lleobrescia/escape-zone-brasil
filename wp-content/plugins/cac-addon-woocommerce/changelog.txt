@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 2.1.3 =
+Release Date: May 23rd, 2017
+
+* [Fixed] WooCommerce featured product column editing, sorting and filtering improved
+
 = 2.1.2 =
 Release Date: May 3rd, 2017
 

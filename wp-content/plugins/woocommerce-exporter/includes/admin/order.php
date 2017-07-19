@@ -6,7 +6,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Order Date widget on Store Exporter screen
 	function woo_ce_orders_filter_by_date() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$today = date( 'l' );
@@ -80,7 +80,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Customer widget on Store Exporter screen
 	function woo_ce_orders_filter_by_customer() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>
@@ -104,7 +104,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Billing Country widget on Store Exporter screen
 	function woo_ce_orders_filter_by_billing_country() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$countries = woo_ce_allowed_countries();
@@ -139,7 +139,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Shipping Country widget on Store Exporter screen
 	function woo_ce_orders_filter_by_shipping_country() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$countries = woo_ce_allowed_countries();
@@ -172,7 +172,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by User Role widget on Store Exporter screen
 	function woo_ce_orders_filter_by_user_role() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$user_roles = woo_ce_get_user_roles();
@@ -204,7 +204,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Order ID widget on Store Exporter screen
 	function woo_ce_orders_filter_by_order_id() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>
@@ -227,7 +227,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Coupon Code widget on Store Exporter screen
 	function woo_ce_orders_filter_by_coupon() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$args = array(
@@ -263,7 +263,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Payment Gateway widget on Store Exporter screen
 	function woo_ce_orders_filter_by_payment_gateway() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>
@@ -287,7 +287,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Shipping Gateway widget on Store Exporter screen
 	function woo_ce_orders_filter_by_shipping_method() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>
@@ -311,7 +311,7 @@ if( is_admin() ) {
 	// HTML template for Order Items Formatting on Store Exporter screen
 	function woo_ce_orders_items_formatting() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		ob_start(); ?>
@@ -344,7 +344,7 @@ if( is_admin() ) {
 	// HTML template for Max Order Items widget on Store Exporter screen
 	function woo_ce_orders_max_order_items() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$max_size = 10;
@@ -367,7 +367,7 @@ if( is_admin() ) {
 	// HTML template for Order Items Types on Store Exporter screen
 	function woo_ce_orders_items_types() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$types = woo_ce_get_order_items_types();
@@ -396,7 +396,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Order Status widget on Store Exporter screen
 	function woo_ce_orders_filter_by_status() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$order_statuses = woo_ce_get_order_statuses();
@@ -428,7 +428,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Product widget on Store Exporter screen
 	function woo_ce_orders_filter_by_product() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$args = array(
@@ -463,7 +463,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Product Category widget on Store Exporter screen
 	function woo_ce_orders_filter_by_product_category() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$args = array(
@@ -498,7 +498,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Product Tag widget on Store Exporter screen
 	function woo_ce_orders_filter_by_product_tag() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$args = array(
@@ -533,7 +533,7 @@ if( is_admin() ) {
 	// HTML template for Filter Orders by Brand widget on Store Exporter screen
 	function woo_ce_orders_filter_by_product_brand() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		// WooCommerce Brands Addon - http://woothemes.com/woocommerce/
@@ -597,7 +597,7 @@ if( is_admin() ) {
 	// HTML template for Custom Orders widget on Store Exporter screen
 	function woo_ce_orders_custom_fields() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$custom_orders = '-';

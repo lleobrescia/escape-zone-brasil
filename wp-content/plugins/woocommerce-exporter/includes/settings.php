@@ -14,7 +14,7 @@ function woo_ce_export_settings_quicklinks() {
 
 function woo_ce_export_settings_csv() {
 
-	$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+	$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 	$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 	ob_start(); ?>
@@ -38,7 +38,7 @@ function woo_ce_export_settings_csv() {
 // Returns the disabled HTML template for the Enable CRON and Secret Export Key options for the Settings screen
 function woo_ce_export_settings_extend() {
 
-	$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+	$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 	$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 	// RSS settings

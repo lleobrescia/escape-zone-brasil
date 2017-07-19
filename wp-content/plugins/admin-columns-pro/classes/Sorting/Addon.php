@@ -379,10 +379,10 @@ class ACP_Sorting_Addon {
 	 */
 	public function settings_display() {
 		?>
-        <form action="" method="post">
+		<form action="" method="post">
 			<?php wp_nonce_field( 'reset-sorting-preference', '_acnonce' ); ?>
-            <input type="submit" class="button" value="<?php _e( 'Reset sorting preferences', 'codepress-admin-columns' ); ?>">
-        </form>
+			<input type="submit" class="button" value="<?php _e( 'Reset sorting preferences', 'codepress-admin-columns' ); ?>">
+		</form>
 		<?php
 	}
 
@@ -405,10 +405,16 @@ class ACP_Sorting_Addon {
 	/**
 	 * @param AC_ListScreen $list_screen
 	 *
-	 * @return bool
+	 * @return array|false
 	 */
 	private function get_sorting_preference( $list_screen ) {
-		return $this->preferences()->set_key( $list_screen->get_storage_key() )->get();
+		$preference = $this->preferences()->set_key( $list_screen->get_storage_key() )->get();
+
+		if ( empty( $preference['orderby'] ) || ! $list_screen->get_column_by_name( $preference['orderby'] ) ) {
+			return false;
+		}
+
+		return $preference;
 	}
 
 	/**

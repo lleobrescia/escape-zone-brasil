@@ -22,27 +22,28 @@ if ( ! defined( 'ABSPATH' ) ) {
       </tr>
       
       <?php do_action( 'pys_fb_pixel_admin_woo_content_id_before' ); ?>
-      
-      <tr class="content_id">
-        <td class="alignright"><p class="label">content_ids:</p></td>
-        <td>
-          <select name="pys[woo][content_id]">
-            <option <?php selected( 'id', pys_get_option( 'woo', 'content_id' ) ); ?> value="id">Product ID</option>
-            <option <?php selected( 'sku', pys_get_option( 'woo', 'content_id' ) ); ?> value="sku">Product SKU</option>
-          </select>        
-        </td>
-      </tr>
-      
-      <tr class="content_id">
-        <td class="alignright"><p class="label">Define Variation ID:</p></td>
-        <td>
-          <select name="pys[woo][variation_id]">
-            <option <?php selected( 'main', pys_get_option( 'woo', 'variation_id' ) ); ?> value="main">Main product data</option>
-            <option <?php selected( 'variation', pys_get_option( 'woo', 'variation_id' ) ); ?> value="variation">Variation data</option>
-          </select>
-          <span class="help">Define what ID should be use for variations of variable product.</span>
-        </td>
-      </tr>
+
+        <tr class="content_id">
+            <td></td>
+            <td>
+                <?php pys_checkbox( 'woo', 'variation_id', null, 'main' ); ?>
+                <?php _e( 'Treat variable products like simple products', 'pys' ); ?>
+                
+                <span class="help">Turn this option ON when your Product Catalog doesn't include the variants for variable products.</span>
+            </td>
+        </tr>
+
+        <tr class="content_id">
+            <td class="alignright"><p class="label">content_ids:</p></td>
+            <td>
+                <select name="pys[woo][content_id]">
+                    <option <?php selected( 'id', pys_get_option( 'woo', 'content_id' ) ); ?> value="id">Product ID
+                    </option>
+                    <option <?php selected( 'sku', pys_get_option( 'woo', 'content_id' ) ); ?> value="sku">Product SKU
+                    </option>
+                </select>
+            </td>
+        </tr>
       
       <tr>
         <td></td>

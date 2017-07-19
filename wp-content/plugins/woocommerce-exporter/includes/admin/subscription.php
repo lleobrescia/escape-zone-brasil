@@ -6,7 +6,7 @@ if( is_admin() ) {
 	// HTML template for Filter Subscriptions by Subscription Status widget on Store Exporter screen
 	function woo_ce_subscriptions_filter_by_subscription_status() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$subscription_statuses = woo_ce_get_subscription_statuses();
@@ -38,7 +38,7 @@ if( is_admin() ) {
 	// HTML template for Filter Subscriptions by Subscription Product widget on Store Exporter screen
 	function woo_ce_subscriptions_filter_by_subscription_product() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$products = woo_ce_get_subscription_products();

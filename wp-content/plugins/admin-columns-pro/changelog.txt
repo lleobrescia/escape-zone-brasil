@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 4.0.5 =
+Release Date: June 6th, 2017
+
+* [Fixed] Fatal errors on filtering in PHP7.1 on the comments overview page
+* [Fixed] Don't load sorting preferences for columns that aren't available
+* [Updated] Admin Columns core to v3.0.1
+    * [Improved] Clicking the toggle icons in the header of the column settings won't open the column settings anymore
+    * [Improved] Fallback for the autoloader to work with lowercase files
+    * [Improved] User Nicename available as an option for User display
+
 = 4.0.4 =
 Release Date: May 2nd, 2017
 

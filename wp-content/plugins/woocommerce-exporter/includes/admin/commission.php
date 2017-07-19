@@ -6,7 +6,7 @@ if( is_admin() ) {
 	// HTML template for Filter Commissions by Commission Date widget on Store Exporter screen
 	function woo_ce_commissions_filter_by_date() {
 
-		$woo_cd_url = 'http://www.visser.com.au/woocommerce/plugins/exporter-deluxe/';
+		$woo_cd_url = 'https://www.visser.com.au/plugins/store-exporter-deluxe/?platform=wc';
 		$woo_cd_link = sprintf( '<a href="%s" target="_blank">' . __( 'Store Exporter Deluxe', 'woocommerce-exporter' ) . '</a>', $woo_cd_url );
 
 		$today = date( 'l' );

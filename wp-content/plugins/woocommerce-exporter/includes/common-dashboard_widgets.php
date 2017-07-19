@@ -3,7 +3,7 @@
 
 Filename: common-dashboard_widgets.php
 Description: common-dashboard_widgets.php loads commonly access Dashboard widgets across the Visser Labs suite.
-Version: 1.4
+Version: 1.5
 
 */
 
@@ -14,8 +14,12 @@ if( !function_exists( 'woo_vl_dashboard_setup' ) ) {
 	function woo_vl_dashboard_setup() {
 
 		// Limit the Dashboard widget to Users with the Manage Options capability
-		if( current_user_can( 'manage_options' ) ) {
-			wp_add_dashboard_widget( 'woo_vl_news_widget', __( 'Plugin News - by Visser Labs', 'woocommerce-exporter' ), 'woo_vl_news_widget' );
+		$user_capability = 'manage_options';
+		if( current_user_can( $user_capability ) ) {
+			if( apply_filters( 'woo_vl_news_widget', true ) ) {
+				$dashboard_widget_title = __( 'Plugin News - by Visser Labs', 'woocommerce-exporter' );
+				wp_add_dashboard_widget( 'woo_vl_news_widget', $dashboard_widget_title, 'woo_vl_news_widget' );
+			}
 		}
 
 	}

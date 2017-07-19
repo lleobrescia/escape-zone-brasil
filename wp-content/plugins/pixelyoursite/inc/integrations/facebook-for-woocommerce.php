@@ -2,16 +2,21 @@
 
 /**
  * Manage integration with Facebook for WooCommerce plugin.
+ *
+ * When Facebook for WooCommerce is activated this integration completely removes
+ * default Facebook for WooCommerce pixels and replaces them with PYS's. Also, new "Pixel ID format" option added to
+ * PYS WooCommerce tab where user can decide what format to use in pixel: PYS default or Facebook for WooCommerce.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/**
- * Create fake WC_Facebookcommerce_EventsTracker class to remove all unwanted front-end pixel events.
- */
 if ( class_exists( 'WC_Facebookcommerce' ) && ! class_exists( 'WC_Facebookcommerce_EventsTracker' ) ) :
+
+    /**
+     * Declare fake WC_Facebookcommerce_EventsTracker class to remove all unwanted front-end pixel events.
+     */
 
 	/** @noinspection PhpUndefinedClassInspection */
 	class WC_Facebookcommerce_EventsTracker {
@@ -44,11 +49,12 @@ if ( class_exists( 'WC_Facebookcommerce' ) && ! class_exists( 'WC_Facebookcommer
 
 endif;
 
-/**
- * Setup extra hooks.
- */
 if ( class_exists( 'WC_Facebookcommerce' ) ) :
 
+    /**
+     * Setup PYS hooks and filters for Facebook for WooCommerce related options and pixel ID output format.
+     */
+    
 	add_filter( 'pys_fb_pixel_woo_product_content_id', 'fb_for_woo_pys_fb_pixel_woo_product_content_id', 10, 4 );
 	function fb_for_woo_pys_fb_pixel_woo_product_content_id( $content_id, $product_id, $content_id_format ) {
 
@@ -56,11 +62,19 @@ if ( class_exists( 'WC_Facebookcommerce' ) ) :
 		if( $content_id_format !== 'facebook_for_woocommerce' ) {
 			return $content_id;
 		}
-
-		// use Facebook for WooCommerce extension format
-		$sku = get_post_meta( $product_id, '_sku', true );
-
-		return $sku ? $sku : 'wc_post_id_' . $product_id;
+        
+        $ids = array(
+            'wc_post_id_' . $product_id
+        );
+        
+        if ( $sku = get_post_meta( $product_id, '_sku', true ) ) {
+            
+            $ids[] = $sku;
+            $ids[] = 'wc_post_id_' . $sku;
+            
+        }
+        
+        return $ids;
 
 	}
 
