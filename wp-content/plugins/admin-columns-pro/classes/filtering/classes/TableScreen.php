@@ -43,9 +43,9 @@ class ACP_Filtering_TableScreen {
 		}
 		?>
 
-        <style>
-            <?php echo implode( ', ', $class_names ) .  '{ font-weight: bold; position: relative; }'; ?>
-        </style>
+		<style>
+			<?php echo implode( ', ', $class_names ) .  '{ font-weight: bold; position: relative; }'; ?>
+		</style>
 
 		<?php
 	}
@@ -76,9 +76,9 @@ class ACP_Filtering_TableScreen {
 			return;
 		}
 		?>
-        <style>
-            <?php echo implode( ', ', $disabled ) . '{ display: none; }'; ?>
-        </style>
+		<style>
+			<?php echo implode( ', ', $disabled ) . '{ display: none; }'; ?>
+		</style>
 		<?php
 	}
 
@@ -137,15 +137,20 @@ class ACP_Filtering_TableScreen {
 				break;
 		}
 
-		// Handle filtering request
 		foreach ( $list_screen->get_columns() as $column ) {
 
 			if ( $model = acp_filtering()->get_filtering_model( $column ) ) {
+
+				// Hide the default date filter dropdown in WordPress
+				if ( $model instanceof ACP_Filtering_Model_Post_Date && $model->hide_default_date_dropdown() ) {
+					add_filter( 'disable_months_dropdown', '__return_true' );
+				}
 
 				if ( false === $model->get_filter_value() ) {
 					continue;
 				}
 
+				// Handle filtering request
 				switch ( true ) {
 
 					case $list_screen instanceof AC_ListScreenPost :
@@ -307,8 +312,8 @@ class ACP_Filtering_TableScreen {
 			}
 
 			if ( $model->is_ranged() ) {
-			    continue;
-            }
+				continue;
+			}
 
 			$data = $model->get_filtering_data();
 
@@ -340,7 +345,7 @@ class ACP_Filtering_TableScreen {
 	 */
 	public function filter_button() {
 		?>
-        <input type="submit" name="acp_filter_action" class="button" value="<?php echo esc_attr( __( 'Filter', 'codepress-admin-columns' ) ); ?>">
+		<input type="submit" name="acp_filter_action" class="button" value="<?php echo esc_attr( __( 'Filter', 'codepress-admin-columns' ) ); ?>">
 		<?php
 	}
 
@@ -355,8 +360,8 @@ class ACP_Filtering_TableScreen {
 		$list_screen = AC()->table_screen()->get_current_list_screen();
 
 		if ( ! $list_screen ) {
-		    return;
-        }
+			return;
+		}
 
 		foreach ( $list_screen->get_columns() as $column ) {
 			$model = acp_filtering()->get_filtering_model( $column );
@@ -401,7 +406,7 @@ class ACP_Filtering_TableScreen {
 				$data = $this->cache( $list_screen->get_storage_key() . $column->get_name() )->get();
 
 				if ( ! $this->is_cache_enabled() ) {
-				    $data = false;
+					$data = false;
 				}
 
 				$dropdown = ACP_Filtering_Dropdown::create( $column, $data );
@@ -443,14 +448,14 @@ class ACP_Filtering_TableScreen {
 		$max_id = 'acp-filter-max-' . $data->name;
 		?>
 
-        <div class="acp-range <?php echo esc_attr( $data->type ); ?><?php echo ( $min || $max ) ? ' active' : ''; ?>">
-            <div class="input_group">
-                <label class="prepend" for="<?php echo esc_attr( $min_id ); ?>"><?php echo esc_html( $data->label ); ?></label>
-                <input class="min<?php echo $min ? ' active' : ''; ?>" type="<?php echo esc_attr( $data->input_type ); ?>" placeholder="<?php echo esc_attr( strtolower( $data->label_min ) ); ?>" name="acp_filter-min[<?php echo esc_attr( $data->name ); ?>]" value="<?php echo esc_attr( $min ); ?>" id="<?php echo esc_attr( $min_id ); ?>">
-                <label class="append" for="<?php echo esc_attr( $max_id ); ?>"><?php _e( 'until', 'codepress-admin-columns' ); ?></label>
-                <input class="max<?php echo $max ? ' active' : ''; ?>" type="<?php echo esc_attr( $data->input_type ); ?>" placeholder="<?php echo esc_attr( strtolower( $data->label_max ) ); ?>" name="acp_filter-max[<?php echo esc_attr( $data->name ); ?>]" value="<?php echo esc_attr( $max ); ?>" id="<?php echo esc_attr( $max_id ); ?>">
-            </div>
-        </div>
+		<div class="acp-range <?php echo esc_attr( $data->type ); ?><?php echo ( $min || $max ) ? ' active' : ''; ?>">
+			<div class="input_group">
+				<label class="prepend" for="<?php echo esc_attr( $min_id ); ?>"><?php echo esc_html( $data->label ); ?></label>
+				<input class="min<?php echo $min ? ' active' : ''; ?>" type="<?php echo esc_attr( $data->input_type ); ?>" placeholder="<?php echo esc_attr( strtolower( $data->label_min ) ); ?>" name="acp_filter-min[<?php echo esc_attr( $data->name ); ?>]" value="<?php echo esc_attr( $min ); ?>" id="<?php echo esc_attr( $min_id ); ?>">
+				<label class="append" for="<?php echo esc_attr( $max_id ); ?>"><?php _e( 'until', 'codepress-admin-columns' ); ?></label>
+				<input class="max<?php echo $max ? ' active' : ''; ?>" type="<?php echo esc_attr( $data->input_type ); ?>" placeholder="<?php echo esc_attr( strtolower( $data->label_max ) ); ?>" name="acp_filter-max[<?php echo esc_attr( $data->name ); ?>]" value="<?php echo esc_attr( $max ); ?>" id="<?php echo esc_attr( $max_id ); ?>">
+			</div>
+		</div>
 
 		<?php
 	}

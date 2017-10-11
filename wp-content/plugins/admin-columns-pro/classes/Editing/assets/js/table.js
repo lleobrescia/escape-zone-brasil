@@ -972,7 +972,9 @@ jQuery( document ).ready( function( $ ) {
 		el.attr( 'data-date', value );
 		el.attr( 'data-date-format', 'yyyy-mm-dd' );
 
-		el.bdatepicker().on( 'changeDate', function( ev ) {
+		el.bdatepicker({
+			weekStart: column.editable.weekstart // default starts on sunday, 1 for monday
+		}).on( 'changeDate', function( ev ) {
 			var new_date = new Date( ev.date );
 			var yyyymmdd = new_date.yyyymmdd();
 

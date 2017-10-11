@@ -1,5 +1,20 @@
 == Changelog ==
 
+= 4.0.6 =
+Release Date: July 3rd, 2017
+
+* [Added] Filtering added for the Date Published column
+* [Fixed] Better fix for fatal errors on filtering in PHP7.1 on the comments overview page
+* [Fixed] Hitting enter to filter on the User overview does work now
+* [Fixed] Inline edit for textareas are saved incorrectly the second time
+* [Improved] Default WordPress date filter is removed when there is an Admin Column Pro monthly date filter active
+* [Improved] Styling filtering input fields
+* [Improved] Editing datepicker now supports first day of the week option
+* [Updated] Admin Columns core to v3.0.2
+    * [Fixed] No columns were shown when you saved your columns without visiting the overview page first
+    * [Improved] Character limit now strips tags before trimming
+    * [Improved] Translations for the core are now fetched from Glotpress
+
 = 4.0.5 =
 Release Date: June 6th, 2017
 

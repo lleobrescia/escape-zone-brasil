@@ -5,7 +5,6 @@
 * o menu contato eh configurado pelo plugin advanced custom fields
 */
 
-$linkedin = get_field('linkedin', 'option');
 $contato = get_field('contato_info', 'option');
 $horario = get_field('horario_info', 'option');
 

@@ -206,6 +206,11 @@ class ACP_Editing_TableScreen {
 			$display_value = $save_result;
 		}
 
+		// Send back the result unquoted, otherwise editing a second time won't work correctly (ticket #817)
+		if ( is_string( $value ) ) {
+			$value = stripcslashes( $value );
+		}
+
 		$data = array(
 			'rawvalue'  => $value,
 
